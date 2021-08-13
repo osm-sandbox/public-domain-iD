@@ -1431,7 +1431,7 @@ en:
       navigation_drag: "You can drag the map by holding down the {leftclick} left mouse button and moving the mouse around, or by {touchdrag_icon} dragging on a touchscreen. You can also use the `↓`, `↑`, `←`, `→` arrow keys on a keyboard."
       navigation_zoom: "You can zoom in or out by scrolling with a {mousewheel_icon} mouse wheel or trackpad, or by {pinch_icon} pinching with two fingers on a touchscreen. You can also press the {plus} / {minus} buttons along the side of the map or the `+`, `-` keys on a keyboard."
       features_h: "Map Features"
-      features: "We use the word *features* to describe things that appear on the map, such as roads, buildings, or points of interest. Anything in the real world can be mapped as a feature on OpenStreetMap. Map features are represented on the map using *points*, *lines*, or *areas*."
+      features: "We use the word *features* to describe things that appear on the map, such as roads, buildings, or points of interest. Anything in the real world can be mapped as a feature on PublicDomainMap. Map features are represented on the map using *points*, *lines*, or *areas*."
       nodes_ways: "In PublicDomainMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*."
     editing:
       title: "Editing & Saving"
@@ -1449,7 +1449,7 @@ en:
       save: "Press the {save_icon} **{save}** button to finish your edits and send them to PublicDomainMap. You should remember to save your work frequently!"
       save_validation: "On the save screen, you'll have a chance to review what you've done. iD will also perform some basic checks for missing data and may offer helpful suggestions and warnings if something doesn't seem right."
       upload_h: "Upload"
-      upload: "Before uploading your changes you must enter a [changeset comment](https://wiki.openstreetmap.org/wiki/Good_changeset_comments). Then press **{upload}** to send your changes to OpenStreetMap, where they will be merged into the map and publicly visible to everyone."
+      upload: "Before uploading your changes you must enter a [changeset comment](https://wiki.openstreetmap.org/wiki/Good_changeset_comments). Then press **{upload}** to send your changes to PublicDomainMap, where they will be merged into the map and publicly visible to everyone."
       backups_h: "Automatic Backups"
       backups: "If you happen to close the browser before saving, your edits are still stored locally. iD will offer to restore your work when you come back later on the same browser and device."
       keyboard_h: "Keyboard Shortcuts"
