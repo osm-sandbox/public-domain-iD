@@ -578,7 +578,7 @@ en:
   commit:
     title: Upload to PublicDomainMap
     upload_explanation: "The changes you upload will be visible on all maps that use PublicDomainMap data."
-    upload_explanation_with_user: "The changes you upload as {user} will be visible on all maps that use OpenStreetMap data."
+    upload_explanation_with_user: "The changes you upload as {user} will be visible on all maps that use PublicDomainMap data."
     request_review: "I would like someone to review my edits."
     request_review_info: "Unsure about something? Invite an experienced mapper to check your work once it's live."
     save: Upload
@@ -785,11 +785,11 @@ en:
     data_layers: Data Layers
     layers:
       osm:
-        tooltip: Map data from OpenStreetMap
-        title: OpenStreetMap Data
+        tooltip: Map data from PublicDomainMap
+        title: PublicDomainMap Data
       notes:
-        tooltip: Note data from OpenStreetMap
-        title: OpenStreetMap Notes
+        tooltip: Note data from PublicDomainMap
+        title: PublicDomainMap Notes
       keepRight:
         tooltip: Data issues detected by keepright.at
         title: KeepRight Issues
@@ -814,7 +814,7 @@ en:
       key: G
     map_features: Map Features
     autohidden: "These features have been automatically hidden because too many would be shown on the screen.  You can zoom in to edit them."
-    osmhidden: "These features have been automatically hidden because the OpenStreetMap layer is hidden."
+    osmhidden: "These features have been automatically hidden because the PublicDomainMap layer is hidden."
   visual_diff:
     highlight_edits:
       description: Highlight Changes
@@ -951,12 +951,12 @@ en:
     reset: Discard my changes
   save:
     title: Save
-    help: "Review your changes and upload them to OpenStreetMap, making them visible to other users."
+    help: "Review your changes and upload them to PublicDomainMap, making them visible to other users."
     no_changes: No changes to save.
     error: Errors occurred while trying to save
     status_code: "Server returned status code {code}"
     unknown_error_details: "Please ensure you are connected to the internet."
-    uploading: Uploading changes to OpenStreetMap...
+    uploading: Uploading changes to PublicDomainMap...
     conflict_progress: "Checking for conflicts: {num} of {total}"
     unsaved_changes: You have unsaved changes
     conflict:
@@ -979,18 +979,18 @@ en:
       memberlist: 'Relation members were changed by both you and {user}.'
       tags: 'You changed the <b>{tag}</b> tag to "{local}" and {user} changed it to "{remote}".'
   success:
-    just_edited: "You just edited OpenStreetMap!"
+    just_edited: "You just edited PublicDomainMap!"
     thank_you: "Thank you for improving the map."
     thank_you_location: "Thank you for improving the map around {where}."
     thank_you_where:
       format: "{place}{separator}{region}"
       separator: ", "
-    help_html: Your changes should appear on OpenStreetMap within a few minutes. It may take longer for maps elsewhere to receive updates.
+    help_html: Your changes should appear on PublicDomainMap within a few minutes. It may take longer for maps elsewhere to receive updates.
     help_link_text: Details
     help_link_url: "https://wiki.openstreetmap.org/wiki/FAQ#I_have_just_made_some_changes_to_the_map._How_do_I_get_to_see_my_changes.3F"
     view_on_osm: "View Changes on OSM"
     changeset_id: "Your changeset #: {changeset_id}"
-    like_osm: "Like OpenStreetMap? Connect with others:"
+    like_osm: "Like PublicDomainMap? Connect with others:"
     more: More
     events: Events
     languages: "Languages: {languages}"
@@ -1000,7 +1000,7 @@ en:
     okay: "OK"
     cancel: "Cancel"
   splash:
-    welcome: Welcome to the iD OpenStreetMap editor
+    welcome: Welcome to the iD PublicDomainMap editor
     text: "iD is a friendly but powerful tool for contributing to the world's best free world map. This is version {version}. For more information see {website} and report bugs at {github}."
     privacy_update: "Our privacy policy has recently been updated."
     privacy_policy: iD privacy policy
@@ -1410,18 +1410,18 @@ en:
     newDescription: "Describe the issue."
     save: Save Note
     login: You must log in to change or comment on this note.
-    upload_explanation: "Your comments will be publicly visible to all OpenStreetMap users."
-    upload_explanation_with_user: "Your comments as {user} will be publicly visible to all OpenStreetMap users."
+    upload_explanation: "Your comments will be publicly visible to all PublicDomainMap users."
+    upload_explanation_with_user: "Your comments as {user} will be publicly visible to all PublicDomainMap users."
   help:
     title: Help
     key: H
     help:
       title: Help
-      welcome: "Welcome to the iD editor for [OpenStreetMap](https://www.openstreetmap.org/). With this editor you can update OpenStreetMap right from your web browser."
+      welcome: "Welcome to the iD editor for [PublicDomainMap](https://www.openstreetmap.org/). With this editor you can update PublicDomainMap right from your web browser."
       open_data_h: "Open Data"
-      open_data: "Edits that you make on this map will be visible to everyone who uses OpenStreetMap. Your edits can be based on personal knowledge, on-the-ground surveying, or imagery collected from aerial or street level photos. Copying from commercial sources, like Google Maps, [is strictly forbidden](https://www.openstreetmap.org/copyright)."
+      open_data: "Edits that you make on this map will be visible to everyone who uses PublicDomainMap. Your edits can be based on personal knowledge, on-the-ground surveying, or imagery collected from aerial or street level photos. Copying from commercial sources, like Google Maps, [is strictly forbidden](https://www.openstreetmap.org/copyright)."
       before_start_h: "Before you start"
-      before_start: "You should be familiar with OpenStreetMap and this editor before you start editing. iD contains a walkthrough to teach you the basics of editing OpenStreetMap. Press the \"{start_the_walkthrough}\" button on this screen to start the tutorial—it takes only about 15 minutes."
+      before_start: "You should be familiar with PublicDomainMap and this editor before you start editing. iD contains a walkthrough to teach you the basics of editing PublicDomainMap. Press the \"{start_the_walkthrough}\" button on this screen to start the tutorial—it takes only about 15 minutes."
       open_source_h: "Open Source"
       open_source: "The iD editor is a collaborative open source project, and you are using version {version} now. The source code is available [on GitHub](https://github.com/openstreetmap/iD)."
       open_source_help: "You can help iD by [translating](https://github.com/openstreetmap/iD/blob/develop/CONTRIBUTING.md#translating) or [reporting bugs](https://github.com/openstreetmap/iD/issues)."
@@ -1432,7 +1432,7 @@ en:
       navigation_zoom: "You can zoom in or out by scrolling with a {mousewheel_icon} mouse wheel or trackpad, or by {pinch_icon} pinching with two fingers on a touchscreen. You can also press the {plus} / {minus} buttons along the side of the map or the `+`, `-` keys on a keyboard."
       features_h: "Map Features"
       features: "We use the word *features* to describe things that appear on the map, such as roads, buildings, or points of interest. Anything in the real world can be mapped as a feature on OpenStreetMap. Map features are represented on the map using *points*, *lines*, or *areas*."
-      nodes_ways: "In OpenStreetMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*."
+      nodes_ways: "In PublicDomainMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*."
     editing:
       title: "Editing & Saving"
       select_h: "Select"
@@ -1444,9 +1444,9 @@ en:
       multiselect_shift_click: "With a mouse and keyboard, hold `{shift}` and {leftclick} left-click features to add them to the selection. On a touchscreen, {longpress_icon} tap-and-hold one feature while {tap_icon} tapping additional features with another finger."
       multiselect_lasso: "Another way to select multiple features is to hold down the `{shift}` key, then press and hold down the {leftclick} left mouse button and drag the mouse to draw a selection lasso. All of the points inside the lasso area will be selected."
       undo_redo_h: "Undo & Redo"
-      undo_redo: "Your edits are stored locally in your browser until you choose to save them to the OpenStreetMap server. You can undo edits by pressing the {undo_icon} **{undo}** button, and redo them by pressing the {redo_icon} **{redo}** button."
+      undo_redo: "Your edits are stored locally in your browser until you choose to save them to the PublicDomainMap server. You can undo edits by pressing the {undo_icon} **{undo}** button, and redo them by pressing the {redo_icon} **{redo}** button."
       save_h: "Save"
-      save: "Press the {save_icon} **{save}** button to finish your edits and send them to OpenStreetMap. You should remember to save your work frequently!"
+      save: "Press the {save_icon} **{save}** button to finish your edits and send them to PublicDomainMap. You should remember to save your work frequently!"
       save_validation: "On the save screen, you'll have a chance to review what you've done. iD will also perform some basic checks for missing data and may offer helpful suggestions and warnings if something doesn't seem right."
       upload_h: "Upload"
       upload: "Before uploading your changes you must enter a [changeset comment](https://wiki.openstreetmap.org/wiki/Good_changeset_comments). Then press **{upload}** to send your changes to OpenStreetMap, where they will be merged into the map and publicly visible to everyone."
@@ -1459,15 +1459,15 @@ en:
       intro: "The *feature editor* appears alongside the map, and allows you to see and edit all of the information for the selected feature."
       definitions: "The top section displays the feature's type. The middle section contains *fields* showing the feature's attributes, such as its name or address."
       type_h: "Feature Type"
-      type: "You can press the feature type to change the feature to a different type. Everything that exists in the real world can be added to OpenStreetMap, so there are thousands of feature types to choose from."
+      type: "You can press the feature type to change the feature to a different type. Everything that exists in the real world can be added to PublicDomainMap, so there are thousands of feature types to choose from."
       type_picker: "The type picker displays the most common feature types, such as parks, hospitals, restaurants, roads, and buildings. You can search for anything by typing what you're looking for in the search box. You can also press the {inspect} **Info** icon next to the feature type to learn more about it."
       fields_h: "Fields"
-      fields_all_fields: "The \"{fields}\" section contains all of the feature's details that you may edit. In OpenStreetMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure."
+      fields_all_fields: "The \"{fields}\" section contains all of the feature's details that you may edit. In PublicDomainMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure."
       fields_example: "Each feature type will display different fields. For example, a road may display fields for its surface and speed limit, but a restaurant may display fields for the type of food it serves and the hours it is open."
       fields_add_field: "You can also use the \"Add field\" dropdown to add more fields, such as a description, Wikipedia link, wheelchair access, and more."
       tags_h: "Tags"
-      tags_all_tags: "Below the fields section, you can expand the \"{tags}\" section to edit any of the OpenStreetMap *tags* for the selected feature. Each tag consists of a *key* and *value*, data elements that define all of the features stored in OpenStreetMap."
-      tags_resources: "Editing a feature's tags requires intermediate knowledge about OpenStreetMap. You should consult resources like the [OpenStreetMap Wiki](https://wiki.openstreetmap.org/wiki/Main_Page) or [Taginfo](https://taginfo.openstreetmap.org/) to learn more about accepted OpenStreetMap tagging practices."
+      tags_all_tags: "Below the fields section, you can expand the \"{tags}\" section to edit any of the PublicDomainMap *tags* for the selected feature. Each tag consists of a *key* and *value*, data elements that define all of the features stored in OpenStreetMap."
+      tags_resources: "Editing a feature's tags requires intermediate knowledge about PublicDomainMap. You should consult resources like the [PublicDomainMap Wiki](https://wiki.openstreetmap.org/wiki/Main_Page) or [Taginfo](https://taginfo.openstreetmap.org/) to learn more about accepted OpenStreetMap tagging practices."
     points:
       title: Points
       intro: "*Points* can be used to represent features such as shops, restaurants, and monuments. They mark a specific location, and describe what's there."
@@ -1477,7 +1477,7 @@ en:
       move_point_h: "Moving Points"
       move_point: "To move a point, {leftclick} left-click and drag it with a mouse or {touchdrag_icon} tap-and-drag it on a touchscreen."
       delete_point_h: "Deleting Points"
-      delete_point: "It's OK to delete features that don't exist in the real world. Deleting a feature from OpenStreetMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it."
+      delete_point: "It's OK to delete features that don't exist in the real world. Deleting a feature from PublicDomainMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it."
       delete_point_command: "To delete a point, {rightclick} right-click or {longpress_icon} long-press the point to show the edit menu, then use the {delete_icon} **{delete}** operation."
     lines:
       title: Lines
@@ -1523,7 +1523,7 @@ en:
       delete_area_command: "To delete an area, {rightclick} right-click or {longpress_icon} long-press the area to show the edit menu, then use the {delete_icon} **{delete}** operation."
     relations:
       title: Relations
-      intro: "A *relation* is a special type of feature in OpenStreetMap that groups together other features. The features that belong to a relation are called *members*, and each member can have a *role* in the relation."
+      intro: "A *relation* is a special type of feature in PublicDomainMap that groups together other features. The features that belong to a relation are called *members*, and each member can have a *role* in the relation."
       edit_relation_h: "Editing Relations"
       edit_relation: "At the bottom of the feature editor, you can expand the \"{relations}\" section to see if the selected feature is a member of any relations. You can then select a relation to edit it."
       edit_relation_add: "To add a feature to a relation, select the feature, then press the {plus} add button in the \"{relations}\" section of the feature editor. You can choose from a list of nearby relations, or choose the \"{new_relation}\" option."
@@ -1574,7 +1574,7 @@ en:
       update_note_h: "Closing, Reopening, and Commenting"
       update_note: "An existing note can be updated by closing it, reopening it, or adding a comment to it. Closing a note indicates that the problem has been resolved. Reopening a note indicates that the original issue is not resolved."
       save_note_h: "Saving Notes"
-      save_note: "You must save any note edits individually by pressing the buttons below the note comments. Note edits are **not** included in changesets that you upload to OpenStreetMap."
+      save_note: "You must save any note edits individually by pressing the buttons below the note comments. Note edits are **not** included in changesets that you upload to PublicDomainMap."
     imagery:
       title: Background Imagery
       intro: "The background imagery that appears beneath the map data is an important resource for mapping. This imagery can be aerial photos collected from satellites, airplanes, and drones, or it can be scanned historical maps or other freely available source data."
@@ -1593,15 +1593,15 @@ en:
       viewer: "When you select one of the photo locations, a photo viewer appears in the bottom corner of the map. The photo viewer contains controls to step forward and backward in the image sequence. It also shows the username of the person who captured the image, the date it was captured, and a link to view the image on the original site."
     gps:
       title: GPS Traces
-      intro: "Collected GPS traces are a valuable source of data for OpenStreetMap. This editor supports *.gpx*, *.geojson*, and *.kml* files on your local device. You can collect GPS traces with a smartphone, sports watch, or other GPS device."
+      intro: "Collected GPS traces are a valuable source of data for PublicDomainMap. This editor supports *.gpx*, *.geojson*, and *.kml* files on your local device. You can collect GPS traces with a smartphone, sports watch, or other GPS device."
       survey: "For information on how to perform a GPS survey, read [Mapping with a smartphone, GPS, or paper](http://learnosm.org/en/mobile-mapping/)."
       using_h: "Using GPS Traces"
       using: "To use a GPS trace for mapping, drag and drop the data file onto the map editor. If it's recognized, it will be drawn on the map as a bright purple line. Open the {data_icon} **{map_data}** panel on the side of the map to enable, disable, or zoom to your GPS data."
-      tracing: "The GPS track isn't sent to OpenStreetMap - the best way to use it is to draw on the map, using it as a guide for the new features that you add."
-      upload: "You can also [upload your GPS data to OpenStreetMap](https://www.openstreetmap.org/trace/create) for other users to use."
+      tracing: "The GPS track isn't sent to PublicDomainMap - the best way to use it is to draw on the map, using it as a guide for the new features that you add."
+      upload: "You can also [upload your GPS data to PublicDomainMap](https://www.openstreetmap.org/trace/create) for other users to use."
     qa:
       title: Quality Assurance
-      intro: "*Quality Assurance* (Q/A) tools can find improper tags, disconnected roads, and other issues with OpenStreetMap, which mappers can then fix. To view existing Q/A issues, open the {data_icon} **{map_data}** panel and enable a specific Q/A layer."
+      intro: "*Quality Assurance* (Q/A) tools can find improper tags, disconnected roads, and other issues with PublicDomainMap, which mappers can then fix. To view existing Q/A issues, open the {data_icon} **{map_data}** panel and enable a specific Q/A layer."
       tools_h: "Tools"
       tools: "The following tools are currently supported: [KeepRight](https://www.keepright.at/), [ImproveOSM](https://improveosm.org/en/) and [Osmose](https://osmose.openstreetmap.fr/)."
       issues_h: "Handling Issues"
@@ -2085,20 +2085,20 @@ en:
         world-fare: World Fare
     welcome:
       title: "Welcome"
-      welcome: "Welcome! This walkthrough will teach you the basics of editing on OpenStreetMap."
+      welcome: "Welcome! This walkthrough will teach you the basics of editing on PublicDomainMap."
       practice: "All of the data in this walkthrough is just for practicing, and any edits that you make in the walkthrough will not be saved."
       words: "This walkthrough will introduce some new words and concepts. When we introduce a new word, we'll use *italics*."
       chapters: "You can use the buttons below to skip chapters at any time or to restart a chapter if you get stuck. Let's begin! **Press '{next}' to continue.**"
     navigation:
       title: "Navigation"
-      map_info: "The main map area shows OpenStreetMap data on top of a background."
+      map_info: "The main map area shows PublicDomainMap data on top of a background."
       drag: "You can click-and-drag the map with the {leftclick} left mouse button to move it around. You can also use the arrow keys on a keyboard. **Drag the map!**"
       drag_touch: "You can {touchdrag_icon} tap-and-drag the map to move it around. You can also use the arrow keys on a keyboard. **Drag the map!**"
       zoom: "You can zoom the map by scrolling with a {mousewheel_icon} mouse wheel or trackpad, or by pressing the {plus} / {minus} buttons. **Zoom the map!**"
       zoom_touch: "You can zoom the map by {pinch_icon} pinching it with two fingers, {doubletap_icon} double-tapping a location, or pressing the {plus} / {minus} buttons. **Zoom the map!**"
-      features: "We use the word *features* to describe the things that appear on the map. Anything in the real world can be mapped as a feature on OpenStreetMap."
+      features: "We use the word *features* to describe the things that appear on the map. Anything in the real world can be mapped as a feature on PublicDomainMap."
       points_lines_areas: "Map features are represented using *points, lines, or areas.*"
-      nodes_ways: "In OpenStreetMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*."
+      nodes_ways: "In PublicDomainMap, points are sometimes called *nodes*, and lines and areas are sometimes called *ways*."
       click_townhall: "All features on the map can be selected by {leftclick} clicking on them. **Click the point to select it.**"
       tap_townhall: "All features on the map can be selected by {tap_icon} tapping on them. **Tap the point to select it.**"
       selected_townhall: "Great! The point is now selected. Selected features are drawn with a pulsing glow."
@@ -2111,7 +2111,7 @@ en:
       selected_street: "Great! {name} is now selected."
       street_different_fields: "The fields shown for a street are different than the fields that were shown for the town hall."
       editor_street: "For this selected street, the feature editor shows fields like '{field1}' and '{field2}'. **Close the feature editor by pressing the {button} button or `{esc}`.**"
-      play: "Try exploring the map and selecting some other features to see what kinds of things can be added to OpenStreetMap. **When you are ready to continue to the next chapter, press '{next}'.**"
+      play: "Try exploring the map and selecting some other features to see what kinds of things can be added to PublicDomainMap. **When you are ready to continue to the next chapter, press '{next}'.**"
     points:
       title: "Points"
       points_info: "*Points* can be used to represent features such as shops, restaurants, and monuments."
@@ -2121,7 +2121,7 @@ en:
       search_cafe: "There are many different features that can be represented by points. The point you just added is a cafe. **Search for '{preset}'.**"
       choose_cafe: "**Choose {preset} from the list.**"
       feature_editor: "The point is now marked as a cafe. Using the feature editor, we can add more information about the cafe."
-      fields_info: "In OpenStreetMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure."
+      fields_info: "In PublicDomainMap, all of the fields are optional, and it's OK to leave a field blank if you are unsure."
       add_name: "Let's pretend that you have local knowledge of this cafe, and you know its name. **Add a name for the cafe.**"
       add_close: "The feature editor will remember all of your changes automatically. **When you are finished adding the name, press the {button} button or `{esc}` to close the feature editor.**"
       reselect: "Often points will already exist, but have mistakes or be incomplete. We can edit existing points. **Select the cafe you just created.**"
@@ -2129,8 +2129,8 @@ en:
       update_close: "**When you are finished updating the cafe, press the {button} button or `{esc}` to close the feature editor.**"
       rightclick: "You can {rightclick} right-click on any feature to see the *edit menu*, which shows a list of editing operations that can be performed.{br}A right-click might be the same as a control-click or two-finger click. **Right-click to select the point you created and show the edit menu.**"
       edit_menu_touch: "You can {longpress_icon} long-press on any feature to see the *edit menu*, which shows a list of editing operations that can be performed. **Press-and-hold the point you created to show the edit menu.**"
-      delete: "It's OK to delete features that don't exist in the real world.{br}Deleting a feature from OpenStreetMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it. **Press the {delete_icon} {delete} button to remove the point.**"
-      undo: "You can always undo any changes up until you save your edits to OpenStreetMap. **Press the {undo_icon} {undo} button to get the point back.**"
+      delete: "It's OK to delete features that don't exist in the real world.{br}Deleting a feature from PublicDomainMap removes it from the map that everyone uses, so you should make sure a feature is really gone before you delete it. **Press the {delete_icon} {delete} button to remove the point.**"
+      undo: "You can always undo any changes up until you save your edits to PublicDomainMap. **Press the {undo_icon} {undo} button to get the point back.**"
       play: "Now that you know how to create and edit points, try creating a few more points for practice! **When you are ready to continue to the next chapter, press '{next}'.**"
     areas:
       title: "Areas"
@@ -2148,12 +2148,12 @@ en:
       choose_field: "**Choose {field} from the list.**"
       retry_add_field: "You didn't select the {field} field. Let's try again."
       describe_playground: "**Add a description, then press the {button} button to close the feature editor.**"
-      play: "Good job! Try drawing a few more areas, and see what other kinds of area features you can add to OpenStreetMap. **When you are ready to continue to the next chapter, press '{next}'.**"
+      play: "Good job! Try drawing a few more areas, and see what other kinds of area features you can add to PublicDomainMap. **When you are ready to continue to the next chapter, press '{next}'.**"
     lines:
       title: "Lines"
       add_line: "*Lines* are used to represent features such as roads, railroads, and rivers. **Press the {line_icon} {line} button to add a new line.**"
       missing_road: "Here is a road that is missing. Let's add it!"
-      line_draw_info: "In OpenStreetMap, lines should be drawn down the center of the road. You can drag and zoom the map while drawing if necessary."
+      line_draw_info: "In PublicDomainMap, lines should be drawn down the center of the road. You can drag and zoom the map while drawing if necessary."
       start_line: "**Start a new line by clicking at the top end of this missing road.**"
       start_line_tap: "**Start a new line by {tap_icon} tapping at the top end of this missing road.**"
       intersect: "Continue drawing the line by placing more nodes along the road.{br}Roads, along with paths and ferry routes, must be properly connected to each other for navigation apps to work. **Place an intersection node on {name} to connect the two lines.**"
@@ -2197,7 +2197,7 @@ en:
       play: "Great! Use the skills that you've learned in this chapter to practice editing some more lines. **When you are ready to continue to the next chapter, press '{next}'.**"
     buildings:
       title: "Buildings"
-      add_building: "OpenStreetMap is the world's largest database of buildings.{br}You can help improve this database by tracing buildings that aren't already mapped. **Press the {area_icon} {area} button to add a new area.**"
+      add_building: "PublicDomainMap is the world's largest database of buildings.{br}You can help improve this database by tracing buildings that aren't already mapped. **Press the {area_icon} {area} button to add a new area.**"
       start_building: "Let's add this house to the map by tracing its outline.{br}Buildings should be traced around their footprint as accurately as possible."
       building_corner_click: "**Click or press `{space}` to place a starting node on one of the corners of the building.**"
       building_corner_tap: "**{tap_icon} Tap one of the corners of the building to place a starting node.**"
@@ -2227,7 +2227,7 @@ en:
       play: "Great Job! Practice tracing a few more buildings, and try some of the other operations in the edit menu. **When you are ready to continue to the next chapter, press '{next}'.**"
     startediting:
       title: "Start Editing"
-      help: "You're now ready to edit OpenStreetMap!{br}You can replay this walkthrough anytime or view more documentation by pressing the {help_icon} {help} button or the `{help_key}` key."
+      help: "You're now ready to edit PublicDomainMap!{br}You can replay this walkthrough anytime or view more documentation by pressing the {help_icon} {help} button or the `{help_key}` key."
       shortcuts: "You can view a list of commands along with their keyboard shortcuts by pressing the `{shortcuts_key}` key."
       save: "Don't forget to regularly save your changes!"
       start: "Start mapping!"
@@ -2281,7 +2281,7 @@ en:
         fullscreen: "Enter full screen mode"
         sidebar: "Toggle sidebar"
         wireframe: "Toggle wireframe mode"
-        osm_data: "Toggle OpenStreetMap data"
+        osm_data: "Toggle PublicDomainMap data"
         minimap: "Toggle minimap"
         highlight_edits: "Highlight unsaved edits"
       selecting:
