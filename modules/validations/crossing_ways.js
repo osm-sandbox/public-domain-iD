@@ -395,6 +395,9 @@ export function validationCrossingWays(context) {
             crossingTypeID += '_connectable';
         }
 
+        // Differentiate based on the loc rounded to 4 digits, since two ways can cross multiple times.
+        var uniqueID = '' + crossing.crossPoint[0].toFixed(4) + ',' + crossing.crossPoint[1].toFixed(4);
+
         return new validationIssue({
             type: type,
             subtype: subtype,
@@ -417,15 +420,7 @@ export function validationCrossingWays(context) {
                 featureTypes: featureTypes,
                 connectionTags: connectionTags
             },
-            // differentiate based on the loc since two ways can cross multiple times
-            hash: crossing.crossPoint.toString() +
-                // if the edges change then so does the fix
-                edges.slice().sort(function(edge1, edge2) {
-                    // order to assure hash is deterministic
-                    return edge1[0] < edge2[0] ? -1 : 1;
-                }).toString() +
-                // ensure the correct connection tags are added in the fix
-                JSON.stringify(connectionTags),
+            hash: uniqueID,
             loc: crossing.crossPoint,
             dynamicFixes: function(context) {
                 var mode = context.mode();
@@ -721,7 +716,8 @@ export function validationCrossingWays(context) {
                             var edgeNodes = [graph.entity(edge[0]), graph.entity(edge[1])];
                             var nearby = geoSphericalClosestNode(edgeNodes, loc);
                             // if there is already a suitable node nearby, use that
-                            if (!nearby.node.hasInterestingTags() && nearby.distance < mergeThresholdInMeters) {
+                            // use the node if node has no interesting tags or if it is a crossing node #8326
+                            if ((!nearby.node.hasInterestingTags() || nearby.node.isCrossing()) && nearby.distance < mergeThresholdInMeters) {
                                 nodesToMerge.push(nearby.node.id);
                             // else add the new node to the way
                             } else {

@@ -558,7 +558,7 @@ en:
   zoom_in_edit: Zoom in to edit
   login: Log In
   logout: Log Out
-  loading_auth: "Connecting to OpenStreetMap..."
+  loading_auth: "Connecting to PublicDomainMap..."
   report_a_bug: Report a bug
   help_translate: Help translate
   sidebar:
@@ -570,14 +570,14 @@ en:
       other: "{count} hidden features"
   osm_api_status:
     message:
-      error: Unable to reach the OpenStreetMap API. Your edits are safe locally. Check your network connection.
-      offline: The OpenStreetMap API is offline. Your edits are safe locally. Please come back later.
-      readonly: The OpenStreetMap API is currently read-only. You can continue editing, but must wait to save your changes.
-      rateLimit: The OpenStreetMap API is limiting anonymous connections. You can fix this by logging in.
+      error: Unable to reach the PublicDomainMap API. Your edits are safe locally. Check your network connection.
+      offline: The PublicDomainMap API is offline. Your edits are safe locally. Please come back later.
+      readonly: The PublicDomainMap API is currently read-only. You can continue editing, but must wait to save your changes.
+      rateLimit: The PublicDomainMap API is limiting anonymous connections. You can fix this by logging in.
     retry: Retry
   commit:
-    title: Upload to OpenStreetMap
-    upload_explanation: "The changes you upload will be visible on all maps that use OpenStreetMap data."
+    title: Upload to PublicDomainMap
+    upload_explanation: "The changes you upload will be visible on all maps that use PublicDomainMap data."
     upload_explanation_with_user: "The changes you upload as {user} will be visible on all maps that use OpenStreetMap data."
     request_review: "I would like someone to review my edits."
     request_review_info: "Unsure about something? Invite an experienced mapper to check your work once it's live."
@@ -734,6 +734,7 @@ en:
       suggestion: 'The "{label}" field is locked because there is a Wikidata tag. You can delete it or edit the tags in the "Tags" section.'
     display_name:
       direction: "{direction}"
+      network: "{network}"
       from_to: "from {from} to {to}"
       from_to_via: "from {from} to {to} via {via}"
       network_direction: "{network} {direction}"

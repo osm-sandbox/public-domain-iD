@@ -163,7 +163,7 @@ function loadNsiData() {
 // and fallbacks like
 //   "amenity/yes"
 // excluding things like
-//   "highway", "surface", "ref", etc.
+//   "tiger:reviewed", "surface", "ref", etc.
 //
 // Arguments
 //   `tags`: `Object` containing the feature's OSM tags
@@ -182,13 +182,16 @@ function gatherKVs(tags) {
     const osmvalue = tags[osmkey];
     if (!osmvalue) return;
 
-    const vmap = _nsi.kvt.get(osmkey);
-    if (!vmap) return;
+    // Match a 'route_master' as if it were a 'route' - name-suggestion-index#5184
+    if (osmkey === 'route_master') osmkey = 'route';
 
-    if (osmvalue !== 'yes') {
-      primary.add(`${osmkey}/${osmvalue}`);
-    } else {
-      alternate.add(`${osmkey}/${osmvalue}`);
+    const vmap = _nsi.kvt.get(osmkey);
+    if (!vmap) return;  // not an interesting key
+
+    if (vmap.get(osmvalue)) {     // Matched a category in NSI
+      primary.add(`${osmkey}/${osmvalue}`);     // interesting key/value
+    } else if (osmvalue === 'yes') {
+      alternate.add(`${osmkey}/${osmvalue}`);   // fallback key/yes
     }
   });
 
@@ -227,6 +230,9 @@ function identifyTree(tags) {
 
     const osmvalue = tags[osmkey];
     if (!osmvalue) return;
+
+    // Match a 'route_master' as if it were a 'route' - name-suggestion-index#5184
+    if (osmkey === 'route_master') osmkey = 'route';
 
     const vmap = _nsi.kvt.get(osmkey);
     if (!vmap) return;  // this key is not in nsi
@@ -349,6 +355,7 @@ function gatherNames(tags) {
   }
 
   function isNamelike(osmkey, which) {
+    if (osmkey === 'old_name') return false;
     return patterns[which].test(osmkey) && !notNames.test(osmkey);
   }
 }
@@ -426,6 +433,8 @@ function _upgradeTags(tags, loc) {
     }
   });
 
+  // Match a 'route_master' as if it were a 'route' - name-suggestion-index#5184
+  const isRouteMaster = (tags.type === 'route_master');
 
   // Gather key/value tag pairs to try to match
   const tryKVs = gatherKVs(tags);
@@ -488,9 +497,15 @@ function _upgradeTags(tags, loc) {
     const properties = category.properties || {};
 
     // Preserve some tags that we specifically don't want NSI to overwrite. ('^name', sometimes)
-    const preserveTags = item.preserveTags || properties.preserveTags || [];
-    let regexes = preserveTags.map(s => new RegExp(s, 'i'));
-    regexes.push(/^building$/i, /^takeaway$/i);
+    let preserveTags = item.preserveTags || properties.preserveTags || [];
+
+    // These tags can be toplevel tags -or- attributes - so we generally want to preserve existing values - #8615
+    // We'll only _replace_ the tag value if this tag is the toplevel/defining tag for the matched item (`k`)
+    ['building', 'emergency', 'internet_access', 'takeaway'].forEach(osmkey => {
+      if (k !== osmkey) preserveTags.push(`^${osmkey}$`);
+    });
+
+    const regexes = preserveTags.map(s => new RegExp(s, 'i'));
 
     let keepTags = {};
     Object.keys(newTags).forEach(osmkey => {
@@ -499,8 +514,8 @@ function _upgradeTags(tags, loc) {
       }
     });
 
-    // Remove any primary tags ("amenity", "craft", "shop", "man_made", "route", etc)
-    // with a value like `amenity=yes` or `shop=yes`
+    // Remove any primary tags ("amenity", "craft", "shop", "man_made", "route", etc) that have a
+    // value like `amenity=yes` or `shop=yes` (exceptions have already been added to `keepTags` above)
     _nsi.kvt.forEach((vmap, k) => {
       if (newTags[k] === 'yes') delete newTags[k];
     });
@@ -513,6 +528,12 @@ function _upgradeTags(tags, loc) {
 
     // Do the tag upgrade
     Object.assign(newTags, item.tags, keepTags);
+
+    // Swap `route` back to `route_master` - name-suggestion-index#5184
+    if (isRouteMaster) {
+      newTags.route_master = newTags.route;
+      delete newTags.route;
+    }
 
     // Special `branch` splitting rules - IF..
     // - NSI is suggesting to replace `name`, AND
