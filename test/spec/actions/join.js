@@ -96,34 +96,132 @@ describe('iD.actionJoin', function () {
             expect(iD.actionJoin(['-', '=']).disabled(graph)).to.equal('not_adjacent');
         });
 
-        it('returns \'restriction\' in situations where a turn restriction would be damaged (a)', function () {
+        ['restriction', 'connectivity'].forEach(function (type) {
+            it('returns ' + type + ' in situations where a ' + type + 'relation would be damaged (a)', function () {
+                // a --> b ==> c
+                // from: -
+                // to: =
+                // via: b
+                var graph = iD.coreGraph([
+                    iD.osmNode({id: 'a', loc: [0,0]}),
+                    iD.osmNode({id: 'b', loc: [2,0]}),
+                    iD.osmNode({id: 'c', loc: [4,0]}),
+                    iD.osmWay({id: '-', nodes: ['a', 'b']}),
+                    iD.osmWay({id: '=', nodes: ['b', 'c']}),
+                    iD.osmRelation({id: 'r', tags: {'type': type}, members: [
+                        {type: 'way', id: '-', role: 'from'},
+                        {type: 'way', id: '=', role: 'to'},
+                        {type: 'node', id: 'b', role: 'via'}
+                    ]})
+                ]);
+
+                expect(iD.actionJoin(['-', '=']).disabled(graph)).to.equal(type);
+            });
+
+            it('returns ' + type + ' in situations where a ' + type + 'relation would be damaged (b)', function () {
+                // a --> b ==> c
+                //       |
+                //       d
+                // from: -
+                // to: |
+                // via: b
+                var graph = iD.coreGraph([
+                    iD.osmNode({id: 'a', loc: [0,0]}),
+                    iD.osmNode({id: 'b', loc: [2,0]}),
+                    iD.osmNode({id: 'c', loc: [4,0]}),
+                    iD.osmNode({id: 'd', loc: [2,2]}),
+                    iD.osmWay({id: '-', nodes: ['a', 'b']}),
+                    iD.osmWay({id: '=', nodes: ['b', 'c']}),
+                    iD.osmWay({id: '|', nodes: ['b', 'd']}),
+                    iD.osmRelation({id: 'r', tags: {'type': type}, members: [
+                        {type: 'way', id: '-', role: 'from'},
+                        {type: 'way', id: '|', role: 'to'},
+                        {type: 'node', id: 'b', role: 'via'}
+                    ]})
+                ]);
+
+                expect(iD.actionJoin(['-', '=']).disabled(graph)).to.equal(type);
+            });
+
+            it('returns falsy in situations where a '+ type + 'relation wouldn\'t be damaged (a)', function () {
+                // a --> b ==> c
+                // |
+                // d
+                // from: -
+                // to: |
+                // via: a
+                var graph = iD.coreGraph([
+                    iD.osmNode({id: 'a', loc: [0,0]}),
+                    iD.osmNode({id: 'b', loc: [2,0]}),
+                    iD.osmNode({id: 'c', loc: [4,0]}),
+                    iD.osmNode({id: 'd', loc: [0,2]}),
+                    iD.osmWay({id: '-', nodes: ['a', 'b']}),
+                    iD.osmWay({id: '=', nodes: ['b', 'c']}),
+                    iD.osmWay({id: '|', nodes: ['a', 'd']}),
+                    iD.osmRelation({id: 'r', tags: {'type': type}, members: [
+                        {type: 'way', id: '-', role: 'from'},
+                        {type: 'way', id: '|', role: 'to'},
+                        {type: 'node', id: 'a', role: 'via'}
+                    ]})
+                ]);
+
+                expect(iD.actionJoin(['-', '=']).disabled(graph)).not.to.be.ok;
+            });
+
+            it('returns falsy in situations where a ' + type + 'restriction wouldn\'t be damaged (b)', function () {
+                //       d
+                //       |
+                // a --> b ==> c
+                //       \
+                //        e
+                // from: |
+                // to: \
+                // via: b
+                var graph = iD.coreGraph([
+                    iD.osmNode({id: 'a', loc: [0,0]}),
+                    iD.osmNode({id: 'b', loc: [2,0]}),
+                    iD.osmNode({id: 'c', loc: [4,0]}),
+                    iD.osmNode({id: 'd', loc: [2,-2]}),
+                    iD.osmNode({id: 'e', loc: [3,2]}),
+                    iD.osmWay({id: '-', nodes: ['a', 'b']}),
+                    iD.osmWay({id: '=', nodes: ['b', 'c']}),
+                    iD.osmWay({id: '|', nodes: ['d', 'b']}),
+                    iD.osmWay({id: '\\', nodes: ['b', 'e']}),
+                    iD.osmRelation({id: 'r', tags: {'type': type}, members: [
+                        {type: 'way', id: '|', role: 'from'},
+                        {type: 'way', id: '\\', role: 'to'},
+                        {type: 'node', id: 'b', role: 'via'}
+                    ]})
+                ]);
+
+                expect(iD.actionJoin(['-', '=']).disabled(graph)).not.to.be.ok;
+            });
+        });
+
+        it('returns \'conflicting_relations\' when a relation would be extended', function () {
             // a --> b ==> c
-            // from: -
-            // to: =
-            // via: b
+            // members: -
+            // not member: =
             var graph = iD.coreGraph([
                 iD.osmNode({id: 'a', loc: [0,0]}),
                 iD.osmNode({id: 'b', loc: [2,0]}),
                 iD.osmNode({id: 'c', loc: [4,0]}),
                 iD.osmWay({id: '-', nodes: ['a', 'b']}),
                 iD.osmWay({id: '=', nodes: ['b', 'c']}),
-                iD.osmRelation({id: 'r', tags: {type: 'restriction'}, members: [
-                    {type: 'way', id: '-', role: 'from'},
-                    {type: 'way', id: '=', role: 'to'},
-                    {type: 'node', id: 'b', role: 'via'}
-                ]})
+                iD.osmRelation({id: 'r', tags: {}, members: [
+                        {type: 'way', id: '-'},
+                    ]})
             ]);
 
-            expect(iD.actionJoin(['-', '=']).disabled(graph)).to.equal('restriction');
+            expect(iD.actionJoin(['-', '=']).disabled(graph)).to.equal('conflicting_relations');
         });
 
-        it('returns \'restriction\' in situations where a turn restriction would be damaged (b)', function () {
+        it('returns \'conflicting_relations\' when a relation would be forked', function () {
             // a --> b ==> c
             //       |
             //       d
-            // from: -
-            // to: |
-            // via: b
+            // members: -, =
+            // not member: |
             var graph = iD.coreGraph([
                 iD.osmNode({id: 'a', loc: [0,0]}),
                 iD.osmNode({id: 'b', loc: [2,0]}),
@@ -132,14 +230,13 @@ describe('iD.actionJoin', function () {
                 iD.osmWay({id: '-', nodes: ['a', 'b']}),
                 iD.osmWay({id: '=', nodes: ['b', 'c']}),
                 iD.osmWay({id: '|', nodes: ['b', 'd']}),
-                iD.osmRelation({id: 'r', tags: {type: 'restriction'}, members: [
-                    {type: 'way', id: '-', role: 'from'},
-                    {type: 'way', id: '|', role: 'to'},
-                    {type: 'node', id: 'b', role: 'via'}
+                iD.osmRelation({id: 'r', tags: {}, members: [
+                    {type: 'way', id: '-'},
+                    {type: 'way', id: '='},
                 ]})
             ]);
 
-            expect(iD.actionJoin(['-', '=']).disabled(graph)).to.equal('restriction');
+            expect(iD.actionJoin(['-', '|']).disabled(graph)).to.equal('conflicting_relations');
         });
 
         it('returns \'paths_intersect\' if resulting way intersects itself', function () {
@@ -159,60 +256,6 @@ describe('iD.actionJoin', function () {
             ]);
 
             expect(iD.actionJoin(['-', '=']).disabled(graph)).to.equal('paths_intersect');
-        });
-
-        it('returns falsy in situations where a turn restriction wouldn\'t be damaged (a)', function () {
-            // a --> b ==> c
-            // |
-            // d
-            // from: -
-            // to: |
-            // via: a
-            var graph = iD.coreGraph([
-                iD.osmNode({id: 'a', loc: [0,0]}),
-                iD.osmNode({id: 'b', loc: [2,0]}),
-                iD.osmNode({id: 'c', loc: [4,0]}),
-                iD.osmNode({id: 'd', loc: [0,2]}),
-                iD.osmWay({id: '-', nodes: ['a', 'b']}),
-                iD.osmWay({id: '=', nodes: ['b', 'c']}),
-                iD.osmWay({id: '|', nodes: ['a', 'd']}),
-                iD.osmRelation({id: 'r', tags: {type: 'restriction'}, members: [
-                    {type: 'way', id: '-', role: 'from'},
-                    {type: 'way', id: '|', role: 'to'},
-                    {type: 'node', id: 'a', role: 'via'}
-                ]})
-            ]);
-
-            expect(iD.actionJoin(['-', '=']).disabled(graph)).not.to.be.ok;
-        });
-
-        it('returns falsy in situations where a turn restriction wouldn\'t be damaged (b)', function () {
-            //       d
-            //       |
-            // a --> b ==> c
-            //       \
-            //        e
-            // from: |
-            // to: \
-            // via: b
-            var graph = iD.coreGraph([
-                iD.osmNode({id: 'a', loc: [0,0]}),
-                iD.osmNode({id: 'b', loc: [2,0]}),
-                iD.osmNode({id: 'c', loc: [4,0]}),
-                iD.osmNode({id: 'd', loc: [2,-2]}),
-                iD.osmNode({id: 'e', loc: [3,2]}),
-                iD.osmWay({id: '-', nodes: ['a', 'b']}),
-                iD.osmWay({id: '=', nodes: ['b', 'c']}),
-                iD.osmWay({id: '|', nodes: ['d', 'b']}),
-                iD.osmWay({id: '\\', nodes: ['b', 'e']}),
-                iD.osmRelation({id: 'r', tags: {type: 'restriction'}, members: [
-                    {type: 'way', id: '|', role: 'from'},
-                    {type: 'way', id: '\\', role: 'to'},
-                    {type: 'node', id: 'b', role: 'via'}
-                ]})
-            ]);
-
-            expect(iD.actionJoin(['-', '=']).disabled(graph)).not.to.be.ok;
         });
 
         it('returns \'conflicting_tags\' for two entities that have conflicting tags', function () {
@@ -379,6 +422,29 @@ describe('iD.actionJoin', function () {
         expect(graph.entity('w1').nodes).to.eql(['a', 'b', 'c', 'd']);
         expect(graph.hasEntity('w-1')).to.be.undefined;
         expect(graph.hasEntity('w-2')).to.be.undefined;
+    });
+
+    it('prefers to keep the oldest way', function () {
+        // n1 ==> n2 ++> n3 --> n4
+        // ==> is existing, ++> is existing, --> is new
+        // Expected result:
+        // n1 ==> n2 ==> n3 ==> n4
+        var graph = iD.coreGraph([
+            iD.osmNode({ id: 'n1', loc: [0,0] }),
+            iD.osmNode({ id: 'n2', loc: [2,0] }),
+            iD.osmNode({ id: 'n3', loc: [4,0] }),
+            iD.osmNode({ id: 'n4', loc: [6,0] }),
+            iD.osmWay({ id: 'w1', nodes: ['n2', 'n3'] }),
+            iD.osmWay({ id: 'w2', nodes: ['n1', 'n2'] }),
+            iD.osmWay({ id: 'w-1', nodes: ['n3', 'n4'] })
+        ]);
+
+        graph = iD.actionJoin(['w1', 'w2', 'w-1'])(graph);
+
+        // way 1 is the oldest (it has the lower id) so it kept that one
+        expect(graph.entity('w1').nodes).to.eql(['n1', 'n2', 'n3', 'n4']);
+        expect(graph.hasEntity('w2')).to.be.undefined;
+        expect(graph.hasEntity('w-1')).to.be.undefined;
     });
 
     it('merges tags', function () {

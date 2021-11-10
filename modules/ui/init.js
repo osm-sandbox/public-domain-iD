@@ -182,7 +182,11 @@ export function uiInit(context) {
             .call(uiSpinner(context));
 
         // Map controls
-        var controls = overMap
+        var controlsWrap = overMap
+            .append('div')
+            .attr('class', 'map-controls-wrap');
+
+        var controls = controlsWrap
             .append('div')
             .attr('class', 'map-controls');
 
@@ -200,6 +204,12 @@ export function uiInit(context) {
             .append('div')
             .attr('class', 'map-control geolocate-control')
             .call(uiGeolocate(context));
+
+        controlsWrap.on('wheel.mapControls', function(d3_event) {
+            if (!d3_event.deltaX) {
+                controlsWrap.node().scrollTop += d3_event.deltaY;
+            }
+        });
 
         // Add panes
         // This should happen after map is initialized, as some require surface()

@@ -1885,25 +1885,36 @@ a.hide-toggle {
 }
 
 
-/* Field - roadspeed
+/* Field - roadheight and roadspeed
 ------------------------------------------------------- */
+.form-field-input-roadheight input.roadheight-number,
+.form-field-input-roadheight input.roadheight-secondary-number,
 .form-field-input-roadspeed input.roadspeed-number {
     flex-basis: 0;
+}
+.form-field-input-roadheight input.roadheight-unit,
+.form-field-input-roadheight input.roadheight-secondary-unit {
+    flex: 0 1 auto;
+    width: 60px;
 }
 .form-field-input-roadspeed input.roadspeed-unit {
     flex: 0 1 auto;
     width: 80px;
 }
+.ideditor[dir='ltr'] .form-field-input-roadheight > input:first-of-type,
 .ideditor[dir='ltr'] .form-field-input-roadspeed > input:first-of-type {
     border-radius: 0 0 0 4px;
 }
+.ideditor[dir='rtl'] .form-field-input-roadheight > input:first-of-type,
 .ideditor[dir='rtl'] .form-field-input-roadspeed > input:first-of-type {
     border-radius: 0 0 4px 0;
 }
+.ideditor[dir='ltr'] .form-field-input-roadheight > input:last-of-type,
 .ideditor[dir='ltr'] .form-field-input-roadspeed > input:last-of-type {
     border-left: 0;
     border-radius: 0 0 4px 0;
 }
+.ideditor[dir='rtl'] .form-field-input-roadheight > input:last-of-type,
 .ideditor[dir='rtl'] .form-field-input-roadspeed > input:last-of-type {
     border-right: 0;
     border-radius: 0 0 0 4px;
@@ -2942,12 +2953,27 @@ img.tag-reference-wiki-image {
 
 /* Map Controls
 ------------------------------------------------------- */
+.map-controls-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    z-index: 100;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    pointer-events: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.map-controls-wrap::-webkit-scrollbar {
+    display: none;
+}
 .map-controls {
     right: 0;
     top: 0;
     width: 40px;
     position: absolute;
-    z-index: 100;
     bottom: 0;
     display: flex;
     flex-direction: column;
