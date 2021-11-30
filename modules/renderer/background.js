@@ -64,13 +64,13 @@ export function rendererBackground(context) {
 
         // Instantiate `rendererBackgroundSource` objects for each source
         _imageryIndex.backgrounds = sources.map(source => {
-          if (source.type === 'bing') {
-            return rendererBackgroundSource.Bing(source, dispatch);
-          } else if (/^EsriWorldImagery/.test(source.id)) {
-            return rendererBackgroundSource.Esri(source);
-          } else {
+          //if (source.type === 'bing') {
+          //  return rendererBackgroundSource.Bing(source, dispatch);
+          //} else if (/^EsriWorldImagery/.test(source.id)) {
+          //  return rendererBackgroundSource.Esri(source);
+          //} else {
             return rendererBackgroundSource(source);
-          }
+          //}
         });
 
         // Add 'None'
