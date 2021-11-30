@@ -468,8 +468,8 @@ en:
             single_node: Divide this line into two at this point.
             multiple_node: Divide this line at these points.
           multiple:
-            single_node: Divide these lines at this point.
-            multiple_node: Divide these lines at these points.
+            single_node: "Divide all lines at this point. Tip: To limit this operation to a specific line, select both the line and point before performing the split."
+            multiple_node: "Divide all lines at these points. Tip: To limit this operation to a specific line, select the line as well as the points before performing the split."
         area:
           single:
             single_node: Divide the edge of this area into two at this point.
@@ -563,7 +563,6 @@ en:
     tooltip: "Redo: {action}"
     nothing: Nothing to redo.
   tooltip_keyhint: "Shortcut:"
-  browser_notice: "This editor is supported in Firefox, Chrome, Safari, Opera, and Internet Explorer 11 and above. Please upgrade your browser or use Potlatch 2 to edit the map."
   translate:
     translate: Add multilingual name
     localized_translation_label: Multilingual Name
@@ -1000,7 +999,7 @@ en:
       location: 'This feature was moved by both you and {user}.'
       nodelist: 'Nodes were changed by both you and {user}.'
       memberlist: 'Relation members were changed by both you and {user}.'
-      tags: 'You changed the <b>{tag}</b> tag to "{local}" and {user} changed it to "{remote}".'
+      tags: 'You changed the "{tag}" tag to "{local}" and {user} changed it to "{remote}".'
   success:
     just_edited: "You just edited PublicDomainMap!"
     thank_you: "Thank you for improving the map."
@@ -1405,11 +1404,11 @@ en:
     signs:
       tooltip: "Traffic signs from Mapillary"
     view_on_mapillary: "View this image on Mapillary"
-  openstreetcam_images:
-    tooltip: "Street-level photos from OpenStreetCam"
-  openstreetcam:
-    title: OpenStreetCam
-    view_on_openstreetcam: "View this image on OpenStreetCam"
+  kartaview_images:
+    tooltip: "Street-level photos from KartaView"
+  kartaview:
+    title: KartaView
+    view_on_kartaview: "View this image on KartaView"
   note:
     note: Note
     title: Edit note
@@ -1609,7 +1608,7 @@ en:
       offset_change: "Press the small triangle buttons to adjust the imagery offset in small steps, or hold the {leftclick} left mouse button and drag within the gray square to slide the imagery into alignment."
     streetlevel:
       title: Street Level Photos
-      intro: "Street level photos are useful for mapping traffic signs, businesses, and other details that you can't see from satellite and aerial images. The iD editor supports street level photos from [Bing Streetside](https://www.microsoft.com/en-us/maps/streetside), [Mapillary](https://www.mapillary.com), and [OpenStreetCam](https://www.openstreetcam.org)."
+      intro: "Street level photos are useful for mapping traffic signs, businesses, and other details that you can't see from satellite and aerial images. The iD editor supports street level photos from [Bing Streetside](https://www.microsoft.com/en-us/maps/streetside), [Mapillary](https://www.mapillary.com), and [KartaView](https://kartaview.org)."
       using_h: "Using Street Level Photos"
       using: "To use street level photos for mapping, open the {data_icon} **{map_data}** panel on the side of the map to enable or disable the available photo overlays."
       photos: "When enabled, the photo overlay displays a line along the sequence of photos. At higher zoom levels, a circle marks at each photo location, and at even higher zoom levels, a cone indicates the direction the camera was facing when the photo was taken."
@@ -1768,7 +1767,7 @@ en:
         message:
           one: "{highway} is disconnected from other roads and paths"
           other: "{count} routable features are connected only to each other"
-        reference: "All roads, paths, and ferry routes should connect to form a single routing network."
+        reference: "All roads, paths, and ferry routes should connect to form a single routing network. This feature (or small collection of features) is either disconnected from the routing network or only connected to it via a feature that few applications consider routable."
     fixme_tag:
       message: '{feature} has a "Fix Me" request'
       reference: 'A "fixme" tag indicates that a mapper has requested help with a feature.'
@@ -1886,7 +1885,7 @@ en:
       buildings:
         reference: "Buildings with unsquare corners can often be drawn more accurately."
     vertex_as_point:
-      message: '{feature} should be part of a line or area based on its tags'
+      message: '{feature} should be attached to a line or area based on its tags'
       reference: "Some features shouldn't be standalone points."
     fix:
       add_a_bridge:
