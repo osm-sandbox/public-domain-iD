@@ -112,19 +112,19 @@ export function rendererBackgroundSource(data) {
 
 
     source.url = function(coord) {
-        var result = _template;
+        var result = _template.replace(/#.*/su, ''); // strip hash part of URL
         if (result === '') return result;   // source 'none'
 
 
         // Guess a type based on the tokens present in the template
         // (This is for 'custom' source, where we don't know)
         if (!source.type || source.id === 'custom') {
-            if (/SERVICE=WMS|\{(proj|wkid|bbox)\}/.test(_template)) {
+            if (/SERVICE=WMS|\{(proj|wkid|bbox)\}/.test(result)) {
                 source.type = 'wms';
                 source.projection = 'EPSG:3857';  // guess
-            } else if (/\{(x|y)\}/.test(_template)) {
+            } else if (/\{(x|y)\}/.test(result)) {
                 source.type = 'tms';
-            } else if (/\{u\}/.test(_template)) {
+            } else if (/\{u\}/.test(result)) {
                 source.type = 'bing';
             }
         }
@@ -132,15 +132,9 @@ export function rendererBackgroundSource(data) {
 
         if (source.type === 'wms') {
             var tileToProjectedCoords = (function(x, y, z) {
-                //polyfill for IE11, PhantomJS
-                var sinh = Math.sinh || function(x) {
-                    var y = Math.exp(x);
-                    return (y - 1 / y) / 2;
-                };
-
                 var zoomSize = Math.pow(2, z);
                 var lon = x / zoomSize * Math.PI * 2 - Math.PI;
-                var lat = Math.atan(sinh(Math.PI * (1 - 2 * y / zoomSize)));
+                var lat = Math.atan(Math.sinh(Math.PI * (1 - 2 * y / zoomSize)));
 
                 switch (source.projection) {
                     case 'EPSG:4326':
@@ -583,8 +577,9 @@ rendererBackgroundSource.Custom = function(template) {
         }
 
         // from wms/wmts api path parameters
-        cleaned = cleaned.replace(/token\/(\w+)/, 'token/{apikey}');
-
+        cleaned = cleaned
+            .replace(/token\/(\w+)/, 'token/{apikey}')
+            .replace(/key=(\w+)/, 'key={apikey}');
         return 'Custom (' + cleaned + ' )';
     };
 
