@@ -1,0 +1,12 @@
+/* CSS for Public Domain Map-specific features
+------------------------------------------------------- */
+
+/* hide OSM-specific features */
+.map-panes .layer-list-qa { /* OSM quality-assurance layers */
+  display: none;
+}
+
+/* hide data that doesn't have a public domain license */
+.map-panes .section-photo-overlays { /* photo bubble overlays */
+  display: none;
+}
