@@ -351,8 +351,12 @@ export function uiFeatureList(context) {
                 context.map().zoomToEase(d.entity);
 
             } else {
+
+                // PD: no reason to download OSM entity so just zoom to its extent
+                context.map().trimmedExtent(d.extent);
+
                 // download, zoom to, and select the entity with the given ID
-                context.zoomToEntity(d.id);
+                //context.zoomToEntity(d.id);
             }
         }
 
