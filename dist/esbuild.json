@@ -62,6 +62,10 @@
         }
       ]
     },
+    "node_modules/d3-array/src/blur.js": {
+      "bytes": 4082,
+      "imports": []
+    },
     "node_modules/d3-array/src/count.js": {
       "bytes": 424,
       "imports": []
@@ -221,12 +225,20 @@
       "bytes": 502,
       "imports": []
     },
+    "node_modules/d3-array/src/maxIndex.js": {
+      "bytes": 582,
+      "imports": []
+    },
     "node_modules/d3-array/src/min.js": {
       "bytes": 502,
       "imports": []
     },
+    "node_modules/d3-array/src/minIndex.js": {
+      "bytes": 582,
+      "imports": []
+    },
     "node_modules/d3-array/src/quickselect.js": {
-      "bytes": 1400,
+      "bytes": 1401,
       "imports": [
         {
           "path": "node_modules/d3-array/src/sort.js",
@@ -234,15 +246,32 @@
         }
       ]
     },
+    "node_modules/d3-array/src/greatest.js": {
+      "bytes": 675,
+      "imports": [
+        {
+          "path": "node_modules/d3-array/src/ascending.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
     "node_modules/d3-array/src/quantile.js": {
-      "bytes": 1038,
+      "bytes": 1692,
       "imports": [
         {
           "path": "node_modules/d3-array/src/max.js",
           "kind": "import-statement"
         },
         {
+          "path": "node_modules/d3-array/src/maxIndex.js",
+          "kind": "import-statement"
+        },
+        {
           "path": "node_modules/d3-array/src/min.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-array/src/minIndex.js",
           "kind": "import-statement"
         },
         {
@@ -251,6 +280,14 @@
         },
         {
           "path": "node_modules/d3-array/src/number.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-array/src/sort.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-array/src/greatest.js",
           "kind": "import-statement"
         }
       ]
@@ -281,16 +318,12 @@
         }
       ]
     },
-    "node_modules/d3-array/src/maxIndex.js": {
-      "bytes": 582,
-      "imports": []
-    },
     "node_modules/d3-array/src/mean.js": {
       "bytes": 483,
       "imports": []
     },
     "node_modules/d3-array/src/median.js": {
-      "bytes": 132,
+      "bytes": 245,
       "imports": [
         {
           "path": "node_modules/d3-array/src/quantile.js",
@@ -300,10 +333,6 @@
     },
     "node_modules/d3-array/src/merge.js": {
       "bytes": 165,
-      "imports": []
-    },
-    "node_modules/d3-array/src/minIndex.js": {
-      "bytes": 582,
       "imports": []
     },
     "node_modules/d3-array/src/mode.js": {
@@ -354,15 +383,6 @@
         },
         {
           "path": "node_modules/d3-array/src/minIndex.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-array/src/greatest.js": {
-      "bytes": 675,
-      "imports": [
-        {
-          "path": "node_modules/d3-array/src/ascending.js",
           "kind": "import-statement"
         }
       ]
@@ -489,7 +509,7 @@
       ]
     },
     "node_modules/d3-array/src/index.js": {
-      "bytes": 2980,
+      "bytes": 3058,
       "imports": [
         {
           "path": "node_modules/d3-array/src/bisect.js",
@@ -501,6 +521,10 @@
         },
         {
           "path": "node_modules/d3-array/src/bisector.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-array/src/blur.js",
           "kind": "import-statement"
         },
         {
@@ -3845,7 +3869,7 @@
       "imports": []
     },
     "package.json": {
-      "bytes": 5327,
+      "bytes": 5900,
       "imports": []
     },
     "modules/core/file_fetcher.js": {
@@ -19338,7 +19362,7 @@
       ]
     },
     "node_modules/marked/lib/marked.esm.js": {
-      "bytes": 76752,
+      "bytes": 76830,
       "imports": []
     },
     "modules/services/osmose.js": {
@@ -26655,7 +26679,7 @@
       ]
     },
     "modules/services/osm.js": {
-      "bytes": 46566,
+      "bytes": 46530,
       "imports": [
         {
           "path": "node_modules/lodash-es/throttle.js",
@@ -28002,7 +28026,7 @@
       "imports": []
     },
     "node_modules/d3-contour/src/density.js": {
-      "bytes": 4338,
+      "bytes": 4803,
       "imports": [
         {
           "path": "node_modules/d3-array/src/index.js",
@@ -30817,7 +30841,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 5768502
+      "bytes": 5824853
     },
     "dist/iD.js": {
       "imports": [],
@@ -30867,7 +30891,7 @@
           "bytesInOutput": 2259
         },
         "node_modules/which-polygon/node_modules/rbush/index.js": {
-          "bytesInOutput": 14590
+          "bytesInOutput": 14626
         },
         "node_modules/lineclip/index.js": {
           "bytesInOutput": 2840
@@ -30882,7 +30906,7 @@
           "bytesInOutput": 2263
         },
         "node_modules/circle-to-polygon/input-validation/validateCenter.js": {
-          "bytesInOutput": 945
+          "bytesInOutput": 969
         },
         "node_modules/circle-to-polygon/input-validation/validateRadius.js": {
           "bytesInOutput": 493
@@ -30900,7 +30924,7 @@
           "bytesInOutput": 1121
         },
         "node_modules/circle-to-polygon/index.js": {
-          "bytesInOutput": 3045
+          "bytesInOutput": 3189
         },
         "node_modules/polygon-clipping/dist/polygon-clipping.umd.js": {
           "bytesInOutput": 73527
@@ -30909,16 +30933,16 @@
           "bytesInOutput": 2672
         },
         "node_modules/@aitodotai/json-stringify-pretty-compact/index.js": {
-          "bytesInOutput": 4317
+          "bytesInOutput": 4422
         },
         "node_modules/aes-js/index.js": {
-          "bytesInOutput": 59568
+          "bytesInOutput": 59596
         },
         "node_modules/fast-deep-equal/index.js": {
           "bytesInOutput": 1511
         },
         "node_modules/lodash/lodash.js": {
-          "bytesInOutput": 234303
+          "bytesInOutput": 234765
         },
         "node_modules/rbush/rbush.min.js": {
           "bytesInOutput": 11467
@@ -30930,7 +30954,7 @@
           "bytesInOutput": 21873
         },
         "node_modules/@mapbox/point-geometry/index.js": {
-          "bytesInOutput": 4195
+          "bytesInOutput": 4231
         },
         "node_modules/@mapbox/vector-tile/lib/vectortilefeature.js": {
           "bytesInOutput": 5762
@@ -30978,7 +31002,7 @@
           "bytesInOutput": 353
         },
         "node_modules/store/plugins/lib/json2.js": {
-          "bytesInOutput": 6426
+          "bytesInOutput": 6454
         },
         "node_modules/store/plugins/json2.js": {
           "bytesInOutput": 231
@@ -30987,7 +31011,7 @@
           "bytesInOutput": 303
         },
         "node_modules/whatwg-fetch/fetch.js": {
-          "bytesInOutput": 16399
+          "bytesInOutput": 16429
         },
         "node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js": {
           "bytesInOutput": 12707
@@ -31101,7 +31125,7 @@
           "bytesInOutput": 3332
         },
         "node_modules/d3-geo/src/clip/antimeridian.js": {
-          "bytesInOutput": 2582
+          "bytesInOutput": 2606
         },
         "node_modules/d3-geo/src/clip/circle.js": {
           "bytesInOutput": 4300
@@ -31161,7 +31185,7 @@
           "bytesInOutput": 1966
         },
         "modules/geo/extent.js": {
-          "bytesInOutput": 3353
+          "bytesInOutput": 3425
         },
         "modules/geo/index.js": {
           "bytesInOutput": 0
@@ -31188,7 +31212,7 @@
           "bytesInOutput": 7407
         },
         "node_modules/d3-dispatch/src/dispatch.js": {
-          "bytesInOutput": 2836
+          "bytesInOutput": 2816
         },
         "node_modules/d3-dispatch/src/index.js": {
           "bytesInOutput": 0
@@ -31197,10 +31221,10 @@
           "bytesInOutput": 265
         },
         "node_modules/d3-selection/src/namespace.js": {
-          "bytesInOutput": 311
+          "bytesInOutput": 304
         },
         "node_modules/d3-selection/src/creator.js": {
-          "bytesInOutput": 598
+          "bytesInOutput": 593
         },
         "node_modules/d3-selection/src/selector.js": {
           "bytesInOutput": 168
@@ -31275,19 +31299,19 @@
           "bytesInOutput": 322
         },
         "node_modules/d3-selection/src/selection/attr.js": {
-          "bytesInOutput": 1502
+          "bytesInOutput": 1493
         },
         "node_modules/d3-selection/src/window.js": {
           "bytesInOutput": 148
         },
         "node_modules/d3-selection/src/selection/style.js": {
-          "bytesInOutput": 942
+          "bytesInOutput": 929
         },
         "node_modules/d3-selection/src/selection/property.js": {
-          "bytesInOutput": 640
+          "bytesInOutput": 630
         },
         "node_modules/d3-selection/src/selection/classed.js": {
-          "bytesInOutput": 1893
+          "bytesInOutput": 1884
         },
         "node_modules/d3-selection/src/selection/text.js": {
           "bytesInOutput": 515
@@ -31302,10 +31326,10 @@
           "bytesInOutput": 187
         },
         "node_modules/d3-selection/src/selection/append.js": {
-          "bytesInOutput": 226
+          "bytesInOutput": 222
         },
         "node_modules/d3-selection/src/selection/insert.js": {
-          "bytesInOutput": 430
+          "bytesInOutput": 426
         },
         "node_modules/d3-selection/src/selection/remove.js": {
           "bytesInOutput": 172
@@ -31317,7 +31341,7 @@
           "bytesInOutput": 125
         },
         "node_modules/d3-selection/src/selection/on.js": {
-          "bytesInOutput": 2265
+          "bytesInOutput": 2256
         },
         "node_modules/d3-selection/src/selection/dispatch.js": {
           "bytesInOutput": 913
@@ -31356,7 +31380,7 @@
           "bytesInOutput": 1073
         },
         "node_modules/d3-drag/src/drag.js": {
-          "bytesInOutput": 5425
+          "bytesInOutput": 5497
         },
         "node_modules/d3-drag/src/index.js": {
           "bytesInOutput": 0
@@ -31365,7 +31389,7 @@
           "bytesInOutput": 356
         },
         "node_modules/d3-color/src/color.js": {
-          "bytesInOutput": 10988
+          "bytesInOutput": 11028
         },
         "node_modules/d3-color/src/index.js": {
           "bytesInOutput": 0
@@ -31437,25 +31461,25 @@
           "bytesInOutput": 234
         },
         "node_modules/d3-transition/src/transition/schedule.js": {
-          "bytesInOutput": 3593
+          "bytesInOutput": 3585
         },
         "node_modules/d3-transition/src/interrupt.js": {
-          "bytesInOutput": 658
+          "bytesInOutput": 653
         },
         "node_modules/d3-transition/src/selection/interrupt.js": {
-          "bytesInOutput": 123
+          "bytesInOutput": 121
         },
         "node_modules/d3-transition/src/transition/tween.js": {
-          "bytesInOutput": 1831
+          "bytesInOutput": 1813
         },
         "node_modules/d3-transition/src/transition/interpolate.js": {
           "bytesInOutput": 205
         },
         "node_modules/d3-transition/src/transition/attr.js": {
-          "bytesInOutput": 2489
+          "bytesInOutput": 2478
         },
         "node_modules/d3-transition/src/transition/attrTween.js": {
-          "bytesInOutput": 1245
+          "bytesInOutput": 1238
         },
         "node_modules/d3-transition/src/transition/delay.js": {
           "bytesInOutput": 471
@@ -31476,25 +31500,25 @@
           "bytesInOutput": 673
         },
         "node_modules/d3-transition/src/transition/on.js": {
-          "bytesInOutput": 693
+          "bytesInOutput": 685
         },
         "node_modules/d3-transition/src/transition/remove.js": {
           "bytesInOutput": 334
         },
         "node_modules/d3-transition/src/transition/select.js": {
-          "bytesInOutput": 786
+          "bytesInOutput": 783
         },
         "node_modules/d3-transition/src/transition/selectAll.js": {
-          "bytesInOutput": 841
+          "bytesInOutput": 838
         },
         "node_modules/d3-transition/src/transition/selection.js": {
           "bytesInOutput": 154
         },
         "node_modules/d3-transition/src/transition/style.js": {
-          "bytesInOutput": 2344
+          "bytesInOutput": 2316
         },
         "node_modules/d3-transition/src/transition/styleTween.js": {
-          "bytesInOutput": 829
+          "bytesInOutput": 822
         },
         "node_modules/d3-transition/src/transition/text.js": {
           "bytesInOutput": 453
@@ -31503,13 +31527,13 @@
           "bytesInOutput": 678
         },
         "node_modules/d3-transition/src/transition/transition.js": {
-          "bytesInOutput": 658
+          "bytesInOutput": 655
         },
         "node_modules/d3-transition/src/transition/end.js": {
           "bytesInOutput": 625
         },
         "node_modules/d3-transition/src/transition/index.js": {
-          "bytesInOutput": 1415
+          "bytesInOutput": 1411
         },
         "node_modules/d3-ease/src/linear.js": {
           "bytesInOutput": 27
@@ -31521,7 +31545,7 @@
           "bytesInOutput": 98
         },
         "node_modules/d3-transition/src/selection/transition.js": {
-          "bytesInOutput": 989
+          "bytesInOutput": 979
         },
         "node_modules/d3-transition/src/selection/index.js": {
           "bytesInOutput": 126
@@ -31536,13 +31560,13 @@
           "bytesInOutput": 495
         },
         "node_modules/d3-zoom/src/transform.js": {
-          "bytesInOutput": 1472
+          "bytesInOutput": 1475
         },
         "node_modules/d3-zoom/src/noevent.js": {
           "bytesInOutput": 184
         },
         "node_modules/d3-zoom/src/zoom.js": {
-          "bytesInOutput": 15184
+          "bytesInOutput": 15324
         },
         "node_modules/d3-zoom/src/index.js": {
           "bytesInOutput": 0
@@ -31557,7 +31581,7 @@
           "bytesInOutput": 1746
         },
         "modules/util/util.js": {
-          "bytesInOutput": 13920
+          "bytesInOutput": 13987
         },
         "modules/util/svg_paths_rtl_fix.js": {
           "bytesInOutput": 1588
@@ -31569,13 +31593,13 @@
           "bytesInOutput": 3806
         },
         "package.json": {
-          "bytesInOutput": 5516
+          "bytesInOutput": 6061
         },
         "node_modules/@ideditor/country-coder/dist/country-coder.mjs": {
           "bytesInOutput": 679069
         },
         "node_modules/@ideditor/location-conflation/index.mjs": {
-          "bytesInOutput": 8094
+          "bytesInOutput": 8149
         },
         "modules/core/locations.js": {
           "bytesInOutput": 3894
@@ -31590,7 +31614,7 @@
           "bytesInOutput": 810
         },
         "modules/util/detect.js": {
-          "bytesInOutput": 2697
+          "bytesInOutput": 2713
         },
         "modules/util/get_set_value.js": {
           "bytesInOutput": 781
@@ -31605,10 +31629,10 @@
           "bytesInOutput": 403
         },
         "modules/util/session_mutex.js": {
-          "bytesInOutput": 928
+          "bytesInOutput": 924
         },
         "modules/util/tiler.js": {
-          "bytesInOutput": 4292
+          "bytesInOutput": 4376
         },
         "modules/util/trigger_event.js": {
           "bytesInOutput": 209
@@ -31692,10 +31716,10 @@
           "bytesInOutput": 10449
         },
         "modules/presets/collection.js": {
-          "bytesInOutput": 5414
+          "bytesInOutput": 5550
         },
         "modules/presets/category.js": {
-          "bytesInOutput": 1719
+          "bytesInOutput": 1731
         },
         "modules/presets/field.js": {
           "bytesInOutput": 1305
@@ -31704,10 +31728,10 @@
           "bytesInOutput": 8308
         },
         "modules/presets/index.js": {
-          "bytesInOutput": 16984
+          "bytesInOutput": 17044
         },
         "modules/osm/entity.js": {
-          "bytesInOutput": 6070
+          "bytesInOutput": 6106
         },
         "modules/osm/lanes.js": {
           "bytesInOutput": 6994
@@ -31722,7 +31746,7 @@
           "bytesInOutput": 4510
         },
         "modules/actions/add_midpoint.js": {
-          "bytesInOutput": 617
+          "bytesInOutput": 641
         },
         "modules/actions/add_vertex.js": {
           "bytesInOutput": 163
@@ -31737,7 +31761,7 @@
           "bytesInOutput": 182
         },
         "modules/osm/node.js": {
-          "bytesInOutput": 6187
+          "bytesInOutput": 6211
         },
         "modules/actions/circularize.js": {
           "bytesInOutput": 8585
@@ -31773,10 +31797,10 @@
           "bytesInOutput": 3071
         },
         "modules/actions/join.js": {
-          "bytesInOutput": 5144
+          "bytesInOutput": 5216
         },
         "modules/actions/merge.js": {
-          "bytesInOutput": 2953
+          "bytesInOutput": 2981
         },
         "modules/actions/merge_nodes.js": {
           "bytesInOutput": 1334
@@ -31806,10 +31830,10 @@
           "bytesInOutput": 16680
         },
         "modules/actions/merge_polygon.js": {
-          "bytesInOutput": 4429
+          "bytesInOutput": 4497
         },
         "modules/actions/merge_remote_changes.js": {
-          "bytesInOutput": 7582
+          "bytesInOutput": 7624
         },
         "node_modules/node-diff3/index.mjs": {
           "bytesInOutput": 6850
@@ -31821,7 +31845,7 @@
           "bytesInOutput": 187
         },
         "modules/actions/move_node.js": {
-          "bytesInOutput": 350
+          "bytesInOutput": 366
         },
         "modules/actions/noop.js": {
           "bytesInOutput": 86
@@ -31863,10 +31887,10 @@
           "bytesInOutput": 5833
         },
         "modules/behavior/draw.js": {
-          "bytesInOutput": 6989
+          "bytesInOutput": 7099
         },
         "modules/behavior/breathe.js": {
-          "bytesInOutput": 3922
+          "bytesInOutput": 4102
         },
         "node_modules/d3-scale/src/init.js": {
           "bytesInOutput": 260
@@ -31977,10 +32001,10 @@
           "bytesInOutput": 4633
         },
         "modules/modes/drag_node.js": {
-          "bytesInOutput": 12225
+          "bytesInOutput": 12423
         },
         "modules/services/keepRight.js": {
-          "bytesInOutput": 11894
+          "bytesInOutput": 11881
         },
         "node_modules/d3-fetch/src/text.js": {
           "bytesInOutput": 254
@@ -31995,16 +32019,16 @@
           "bytesInOutput": 270
         },
         "modules/services/improveOSM.js": {
-          "bytesInOutput": 12317
+          "bytesInOutput": 12389
         },
         "modules/services/osmose.js": {
           "bytesInOutput": 8208
         },
         "node_modules/marked/lib/marked.esm.js": {
-          "bytesInOutput": 69698
+          "bytesInOutput": 70017
         },
         "modules/services/mapillary.js": {
-          "bytesInOutput": 19685
+          "bytesInOutput": 19739
         },
         "modules/core/validation/models.js": {
           "bytesInOutput": 2203
@@ -32016,28 +32040,28 @@
           "bytesInOutput": 6662
         },
         "modules/services/nominatim.js": {
-          "bytesInOutput": 2693
+          "bytesInOutput": 2711
         },
         "node_modules/name-suggestion-index/lib/matcher.js": {
-          "bytesInOutput": 11588
+          "bytesInOutput": 11585
         },
         "node_modules/name-suggestion-index/lib/simplify.js": {
-          "bytesInOutput": 1323
+          "bytesInOutput": 1335
         },
         "node_modules/name-suggestion-index/config/matchGroups.json": {
-          "bytesInOutput": 5952
+          "bytesInOutput": 6484
         },
         "node_modules/name-suggestion-index/config/genericWords.json": {
-          "bytesInOutput": 738
+          "bytesInOutput": 745
         },
         "node_modules/name-suggestion-index/config/trees.json": {
-          "bytesInOutput": 1095
+          "bytesInOutput": 1153
         },
         "node_modules/name-suggestion-index/index.mjs": {
           "bytesInOutput": 0
         },
         "modules/services/nsi.js": {
-          "bytesInOutput": 14712
+          "bytesInOutput": 14708
         },
         "modules/core/difference.js": {
           "bytesInOutput": 7054
@@ -32046,7 +32070,7 @@
           "bytesInOutput": 4016
         },
         "modules/svg/icon.js": {
-          "bytesInOutput": 329
+          "bytesInOutput": 327
         },
         "modules/ui/modal.js": {
           "bytesInOutput": 1959
@@ -32061,31 +32085,31 @@
           "bytesInOutput": 1017
         },
         "modules/validations/almost_junction.js": {
-          "bytesInOutput": 9694
+          "bytesInOutput": 9892
         },
         "modules/validations/close_nodes.js": {
           "bytesInOutput": 9037
         },
         "modules/validations/crossing_ways.js": {
-          "bytesInOutput": 25777
+          "bytesInOutput": 25885
         },
         "modules/behavior/draw_way.js": {
-          "bytesInOutput": 12301
+          "bytesInOutput": 12413
         },
         "modules/modes/draw_line.js": {
           "bytesInOutput": 813
         },
         "modules/validations/disconnected_way.js": {
-          "bytesInOutput": 6275
+          "bytesInOutput": 6303
         },
         "modules/validations/invalid_format.js": {
-          "bytesInOutput": 1499
+          "bytesInOutput": 1547
         },
         "modules/validations/help_request.js": {
           "bytesInOutput": 1353
         },
         "modules/validations/impossible_oneway.js": {
-          "bytesInOutput": 7470
+          "bytesInOutput": 7486
         },
         "modules/validations/incompatible_source.js": {
           "bytesInOutput": 2134
@@ -32094,31 +32118,31 @@
           "bytesInOutput": 470
         },
         "modules/validations/mismatched_geometry.js": {
-          "bytesInOutput": 11856
+          "bytesInOutput": 12054
         },
         "modules/validations/missing_role.js": {
-          "bytesInOutput": 3013
+          "bytesInOutput": 3111
         },
         "modules/validations/missing_tag.js": {
-          "bytesInOutput": 4105
+          "bytesInOutput": 4139
         },
         "modules/validations/outdated_tags.js": {
-          "bytesInOutput": 8259
+          "bytesInOutput": 8327
         },
         "modules/validations/private_data.js": {
-          "bytesInOutput": 3231
+          "bytesInOutput": 3261
         },
         "modules/validations/suspicious_name.js": {
-          "bytesInOutput": 5645
+          "bytesInOutput": 5821
         },
         "modules/validations/unsquare_way.js": {
-          "bytesInOutput": 3608
+          "bytesInOutput": 3662
         },
         "modules/core/validator.js": {
           "bytesInOutput": 17729
         },
         "modules/core/uploader.js": {
-          "bytesInOutput": 9718
+          "bytesInOutput": 9772
         },
         "modules/renderer/background_source.js": {
           "bytesInOutput": 15822
@@ -32130,7 +32154,7 @@
           "bytesInOutput": 0
         },
         "modules/renderer/background.js": {
-          "bytesInOutput": 13733
+          "bytesInOutput": 13773
         },
         "modules/renderer/tile_layer.js": {
           "bytesInOutput": 6663
@@ -32157,13 +32181,13 @@
           "bytesInOutput": 12165
         },
         "node_modules/@tmcw/togeojson/dist/togeojson.es.js": {
-          "bytesInOutput": 16787
+          "bytesInOutput": 17027
         },
         "modules/svg/debug.js": {
           "bytesInOutput": 3330
         },
         "modules/svg/defs.js": {
-          "bytesInOutput": 5435
+          "bytesInOutput": 5456
         },
         "modules/svg/keepRight.js": {
           "bytesInOutput": 4856
@@ -32172,7 +32196,7 @@
           "bytesInOutput": 2702
         },
         "modules/svg/labels.js": {
-          "bytesInOutput": 21406
+          "bytesInOutput": 21403
         },
         "modules/svg/improveOSM.js": {
           "bytesInOutput": 4767
@@ -32214,10 +32238,10 @@
           "bytesInOutput": 3199
         },
         "modules/svg/lines.js": {
-          "bytesInOutput": 9414
+          "bytesInOutput": 9654
         },
         "modules/svg/midpoints.js": {
-          "bytesInOutput": 4398
+          "bytesInOutput": 4418
         },
         "modules/svg/points.js": {
           "bytesInOutput": 3814
@@ -32232,13 +32256,13 @@
           "bytesInOutput": 257
         },
         "modules/util/zoom_pan.js": {
-          "bytesInOutput": 11757
+          "bytesInOutput": 11835
         },
         "modules/util/double_up.js": {
           "bytesInOutput": 1927
         },
         "modules/renderer/map.js": {
-          "bytesInOutput": 27552
+          "bytesInOutput": 27702
         },
         "modules/renderer/photos.js": {
           "bytesInOutput": 6895
@@ -32247,7 +32271,7 @@
           "bytesInOutput": 2188
         },
         "modules/ui/attribution.js": {
-          "bytesInOutput": 2225
+          "bytesInOutput": 2255
         },
         "modules/ui/contributors.js": {
           "bytesInOutput": 1938
@@ -32271,7 +32295,7 @@
           "bytesInOutput": 1609
         },
         "modules/ui/geolocate.js": {
-          "bytesInOutput": 2282
+          "bytesInOutput": 2298
         },
         "modules/ui/panels/background.js": {
           "bytesInOutput": 4622
@@ -32289,13 +32313,13 @@
           "bytesInOutput": 1584
         },
         "modules/ui/panels/measurement.js": {
-          "bytesInOutput": 6298
+          "bytesInOutput": 6325
         },
         "modules/ui/info.js": {
           "bytesInOutput": 3275
         },
         "modules/ui/intro/helper.js": {
-          "bytesInOutput": 9036
+          "bytesInOutput": 9029
         },
         "modules/ui/toggle.js": {
           "bytesInOutput": 362
@@ -32304,25 +32328,25 @@
           "bytesInOutput": 6891
         },
         "modules/ui/intro/welcome.js": {
-          "bytesInOutput": 1271
+          "bytesInOutput": 1391
         },
         "modules/ui/intro/navigation.js": {
-          "bytesInOutput": 16660
+          "bytesInOutput": 17341
         },
         "modules/ui/intro/point.js": {
-          "bytesInOutput": 13734
+          "bytesInOutput": 14162
         },
         "modules/ui/intro/area.js": {
-          "bytesInOutput": 14041
+          "bytesInOutput": 14645
         },
         "modules/ui/intro/line.js": {
-          "bytesInOutput": 34821
+          "bytesInOutput": 36029
         },
         "modules/ui/intro/building.js": {
-          "bytesInOutput": 22623
+          "bytesInOutput": 23187
         },
         "modules/ui/intro/start_editing.js": {
-          "bytesInOutput": 1949
+          "bytesInOutput": 2075
         },
         "modules/ui/intro/intro.js": {
           "bytesInOutput": 5454
@@ -32340,7 +32364,7 @@
           "bytesInOutput": 870
         },
         "modules/ui/photoviewer.js": {
-          "bytesInOutput": 4535
+          "bytesInOutput": 4607
         },
         "modules/ui/restore.js": {
           "bytesInOutput": 1358
@@ -32352,13 +32376,13 @@
           "bytesInOutput": 6245
         },
         "modules/ui/data_header.js": {
-          "bytesInOutput": 814
+          "bytesInOutput": 842
         },
         "modules/ui/combobox.js": {
           "bytesInOutput": 12550
         },
         "modules/ui/disclosure.js": {
-          "bytesInOutput": 3019
+          "bytesInOutput": 3073
         },
         "modules/ui/section.js": {
           "bytesInOutput": 2922
@@ -32373,25 +32397,25 @@
           "bytesInOutput": 5623
         },
         "modules/ui/fields/check.js": {
-          "bytesInOutput": 5364
+          "bytesInOutput": 5410
         },
         "modules/ui/fields/index.js": {
           "bytesInOutput": 836
         },
         "modules/ui/fields/combo.js": {
-          "bytesInOutput": 18754
+          "bytesInOutput": 18926
         },
         "modules/ui/fields/input.js": {
           "bytesInOutput": 8896
         },
         "modules/ui/fields/access.js": {
-          "bytesInOutput": 6231
+          "bytesInOutput": 6251
         },
         "modules/ui/fields/address.js": {
-          "bytesInOutput": 8235
+          "bytesInOutput": 8259
         },
         "modules/ui/fields/cycleway.js": {
-          "bytesInOutput": 4147
+          "bytesInOutput": 4167
         },
         "modules/ui/fields/lanes.js": {
           "bytesInOutput": 2719
@@ -32409,37 +32433,37 @@
           "bytesInOutput": 7859
         },
         "modules/ui/fields/restrictions.js": {
-          "bytesInOutput": 17910
+          "bytesInOutput": 17908
         },
         "modules/ui/fields/textarea.js": {
           "bytesInOutput": 1516
         },
         "modules/ui/fields/wikidata.js": {
-          "bytesInOutput": 9289
+          "bytesInOutput": 9326
         },
         "modules/ui/fields/wikipedia.js": {
-          "bytesInOutput": 7920
+          "bytesInOutput": 7980
         },
         "modules/ui/field.js": {
           "bytesInOutput": 7822
         },
         "modules/ui/form_fields.js": {
-          "bytesInOutput": 3216
+          "bytesInOutput": 3246
         },
         "modules/ui/changeset_editor.js": {
-          "bytesInOutput": 3080
+          "bytesInOutput": 3108
         },
         "modules/ui/commit.js": {
-          "bytesInOutput": 15426
+          "bytesInOutput": 15478
         },
         "modules/util/jxon.js": {
           "bytesInOutput": 5704
         },
         "modules/ui/sections/changes.js": {
-          "bytesInOutput": 3365
+          "bytesInOutput": 3386
         },
         "modules/ui/commit_warnings.js": {
-          "bytesInOutput": 2239
+          "bytesInOutput": 2339
         },
         "modules/ui/confirm.js": {
           "bytesInOutput": 724
@@ -32457,58 +32481,58 @@
           "bytesInOutput": 12048
         },
         "modules/ui/sections/feature_type.js": {
-          "bytesInOutput": 3553
+          "bytesInOutput": 3585
         },
         "modules/ui/sections/preset_fields.js": {
-          "bytesInOutput": 4266
+          "bytesInOutput": 4362
         },
         "modules/ui/sections/raw_member_editor.js": {
-          "bytesInOutput": 9564
+          "bytesInOutput": 9830
         },
         "modules/actions/delete_members.js": {
           "bytesInOutput": 283
         },
         "modules/ui/sections/raw_membership_editor.js": {
-          "bytesInOutput": 14520
+          "bytesInOutput": 14732
         },
         "modules/ui/sections/selection_list.js": {
           "bytesInOutput": 2848
         },
         "modules/ui/feature_list.js": {
-          "bytesInOutput": 8630
+          "bytesInOutput": 8669
         },
         "modules/ui/improveOSM_comments.js": {
           "bytesInOutput": 2045
         },
         "modules/ui/improveOSM_details.js": {
-          "bytesInOutput": 3028
+          "bytesInOutput": 3047
         },
         "modules/ui/improveOSM_header.js": {
-          "bytesInOutput": 1552
+          "bytesInOutput": 1576
         },
         "modules/ui/improveOSM_editor.js": {
-          "bytesInOutput": 4628
+          "bytesInOutput": 4652
         },
         "modules/ui/preset_list.js": {
-          "bytesInOutput": 14924
+          "bytesInOutput": 14996
         },
         "modules/ui/view_on_osm.js": {
           "bytesInOutput": 900
         },
         "modules/ui/inspector.js": {
-          "bytesInOutput": 3910
+          "bytesInOutput": 3926
         },
         "modules/ui/keepRight_details.js": {
-          "bytesInOutput": 3238
+          "bytesInOutput": 3257
         },
         "modules/ui/keepRight_header.js": {
-          "bytesInOutput": 1418
+          "bytesInOutput": 1442
         },
         "modules/ui/view_on_keepRight.js": {
           "bytesInOutput": 819
         },
         "modules/ui/keepRight_editor.js": {
-          "bytesInOutput": 4745
+          "bytesInOutput": 4769
         },
         "modules/ui/lasso.js": {
           "bytesInOutput": 1088
@@ -32517,7 +32541,7 @@
           "bytesInOutput": 2911
         },
         "modules/ui/note_header.js": {
-          "bytesInOutput": 1527
+          "bytesInOutput": 1555
         },
         "modules/ui/note_report.js": {
           "bytesInOutput": 771
@@ -32532,7 +32556,7 @@
           "bytesInOutput": 451
         },
         "modules/ui/sections/privacy.js": {
-          "bytesInOutput": 1719
+          "bytesInOutput": 1735
         },
         "modules/ui/splash.js": {
           "bytesInOutput": 2631
@@ -32541,7 +32565,7 @@
           "bytesInOutput": 2027
         },
         "node_modules/osm-community-index/lib/simplify.js": {
-          "bytesInOutput": 1507
+          "bytesInOutput": 1519
         },
         "node_modules/osm-community-index/lib/resolve_strings.js": {
           "bytesInOutput": 3089
@@ -32550,10 +32574,10 @@
           "bytesInOutput": 0
         },
         "modules/ui/success.js": {
-          "bytesInOutput": 9249
+          "bytesInOutput": 9281
         },
         "modules/ui/version.js": {
-          "bytesInOutput": 1190
+          "bytesInOutput": 1210
         },
         "modules/ui/zoom.js": {
           "bytesInOutput": 3094
@@ -32562,19 +32586,19 @@
           "bytesInOutput": 15510
         },
         "modules/ui/data_editor.js": {
-          "bytesInOutput": 1463
+          "bytesInOutput": 1479
         },
         "modules/ui/osmose_details.js": {
-          "bytesInOutput": 4393
+          "bytesInOutput": 4412
         },
         "modules/ui/osmose_header.js": {
-          "bytesInOutput": 1509
+          "bytesInOutput": 1533
         },
         "modules/ui/view_on_osmose.js": {
           "bytesInOutput": 788
         },
         "modules/ui/osmose_editor.js": {
-          "bytesInOutput": 3200
+          "bytesInOutput": 3224
         },
         "modules/ui/sidebar.js": {
           "bytesInOutput": 11429
@@ -32583,16 +32607,16 @@
           "bytesInOutput": 699
         },
         "modules/modes/add_area.js": {
-          "bytesInOutput": 1688
+          "bytesInOutput": 1808
         },
         "modules/modes/index.js": {
           "bytesInOutput": 0
         },
         "modules/modes/add_line.js": {
-          "bytesInOutput": 1473
+          "bytesInOutput": 1569
         },
         "modules/modes/add_point.js": {
-          "bytesInOutput": 1487
+          "bytesInOutput": 1575
         },
         "modules/modes/select_note.js": {
           "bytesInOutput": 2912
@@ -32601,25 +32625,25 @@
           "bytesInOutput": 846
         },
         "modules/modes/save.js": {
-          "bytesInOutput": 5369
+          "bytesInOutput": 5399
         },
         "modules/modes/select_error.js": {
           "bytesInOutput": 3608
         },
         "modules/ui/tools/modes.js": {
-          "bytesInOutput": 3414
+          "bytesInOutput": 3442
         },
         "modules/ui/tools/index.js": {
           "bytesInOutput": 0
         },
         "modules/ui/tools/notes.js": {
-          "bytesInOutput": 2957
+          "bytesInOutput": 2985
         },
         "modules/ui/tools/save.js": {
           "bytesInOutput": 2973
         },
         "modules/ui/tools/sidebar_toggle.js": {
-          "bytesInOutput": 638
+          "bytesInOutput": 654
         },
         "modules/ui/tools/undo_redo.js": {
           "bytesInOutput": 3576
@@ -32640,31 +32664,31 @@
           "bytesInOutput": 3085
         },
         "modules/ui/sections/background_list.js": {
-          "bytesInOutput": 6985
+          "bytesInOutput": 7132
         },
         "modules/ui/sections/background_offset.js": {
           "bytesInOutput": 4190
         },
         "modules/ui/sections/overlay_list.js": {
-          "bytesInOutput": 2740
+          "bytesInOutput": 2783
         },
         "modules/ui/panes/background.js": {
           "bytesInOutput": 447
         },
         "modules/ui/panes/help.js": {
-          "bytesInOutput": 9857
+          "bytesInOutput": 9873
         },
         "modules/ui/sections/validation_issues.js": {
-          "bytesInOutput": 3261
+          "bytesInOutput": 3293
         },
         "modules/ui/sections/validation_options.js": {
           "bytesInOutput": 2085
         },
         "modules/ui/sections/validation_rules.js": {
-          "bytesInOutput": 4305
+          "bytesInOutput": 4326
         },
         "modules/ui/sections/validation_status.js": {
-          "bytesInOutput": 5016
+          "bytesInOutput": 5080
         },
         "modules/ui/panes/issues.js": {
           "bytesInOutput": 509
@@ -32673,16 +32697,16 @@
           "bytesInOutput": 3093
         },
         "modules/ui/sections/data_layers.js": {
-          "bytesInOutput": 11166
+          "bytesInOutput": 11356
         },
         "modules/ui/sections/map_features.js": {
-          "bytesInOutput": 2808
+          "bytesInOutput": 2834
         },
         "modules/ui/sections/map_style_options.js": {
-          "bytesInOutput": 2277
+          "bytesInOutput": 2303
         },
         "modules/ui/sections/photo_overlays.js": {
-          "bytesInOutput": 7512
+          "bytesInOutput": 7592
         },
         "modules/ui/panes/map_data.js": {
           "bytesInOutput": 412
@@ -32691,7 +32715,7 @@
           "bytesInOutput": 316
         },
         "modules/ui/init.js": {
-          "bytesInOutput": 14057
+          "bytesInOutput": 14077
         },
         "modules/core/context.js": {
           "bytesInOutput": 14330
@@ -32703,13 +32727,13 @@
           "bytesInOutput": 15089
         },
         "node_modules/osm-auth/src/osm-auth.mjs": {
-          "bytesInOutput": 6610
+          "bytesInOutput": 6680
         },
         "modules/services/osm.js": {
-          "bytesInOutput": 37397
+          "bytesInOutput": 37879
         },
         "modules/services/osm_wikibase.js": {
-          "bytesInOutput": 8432
+          "bytesInOutput": 8424
         },
         "modules/services/streetside.js": {
           "bytesInOutput": 27213
@@ -32721,7 +32745,7 @@
           "bytesInOutput": 9103
         },
         "modules/services/vector_tile.js": {
-          "bytesInOutput": 6151
+          "bytesInOutput": 6199
         },
         "node_modules/@turf/helpers/dist/es/index.js": {
           "bytesInOutput": 2828
@@ -32736,7 +32760,7 @@
           "bytesInOutput": 1485
         },
         "modules/services/wikidata.js": {
-          "bytesInOutput": 5320
+          "bytesInOutput": 5312
         },
         "modules/services/wikipedia.js": {
           "bytesInOutput": 2931
@@ -32757,10 +32781,10 @@
           "bytesInOutput": 879
         },
         "modules/operations/continue.js": {
-          "bytesInOutput": 1986
+          "bytesInOutput": 2024
         },
         "modules/operations/copy.js": {
-          "bytesInOutput": 3546
+          "bytesInOutput": 3570
         },
         "modules/operations/disconnect.js": {
           "bytesInOutput": 5994
@@ -32772,7 +32796,7 @@
           "bytesInOutput": 2665
         },
         "modules/operations/merge.js": {
-          "bytesInOutput": 2805
+          "bytesInOutput": 2841
         },
         "modules/operations/paste.js": {
           "bytesInOutput": 2269
@@ -32787,7 +32811,7 @@
           "bytesInOutput": 4187
         },
         "modules/modes/select.js": {
-          "bytesInOutput": 18132
+          "bytesInOutput": 18340
         },
         "modules/behavior/lasso.js": {
           "bytesInOutput": 3150
@@ -32802,7 +32826,7 @@
           "bytesInOutput": 0
         },
         "modules/behavior/hash.js": {
-          "bytesInOutput": 5040
+          "bytesInOutput": 5064
         },
         "modules/ui/panes/index.js": {
           "bytesInOutput": 0
@@ -32826,7 +32850,7 @@
           "bytesInOutput": 472
         }
       },
-      "bytes": 3474614
+      "bytes": 3488089
     }
   }
 }
