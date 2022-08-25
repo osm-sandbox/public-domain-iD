@@ -1,0 +1,59 @@
+[
+  {
+    "id": "pd-USGS-Orthoimagery",
+    "name": "USGS Imagery",
+    "type": "tms",
+    "default": true,
+    "attribution": {
+      "text": "USGS The National Map: Orthoimagery",
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer"
+    },
+    "description": "",
+    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{zoom}/{y}/{x}"
+  },
+  {
+    "id": "pd-USGS-Hydrography",
+    "name": "USGS National Hydrography Dataset",
+    "type": "tms",
+    "overlay": true,
+    "attribution": {
+      "text": "USGS The National Map: National Hydrography Dataset",
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer"
+    },
+    "description": "",
+    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer/tile/{zoom}/{y}/{x}"
+  },
+  {
+    "id": "pd-USGS-Topo",
+    "name": "USGS Topo",
+    "type": "tms",
+    "attribution": {
+      "text": "USGS The National Map: Topo",
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer"
+    },
+    "description": "",
+    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{zoom}/{y}/{x}"
+  },
+  {
+    "id": "pd-USGS-Imagery-Topo",
+    "name": "USGS Imagery Topo",
+    "type": "tms",
+    "attribution": {
+      "text": "USGS The National Map: Imagery Topo",
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer"
+    },
+    "description": "",
+    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{zoom}/{y}/{x}"
+  },
+  {
+    "id": "pd-USGS-Shaded-Relief",
+    "name": "USGS Shaded Relief",
+    "type": "tms",
+    "attribution": {
+      "text": "USGS The National Map: 3D Elevation Program",
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer"
+    },
+    "description": "",
+    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/tile/{zoom}/{y}/{x}"
+  }
+]

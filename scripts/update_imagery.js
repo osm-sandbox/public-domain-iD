@@ -1,11 +1,18 @@
 /* eslint-disable no-console */
 const fs = require('fs');
-let sources = require('editor-layer-index/imagery.json');
+//let sources = require('editor-layer-index/imagery.json');
+let sources = []; // don't user ELI for now
 const prettyStringify = require('json-stringify-pretty-compact');
 
+/*
 if (fs.existsSync('./data/manual_imagery.json')) {
   // we can include additional imagery sources that aren't in the index
   sources = sources.concat(JSON.parse(fs.readFileSync('./data/manual_imagery.json')));
+}
+*/
+if (fs.existsSync('./data/pd_imagery.json')) {
+  // add pd sources
+  sources = sources.concat(JSON.parse(fs.readFileSync('./data/pd_imagery.json')));
 }
 
 let imagery = [];
