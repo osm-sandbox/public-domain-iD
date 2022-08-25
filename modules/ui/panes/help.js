@@ -9,6 +9,7 @@ import { helpHtml } from '../intro/helper';
 
 export function uiPaneHelp(context) {
 
+    // PD: not all help sections apply to PD
     var docKeys = [
         ['help', [
             'welcome',
@@ -159,6 +160,7 @@ export function uiPaneHelp(context) {
             'downgrade',
             'copy_paste'
         ]],
+        /*
         ['notes', [
             'intro',
             'add_note_h',
@@ -170,15 +172,17 @@ export function uiPaneHelp(context) {
             'save_note_h',
             'save_note'
         ]],
+        */
         ['imagery', [
             'intro',
             'sources_h',
             'choosing',
-            'sources',
+            //'sources',
             'offsets_h',
             'offset',
             'offset_change'
         ]],
+        /*
         ['streetlevel', [
             'intro',
             'using_h',
@@ -186,14 +190,16 @@ export function uiPaneHelp(context) {
             'photos',
             'viewer'
         ]],
+        */
         ['gps', [
             'intro',
             'survey',
             'using_h',
             'using',
             'tracing',
-            'upload'
+            //'upload'
         ]],
+        /*
         ['qa', [
             'intro',
             'tools_h',
@@ -201,6 +207,7 @@ export function uiPaneHelp(context) {
             'issues_h',
             'issues'
         ]]
+        */
     ];
 
     var headings = {
