@@ -6,7 +6,8 @@
     "default": true,
     "attribution": {
       "text": "USGS The National Map: Orthoimagery",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer"
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
+      "required": false
     },
     "description": "",
     "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{zoom}/{y}/{x}"
@@ -18,7 +19,8 @@
     "overlay": true,
     "attribution": {
       "text": "USGS The National Map: National Hydrography Dataset",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer"
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer",
+      "required": false
     },
     "description": "",
     "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer/tile/{zoom}/{y}/{x}"
@@ -29,7 +31,8 @@
     "type": "tms",
     "attribution": {
       "text": "USGS The National Map: Topo",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer"
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer",
+      "required": false
     },
     "description": "",
     "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{zoom}/{y}/{x}"
@@ -40,7 +43,8 @@
     "type": "tms",
     "attribution": {
       "text": "USGS The National Map: Imagery Topo",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer"
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer",
+      "required": false
     },
     "description": "",
     "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{zoom}/{y}/{x}"
@@ -51,9 +55,27 @@
     "type": "tms",
     "attribution": {
       "text": "USGS The National Map: 3D Elevation Program",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer"
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer",
+      "required": false
     },
     "description": "",
     "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/tile/{zoom}/{y}/{x}"
+  },
+  {
+    "id": "pd-USGS-NAIP-Plus",
+    "name": "USGS NAIP Plus Imagery",
+    "type": "wms",
+    "attribution": {
+      "text": "USGS, USDA: NAIP Plus",
+      "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer",
+      "required": false
+    },
+    "description": "",
+    "available_projections": [
+        "CRS:84",
+        "EPSG:3857",
+        "EPSG:4326"
+    ],
+    "url": "https://imagery.nationalmap.gov:443/arcgis/services/USGSNAIPPlus/ImageServer/WMSServer/exportImage?LAYERS=0&STYLES=&FORMAT=image/jpeg&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
   }
 ]
