@@ -14,12 +14,15 @@ import { utilArrayChunk, utilArrayGroupBy, utilArrayUniq, utilObjectOmit, utilRe
 var tiler = utilTiler();
 var dispatch = d3_dispatch('apiStatusChange', 'authLoading', 'authDone', 'change', 'loading', 'loaded', 'loadedNotes');
 
-var urlroot = 'https://www.openstreetmap.org';
+//var urlroot = 'https://www.openstreetmap.org';
+var urlroot = location.protocol + '//' + location.host;
 var redirectPath = window.location.origin + window.location.pathname;
 var oauth = osmAuth({
     url: urlroot,
-    client_id: '0tmNTmd0Jo1dQp4AUmMBLtGiD9YpMuXzHefitcuVStc',
-    client_secret: 'BTlNrNxIPitHdL4sP2clHw5KLoee9aKkA7dQbc0Bj7Q',
+    //client_id: '0tmNTmd0Jo1dQp4AUmMBLtGiD9YpMuXzHefitcuVStc',
+    //client_secret: 'BTlNrNxIPitHdL4sP2clHw5KLoee9aKkA7dQbc0Bj7Q',
+    client_id: '##ID_CONSUMER_KEY##',
+    client_secret: '##ID_CONSUMER_SECRET##',
     scope: 'read_prefs write_prefs write_api read_gpx write_notes',
     redirect_uri: redirectPath + 'land.html',
     loading: authLoading,
