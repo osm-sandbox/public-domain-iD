@@ -2,11 +2,18 @@
 ------------------------------------------------------- */
 
 /* hide OSM-specific features */
-.map-panes .layer-list-qa { /* OSM quality-assurance layers */
+.map-panes .layer-list li.list-item-notes { /* hide OSM notes */
+  display: none;
+}
+.map-panes .layer-list li.list-item-osm { /* fix list display issues due to hiding notes item */
+  border-bottom: none;
+  border-radius: inherit;
+}
+.map-panes .layer-list-qa { /* hide OSM quality-assurance layers */
   display: none;
 }
 
 /* hide data that doesn't have a public domain license */
-.map-panes .section-photo-overlays { /* photo bubble overlays */
+.map-panes .section-photo-overlays { /* hide photo bubble overlays */
   display: none;
 }

@@ -9614,3 +9614,22 @@
     width: 100px;
     color: #7092ff;
 }
+/* CSS for Public Domain Map-specific features
+------------------------------------------------------- */
+
+/* hide OSM-specific features */
+.ideditor .map-panes .layer-list li.list-item-notes { /* hide OSM notes */
+  display: none;
+}
+.ideditor .map-panes .layer-list li.list-item-osm { /* fix list display issues due to hiding notes item */
+  border-bottom: none;
+  border-radius: inherit;
+}
+.ideditor .map-panes .layer-list-qa { /* hide OSM quality-assurance layers */
+  display: none;
+}
+
+/* hide data that doesn't have a public domain license */
+.ideditor .map-panes .section-photo-overlays { /* hide photo bubble overlays */
+  display: none;
+}
