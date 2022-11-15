@@ -477,7 +477,7 @@ export function rendererBackground(context) {
             background.findSource(requested) ||
             best ||
             background.findSource(prefs('background-last-used')) ||
-            background.findSource('Bing') ||
+            background.findSource('pd-USGS-Orthoimagery') || // preferred default imagery
             first ||
             background.findSource('none')
           );
