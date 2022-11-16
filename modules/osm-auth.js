@@ -2085,7 +2085,7 @@ var hashes = require('jshashes'),
     // The original line is:
     //   sha1 = new hashes.SHA1();
     // For some reason this breaks in tasking manager, so I pulled out this entire dependecy
-    sha1 = hashes.SHA1;
+    sha1 = new hashes.SHA1;
 
 
 // # xtend
