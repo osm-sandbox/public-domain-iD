@@ -44,18 +44,16 @@
           var context = iD.coreContext()
             .assetPath('')
             .apiConnections([
-              {
-                url: location.protocol + '//' + location.host,
-                client_id: '##ID_CONSUMER_KEY##',
-                client_secret: '##ID_CONSUMER_SECRET##'
+              { // production database
+                'urlroot': 'https://www.publicdomainmap.org',
+                'oauth_consumer_key': '',
+                'oauth_secret': ''
+              },
+              { // local database
+                'urlroot': location.protocol + '//' + location.host,
+                'oauth_consumer_key': '',
+                'oauth_secret': ''
               }
-              /*
-              }, {
-                url: 'https://api06.dev.openstreetmap.org',
-                client_id: 'Ee1wWJ6UlpERbF6BfTNOpwn0R8k_06mvMXdDUkeHMgw',
-                client_secret: 'OnfWFC-JkZNHyYdr_viNn_h_RTZXRslKcUxllOXqf5g'
-              }
-              */
             ])
             .containerNode(container);
           context.init();

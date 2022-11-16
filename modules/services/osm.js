@@ -2,29 +2,24 @@ import _throttle from 'lodash-es/throttle';
 
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { json as d3_json, xml as d3_xml } from 'd3-fetch';
-import { osmAuth } from 'osm-auth';
+import osmAuth from '../osm-auth';
 import RBush from 'rbush';
 
 import { JXON } from '../util/jxon';
 import { geoExtent, geoRawMercator, geoVecAdd, geoZoomToScale } from '../geo';
 import { osmEntity, osmNode, osmNote, osmRelation, osmWay } from '../osm';
-import { utilArrayChunk, utilArrayGroupBy, utilArrayUniq, utilObjectOmit, utilRebind, utilTiler, utilQsString } from '../util';
+import { utilArrayChunk, utilArrayGroupBy, utilArrayUniq, utilRebind, utilTiler, utilQsString } from '../util';
 
 
 var tiler = utilTiler();
 var dispatch = d3_dispatch('apiStatusChange', 'authLoading', 'authDone', 'change', 'loading', 'loaded', 'loadedNotes');
 
 //var urlroot = 'https://www.openstreetmap.org';
-var urlroot = location.protocol + '//' + location.host;
-var redirectPath = window.location.origin + window.location.pathname;
+var urlroot = 'https://www.publicdomainmap.org';//location.protocol + '//' + location.host;
 var oauth = osmAuth({
     url: urlroot,
-    //client_id: '0tmNTmd0Jo1dQp4AUmMBLtGiD9YpMuXzHefitcuVStc',
-    //client_secret: 'BTlNrNxIPitHdL4sP2clHw5KLoee9aKkA7dQbc0Bj7Q',
-    client_id: '##ID_CONSUMER_KEY##',
-    client_secret: '##ID_CONSUMER_SECRET##',
-    scope: 'read_prefs write_prefs write_api read_gpx write_notes',
-    redirect_uri: redirectPath + 'land.html',
+    oauth_consumer_key: '',
+    oauth_secret: '',
     loading: authLoading,
     done: authDone
 });
@@ -797,7 +792,7 @@ export default {
             var options = {
                 method: 'PUT',
                 path: '/api/0.6/changeset/create',
-                headers: { 'Content-Type': 'text/xml' },
+                options: { header: { 'Content-Type': 'text/xml' } },
                 content: JXON.stringify(changeset.asJXON())
             };
             _changeset.inflight = oauth.xhr(
@@ -818,7 +813,7 @@ export default {
             var options = {
                 method: 'POST',
                 path: '/api/0.6/changeset/' + changesetID + '/upload',
-                headers: { 'Content-Type': 'text/xml' },
+                options: { header: { 'Content-Type': 'text/xml' } },
                 content: JXON.stringify(changeset.osmChangeJXON(changes))
             };
             _changeset.inflight = oauth.xhr(
@@ -844,7 +839,7 @@ export default {
                 oauth.xhr({
                     method: 'PUT',
                     path: '/api/0.6/changeset/' + changeset.id + '/close',
-                    headers: { 'Content-Type': 'text/xml' }
+                    options: { header: { 'Content-Type': 'text/xml' } }
                 }, function() { return true; });
             }
         }
@@ -1279,13 +1274,15 @@ export default {
     },
 
 
-    switch: function(newOptions) {
-        urlroot = newOptions.url;
+    switch: function(options) {
+        urlroot = options.urlroot;
 
-        // Copy the existing options, but omit 'access_token'.
-        // (if we did preauth, access_token won't work on a different server)
-        var oldOptions = utilObjectOmit(oauth.options(), 'access_token');
-        oauth.options(Object.assign(oldOptions, newOptions));
+        oauth.options(Object.assign({
+            url: urlroot,
+            loading: authLoading,
+            done: authDone
+        }, options));
+
 
         this.reset();
         this.userChangesets(function() {});  // eagerly load user details/changesets
@@ -1395,7 +1392,7 @@ export default {
             that.userChangesets(function() {});  // eagerly load user details/changesets
         }
 
-        oauth.authenticate(done);
+        return oauth.authenticate(done);
     },
 
 
