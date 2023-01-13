@@ -3,9 +3,9 @@
   "version": "2.21.1",
   "description": "A friendly editor for Public Domain Map",
   "main": "dist/iD.min.js",
-  "repository": "github:openstreetmap/iD",
-  "homepage": "https://github.com/openstreetmap/iD",
-  "bugs": "https://github.com/openstreetmap/iD/issues",
+  "repository": "github:publicdomainmap/editor",
+  "homepage": "https://github.com/publicdomainmap/publicdomainmap",
+  "bugs": "https://github.com/publicdomainmap/publicdomainmap/issues",
   "keywords": [
     "editor",
     "openstreetmap"
