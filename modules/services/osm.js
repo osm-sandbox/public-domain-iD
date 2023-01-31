@@ -15,7 +15,7 @@ var tiler = utilTiler();
 var dispatch = d3_dispatch('apiStatusChange', 'authLoading', 'authDone', 'change', 'loading', 'loaded', 'loadedNotes');
 
 //var urlroot = 'https://www.openstreetmap.org';
-var urlroot = 'https://www.publicdomainmap.org';//location.protocol + '//' + location.host;
+var urlroot = 'https://api.publicdomainmap.org';//location.protocol + '//' + location.host;
 var oauth = osmAuth({
     url: urlroot,
     oauth_consumer_key: '',
