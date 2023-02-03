@@ -1,4 +1,4 @@
-# iD Editor for PublicDomainMap
+# iD Editor for Public Domain Map
 
 ## Hello :wave:
 
