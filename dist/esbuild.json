@@ -5,7 +5,7 @@
       "imports": []
     },
     "node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js": {
-      "bytes": 16605,
+      "bytes": 17813,
       "imports": []
     },
     "modules/actions/add_entity.js": {
@@ -163,7 +163,7 @@
       "imports": []
     },
     "node_modules/d3-array/src/ticks.js": {
-      "bytes": 1743,
+      "bytes": 1958,
       "imports": []
     },
     "node_modules/d3-array/src/nice.js": {
@@ -185,7 +185,7 @@
       ]
     },
     "node_modules/d3-array/src/bin.js": {
-      "bytes": 3961,
+      "bytes": 4055,
       "imports": [
         {
           "path": "node_modules/d3-array/src/array.js",
@@ -238,7 +238,7 @@
       "imports": []
     },
     "node_modules/d3-array/src/quickselect.js": {
-      "bytes": 1401,
+      "bytes": 1561,
       "imports": [
         {
           "path": "node_modules/d3-array/src/sort.js",
@@ -256,7 +256,7 @@
       ]
     },
     "node_modules/d3-array/src/quantile.js": {
-      "bytes": 1692,
+      "bytes": 1722,
       "imports": [
         {
           "path": "node_modules/d3-array/src/max.js",
@@ -838,7 +838,7 @@
       "imports": []
     },
     "node_modules/d3-geo/src/rotation.js": {
-      "bytes": 2523,
+      "bytes": 2540,
       "imports": [
         {
           "path": "node_modules/d3-geo/src/compose.js",
@@ -1159,11 +1159,11 @@
       ]
     },
     "node_modules/d3-geo/src/path/string.js": {
-      "bytes": 1316,
+      "bytes": 2062,
       "imports": []
     },
     "node_modules/d3-geo/src/path/index.js": {
-      "bytes": 1877,
+      "bytes": 2262,
       "imports": [
         {
           "path": "node_modules/d3-geo/src/identity.js",
@@ -3869,7 +3869,7 @@
       "imports": []
     },
     "package.json": {
-      "bytes": 5900,
+      "bytes": 5678,
       "imports": []
     },
     "modules/core/file_fetcher.js": {
@@ -17327,12 +17327,8 @@
       "bytes": 15289,
       "imports": []
     },
-    "node_modules/lodash/lodash.js": {
-      "bytes": 544098,
-      "imports": []
-    },
     "modules/actions/merge_remote_changes.js": {
-      "bytes": 9419,
+      "bytes": 9422,
       "imports": [
         {
           "path": "node_modules/fast-deep-equal/index.js",
@@ -17343,7 +17339,7 @@
           "kind": "import-statement"
         },
         {
-          "path": "node_modules/lodash/lodash.js",
+          "path": "node_modules/lodash-es/lodash.js",
           "kind": "import-statement"
         },
         {
@@ -18138,11 +18134,11 @@
       ]
     },
     "node_modules/d3-time/src/interval.js": {
-      "bytes": 2164,
+      "bytes": 2076,
       "imports": []
     },
     "node_modules/d3-time/src/millisecond.js": {
-      "bytes": 671,
+      "bytes": 633,
       "imports": [
         {
           "path": "node_modules/d3-time/src/interval.js",
@@ -18155,115 +18151,6 @@
       "imports": []
     },
     "node_modules/d3-time/src/second.js": {
-      "bytes": 425,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/duration.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/minute.js": {
-      "bytes": 475,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/duration.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/hour.js": {
-      "bytes": 512,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/duration.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/day.js": {
-      "bytes": 412,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/duration.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/week.js": {
-      "bytes": 969,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/duration.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/month.js": {
-      "bytes": 417,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/year.js": {
-      "bytes": 757,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/utcMinute.js": {
-      "bytes": 418,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/duration.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/utcHour.js": {
-      "bytes": 405,
-      "imports": [
-        {
-          "path": "node_modules/d3-time/src/interval.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/duration.js",
-          "kind": "import-statement"
-        }
-      ]
-    },
-    "node_modules/d3-time/src/utcDay.js": {
       "bytes": 403,
       "imports": [
         {
@@ -18276,8 +18163,8 @@
         }
       ]
     },
-    "node_modules/d3-time/src/utcWeek.js": {
-      "bytes": 985,
+    "node_modules/d3-time/src/minute.js": {
+      "bytes": 768,
       "imports": [
         {
           "path": "node_modules/d3-time/src/interval.js",
@@ -18289,8 +18176,47 @@
         }
       ]
     },
-    "node_modules/d3-time/src/utcMonth.js": {
-      "bytes": 456,
+    "node_modules/d3-time/src/hour.js": {
+      "bytes": 798,
+      "imports": [
+        {
+          "path": "node_modules/d3-time/src/interval.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-time/src/duration.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "node_modules/d3-time/src/day.js": {
+      "bytes": 1025,
+      "imports": [
+        {
+          "path": "node_modules/d3-time/src/interval.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-time/src/duration.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "node_modules/d3-time/src/week.js": {
+      "bytes": 2028,
+      "imports": [
+        {
+          "path": "node_modules/d3-time/src/interval.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-time/src/duration.js",
+          "kind": "import-statement"
+        }
+      ]
+    },
+    "node_modules/d3-time/src/month.js": {
+      "bytes": 796,
       "imports": [
         {
           "path": "node_modules/d3-time/src/interval.js",
@@ -18298,8 +18224,8 @@
         }
       ]
     },
-    "node_modules/d3-time/src/utcYear.js": {
-      "bytes": 811,
+    "node_modules/d3-time/src/year.js": {
+      "bytes": 1475,
       "imports": [
         {
           "path": "node_modules/d3-time/src/interval.js",
@@ -18308,7 +18234,7 @@
       ]
     },
     "node_modules/d3-time/src/ticks.js": {
-      "bytes": 2645,
+      "bytes": 2528,
       "imports": [
         {
           "path": "node_modules/d3-array/src/index.js",
@@ -18349,35 +18275,11 @@
         {
           "path": "node_modules/d3-time/src/year.js",
           "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcMinute.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcHour.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcDay.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcWeek.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcMonth.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcYear.js",
-          "kind": "import-statement"
         }
       ]
     },
     "node_modules/d3-time/src/index.js": {
-      "bytes": 2175,
+      "bytes": 1420,
       "imports": [
         {
           "path": "node_modules/d3-time/src/interval.js",
@@ -18413,30 +18315,6 @@
         },
         {
           "path": "node_modules/d3-time/src/year.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcMinute.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcHour.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcDay.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcWeek.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcMonth.js",
-          "kind": "import-statement"
-        },
-        {
-          "path": "node_modules/d3-time/src/utcYear.js",
           "kind": "import-statement"
         },
         {
@@ -19362,7 +19240,7 @@
       ]
     },
     "node_modules/marked/lib/marked.esm.js": {
-      "bytes": 76830,
+      "bytes": 76854,
       "imports": []
     },
     "modules/services/osmose.js": {
@@ -19570,7 +19448,7 @@
       ]
     },
     "node_modules/name-suggestion-index/config/matchGroups.json": {
-      "bytes": 5981,
+      "bytes": 6122,
       "imports": []
     },
     "node_modules/name-suggestion-index/config/genericWords.json": {
@@ -20455,7 +20333,7 @@
       "imports": []
     },
     "modules/renderer/background_source.js": {
-      "bytes": 20813,
+      "bytes": 20816,
       "imports": [
         {
           "path": "node_modules/d3-geo/src/index.js",
@@ -20466,7 +20344,7 @@
           "kind": "import-statement"
         },
         {
-          "path": "node_modules/lodash/lodash.js",
+          "path": "node_modules/lodash-es/lodash.js",
           "kind": "import-statement"
         },
         {
@@ -20513,7 +20391,7 @@
       ]
     },
     "modules/renderer/background.js": {
-      "bytes": 15259,
+      "bytes": 15304,
       "imports": [
         {
           "path": "node_modules/d3-dispatch/src/index.js",
@@ -21740,7 +21618,7 @@
       ]
     },
     "modules/ui/panels/history.js": {
-      "bytes": 7798,
+      "bytes": 7924,
       "imports": [
         {
           "path": "modules/core/localizer.js",
@@ -22160,7 +22038,7 @@
       ]
     },
     "modules/ui/intro/intro.js": {
-      "bytes": 6759,
+      "bytes": 6809,
       "imports": [
         {
           "path": "modules/core/localizer.js",
@@ -23880,7 +23758,7 @@
       "imports": []
     },
     "modules/ui/feature_list.js": {
-      "bytes": 11823,
+      "bytes": 11965,
       "imports": [
         {
           "path": "node_modules/d3-selection/src/index.js",
@@ -24098,7 +23976,7 @@
       ]
     },
     "modules/ui/view_on_osm.js": {
-      "bytes": 1224,
+      "bytes": 1263,
       "imports": [
         {
           "path": "modules/core/localizer.js",
@@ -24488,7 +24366,7 @@
       ]
     },
     "modules/ui/success.js": {
-      "bytes": 11260,
+      "bytes": 11443,
       "imports": [
         {
           "path": "node_modules/d3-dispatch/src/index.js",
@@ -25843,7 +25721,7 @@
       ]
     },
     "modules/ui/panes/help.js": {
-      "bytes": 12452,
+      "bytes": 12567,
       "imports": [
         {
           "path": "node_modules/marked/lib/marked.esm.js",
@@ -26548,138 +26426,12 @@
         }
       ]
     },
-    "node_modules/store/src/util.js": {
-      "bytes": 2403,
+    "modules/osm-auth.js": {
+      "bytes": 115726,
       "imports": []
-    },
-    "node_modules/store/src/store-engine.js": {
-      "bytes": 6734,
-      "imports": [
-        {
-          "path": "node_modules/store/src/util.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/store/storages/localStorage.js": {
-      "bytes": 631,
-      "imports": [
-        {
-          "path": "node_modules/store/src/util.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/store/storages/oldFF-globalStorage.js": {
-      "bytes": 749,
-      "imports": [
-        {
-          "path": "node_modules/store/src/util.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/store/storages/oldIE-userDataStorage.js": {
-      "bytes": 4054,
-      "imports": [
-        {
-          "path": "node_modules/store/src/util.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/store/storages/cookieStorage.js": {
-      "bytes": 1475,
-      "imports": [
-        {
-          "path": "node_modules/store/src/util.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/store/storages/sessionStorage.js": {
-      "bytes": 648,
-      "imports": [
-        {
-          "path": "node_modules/store/src/util.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/store/storages/memoryStorage.js": {
-      "bytes": 768,
-      "imports": []
-    },
-    "node_modules/store/storages/all.js": {
-      "bytes": 248,
-      "imports": [
-        {
-          "path": "node_modules/store/storages/localStorage.js",
-          "kind": "require-call"
-        },
-        {
-          "path": "node_modules/store/storages/oldFF-globalStorage.js",
-          "kind": "require-call"
-        },
-        {
-          "path": "node_modules/store/storages/oldIE-userDataStorage.js",
-          "kind": "require-call"
-        },
-        {
-          "path": "node_modules/store/storages/cookieStorage.js",
-          "kind": "require-call"
-        },
-        {
-          "path": "node_modules/store/storages/sessionStorage.js",
-          "kind": "require-call"
-        },
-        {
-          "path": "node_modules/store/storages/memoryStorage.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/store/plugins/lib/json2.js": {
-      "bytes": 18453,
-      "imports": []
-    },
-    "node_modules/store/plugins/json2.js": {
-      "bytes": 92,
-      "imports": [
-        {
-          "path": "node_modules/store/plugins/lib/json2.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/store/dist/store.legacy.js": {
-      "bytes": 187,
-      "imports": [
-        {
-          "path": "node_modules/store/src/store-engine.js",
-          "kind": "require-call"
-        },
-        {
-          "path": "node_modules/store/storages/all.js",
-          "kind": "require-call"
-        },
-        {
-          "path": "node_modules/store/plugins/json2.js",
-          "kind": "require-call"
-        }
-      ]
-    },
-    "node_modules/osm-auth/src/osm-auth.mjs": {
-      "bytes": 12176,
-      "imports": [
-        {
-          "path": "node_modules/store/dist/store.legacy.js",
-          "kind": "import-statement"
-        }
-      ]
     },
     "modules/services/osm.js": {
-      "bytes": 46530,
+      "bytes": 46293,
       "imports": [
         {
           "path": "node_modules/lodash-es/throttle.js",
@@ -26694,7 +26446,7 @@
           "kind": "import-statement"
         },
         {
-          "path": "node_modules/osm-auth/src/osm-auth.mjs",
+          "path": "modules/osm-auth.js",
           "kind": "import-statement"
         },
         {
@@ -27910,11 +27662,11 @@
       ]
     },
     "node_modules/d3-path/src/path.js": {
-      "bytes": 4191,
+      "bytes": 4537,
       "imports": []
     },
     "node_modules/d3-path/src/index.js": {
-      "bytes": 43,
+      "bytes": 49,
       "imports": [
         {
           "path": "node_modules/d3-path/src/path.js",
@@ -29786,19 +29538,28 @@
       "bytes": 492,
       "imports": []
     },
-    "node_modules/d3-shape/src/arc.js": {
-      "bytes": 8589,
+    "node_modules/d3-shape/src/path.js": {
+      "bytes": 393,
       "imports": [
         {
           "path": "node_modules/d3-path/src/index.js",
           "kind": "import-statement"
-        },
+        }
+      ]
+    },
+    "node_modules/d3-shape/src/arc.js": {
+      "bytes": 8844,
+      "imports": [
         {
           "path": "node_modules/d3-shape/src/constant.js",
           "kind": "import-statement"
         },
         {
           "path": "node_modules/d3-shape/src/math.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-shape/src/path.js",
           "kind": "import-statement"
         }
       ]
@@ -29816,12 +29577,8 @@
       "imports": []
     },
     "node_modules/d3-shape/src/line.js": {
-      "bytes": 1698,
+      "bytes": 1733,
       "imports": [
-        {
-          "path": "node_modules/d3-path/src/index.js",
-          "kind": "import-statement"
-        },
         {
           "path": "node_modules/d3-shape/src/array.js",
           "kind": "import-statement"
@@ -29835,18 +29592,18 @@
           "kind": "import-statement"
         },
         {
+          "path": "node_modules/d3-shape/src/path.js",
+          "kind": "import-statement"
+        },
+        {
           "path": "node_modules/d3-shape/src/point.js",
           "kind": "import-statement"
         }
       ]
     },
     "node_modules/d3-shape/src/area.js": {
-      "bytes": 3183,
+      "bytes": 3218,
       "imports": [
-        {
-          "path": "node_modules/d3-path/src/index.js",
-          "kind": "import-statement"
-        },
         {
           "path": "node_modules/d3-shape/src/array.js",
           "kind": "import-statement"
@@ -29861,6 +29618,10 @@
         },
         {
           "path": "node_modules/d3-shape/src/line.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-shape/src/path.js",
           "kind": "import-statement"
         },
         {
@@ -29946,7 +29707,7 @@
       "imports": []
     },
     "node_modules/d3-shape/src/curve/bump.js": {
-      "bytes": 1730,
+      "bytes": 1749,
       "imports": [
         {
           "path": "node_modules/d3-shape/src/pointRadial.js",
@@ -29955,12 +29716,8 @@
       ]
     },
     "node_modules/d3-shape/src/link.js": {
-      "bytes": 1800,
+      "bytes": 1835,
       "imports": [
-        {
-          "path": "node_modules/d3-path/src/index.js",
-          "kind": "import-statement"
-        },
         {
           "path": "node_modules/d3-shape/src/array.js",
           "kind": "import-statement"
@@ -29971,6 +29728,10 @@
         },
         {
           "path": "node_modules/d3-shape/src/curve/bump.js",
+          "kind": "import-statement"
+        },
+        {
+          "path": "node_modules/d3-shape/src/path.js",
           "kind": "import-statement"
         },
         {
@@ -30087,7 +29848,7 @@
         }
       ]
     },
-    "node_modules/d3-shape/src/symbol/x.js": {
+    "node_modules/d3-shape/src/symbol/times.js": {
       "bytes": 251,
       "imports": [
         {
@@ -30097,14 +29858,14 @@
       ]
     },
     "node_modules/d3-shape/src/symbol.js": {
-      "bytes": 1790,
+      "bytes": 1839,
       "imports": [
         {
-          "path": "node_modules/d3-path/src/index.js",
+          "path": "node_modules/d3-shape/src/constant.js",
           "kind": "import-statement"
         },
         {
-          "path": "node_modules/d3-shape/src/constant.js",
+          "path": "node_modules/d3-shape/src/path.js",
           "kind": "import-statement"
         },
         {
@@ -30156,7 +29917,7 @@
           "kind": "import-statement"
         },
         {
-          "path": "node_modules/d3-shape/src/symbol/x.js",
+          "path": "node_modules/d3-shape/src/symbol/times.js",
           "kind": "import-statement"
         }
       ]
@@ -30400,7 +30161,7 @@
       ]
     },
     "node_modules/d3-shape/src/index.js": {
-      "bytes": 3327,
+      "bytes": 3355,
       "imports": [
         {
           "path": "node_modules/d3-shape/src/arc.js",
@@ -30487,7 +30248,7 @@
           "kind": "import-statement"
         },
         {
-          "path": "node_modules/d3-shape/src/symbol/x.js",
+          "path": "node_modules/d3-shape/src/symbol/times.js",
           "kind": "import-statement"
         },
         {
@@ -30841,7 +30602,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 5824853
+      "bytes": 5229184
     },
     "dist/iD.js": {
       "imports": [],
@@ -30941,9 +30702,6 @@
         "node_modules/fast-deep-equal/index.js": {
           "bytesInOutput": 1511
         },
-        "node_modules/lodash/lodash.js": {
-          "bytesInOutput": 234765
-        },
         "node_modules/rbush/rbush.min.js": {
           "bytesInOutput": 11467
         },
@@ -30974,47 +30732,14 @@
         "node_modules/@mapbox/sexagesimal/index.js": {
           "bytesInOutput": 3029
         },
-        "node_modules/store/src/util.js": {
-          "bytesInOutput": 3268
-        },
-        "node_modules/store/src/store-engine.js": {
-          "bytesInOutput": 6517
-        },
-        "node_modules/store/storages/localStorage.js": {
-          "bytesInOutput": 938
-        },
-        "node_modules/store/storages/oldFF-globalStorage.js": {
-          "bytesInOutput": 948
-        },
-        "node_modules/store/storages/oldIE-userDataStorage.js": {
-          "bytesInOutput": 3493
-        },
-        "node_modules/store/storages/cookieStorage.js": {
-          "bytesInOutput": 1721
-        },
-        "node_modules/store/storages/sessionStorage.js": {
-          "bytesInOutput": 953
-        },
-        "node_modules/store/storages/memoryStorage.js": {
-          "bytesInOutput": 796
-        },
-        "node_modules/store/storages/all.js": {
-          "bytesInOutput": 353
-        },
-        "node_modules/store/plugins/lib/json2.js": {
-          "bytesInOutput": 6454
-        },
-        "node_modules/store/plugins/json2.js": {
-          "bytesInOutput": 231
-        },
-        "node_modules/store/dist/store.legacy.js": {
-          "bytesInOutput": 303
+        "modules/osm-auth.js": {
+          "bytesInOutput": 116910
         },
         "node_modules/whatwg-fetch/fetch.js": {
           "bytesInOutput": 16429
         },
         "node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js": {
-          "bytesInOutput": 12707
+          "bytesInOutput": 13820
         },
         "modules/index.js": {
           "bytesInOutput": 19036
@@ -31056,7 +30781,7 @@
           "bytesInOutput": 509
         },
         "node_modules/d3-array/src/ticks.js": {
-          "bytesInOutput": 1850
+          "bytesInOutput": 2186
         },
         "node_modules/d3-array/src/max.js": {
           "bytesInOutput": 498
@@ -31065,10 +30790,10 @@
           "bytesInOutput": 498
         },
         "node_modules/d3-array/src/quickselect.js": {
-          "bytesInOutput": 1394
+          "bytesInOutput": 1567
         },
         "node_modules/d3-array/src/quantile.js": {
-          "bytesInOutput": 451
+          "bytesInOutput": 461
         },
         "node_modules/d3-array/src/median.js": {
           "bytesInOutput": 84
@@ -31104,7 +30829,7 @@
           "bytesInOutput": 276
         },
         "node_modules/d3-geo/src/rotation.js": {
-          "bytesInOutput": 2392
+          "bytesInOutput": 2429
         },
         "node_modules/d3-geo/src/circle.js": {
           "bytesInOutput": 894
@@ -31158,10 +30883,10 @@
           "bytesInOutput": 874
         },
         "node_modules/d3-geo/src/path/string.js": {
-          "bytesInOutput": 1417
+          "bytesInOutput": 2157
         },
         "node_modules/d3-geo/src/path/index.js": {
-          "bytesInOutput": 1754
+          "bytesInOutput": 2198
         },
         "node_modules/d3-geo/src/transform.js": {
           "bytesInOutput": 818
@@ -31389,7 +31114,7 @@
           "bytesInOutput": 356
         },
         "node_modules/d3-color/src/color.js": {
-          "bytesInOutput": 11028
+          "bytesInOutput": 11036
         },
         "node_modules/d3-color/src/index.js": {
           "bytesInOutput": 0
@@ -31593,7 +31318,7 @@
           "bytesInOutput": 3806
         },
         "package.json": {
-          "bytesInOutput": 6061
+          "bytesInOutput": 5845
         },
         "node_modules/@ideditor/country-coder/dist/country-coder.mjs": {
           "bytesInOutput": 679069
@@ -31833,7 +31558,7 @@
           "bytesInOutput": 4497
         },
         "modules/actions/merge_remote_changes.js": {
-          "bytesInOutput": 7624
+          "bytesInOutput": 7564
         },
         "node_modules/node-diff3/index.mjs": {
           "bytesInOutput": 6850
@@ -32025,7 +31750,7 @@
           "bytesInOutput": 8208
         },
         "node_modules/marked/lib/marked.esm.js": {
-          "bytesInOutput": 70017
+          "bytesInOutput": 70043
         },
         "modules/services/mapillary.js": {
           "bytesInOutput": 19739
@@ -32049,7 +31774,7 @@
           "bytesInOutput": 1335
         },
         "node_modules/name-suggestion-index/config/matchGroups.json": {
-          "bytesInOutput": 6484
+          "bytesInOutput": 6637
         },
         "node_modules/name-suggestion-index/config/genericWords.json": {
           "bytesInOutput": 745
@@ -32144,17 +31869,17 @@
         "modules/core/uploader.js": {
           "bytesInOutput": 9772
         },
-        "modules/renderer/background_source.js": {
-          "bytesInOutput": 15822
-        },
         "modules/util/IntervalTasksQueue.js": {
           "bytesInOutput": 575
+        },
+        "modules/renderer/background_source.js": {
+          "bytesInOutput": 15736
         },
         "modules/renderer/index.js": {
           "bytesInOutput": 0
         },
         "modules/renderer/background.js": {
-          "bytesInOutput": 13773
+          "bytesInOutput": 13789
         },
         "modules/renderer/tile_layer.js": {
           "bytesInOutput": 6663
@@ -32304,7 +32029,7 @@
           "bytesInOutput": 159
         },
         "modules/ui/panels/history.js": {
-          "bytesInOutput": 5977
+          "bytesInOutput": 5201
         },
         "modules/util/units.js": {
           "bytesInOutput": 3535
@@ -32349,7 +32074,7 @@
           "bytesInOutput": 2075
         },
         "modules/ui/intro/intro.js": {
-          "bytesInOutput": 5454
+          "bytesInOutput": 5451
         },
         "modules/ui/intro/index.js": {
           "bytesInOutput": 0
@@ -32499,7 +32224,7 @@
           "bytesInOutput": 2848
         },
         "modules/ui/feature_list.js": {
-          "bytesInOutput": 8669
+          "bytesInOutput": 8680
         },
         "modules/ui/improveOSM_comments.js": {
           "bytesInOutput": 2045
@@ -32517,7 +32242,7 @@
           "bytesInOutput": 14996
         },
         "modules/ui/view_on_osm.js": {
-          "bytesInOutput": 900
+          "bytesInOutput": 938
         },
         "modules/ui/inspector.js": {
           "bytesInOutput": 3926
@@ -32565,16 +32290,13 @@
           "bytesInOutput": 2027
         },
         "node_modules/osm-community-index/lib/simplify.js": {
-          "bytesInOutput": 1519
-        },
-        "node_modules/osm-community-index/lib/resolve_strings.js": {
-          "bytesInOutput": 3089
+          "bytesInOutput": 61
         },
         "node_modules/osm-community-index/index.mjs": {
           "bytesInOutput": 0
         },
         "modules/ui/success.js": {
-          "bytesInOutput": 9281
+          "bytesInOutput": 1119
         },
         "modules/ui/version.js": {
           "bytesInOutput": 1210
@@ -32676,7 +32398,7 @@
           "bytesInOutput": 447
         },
         "modules/ui/panes/help.js": {
-          "bytesInOutput": 9873
+          "bytesInOutput": 9378
         },
         "modules/ui/sections/validation_issues.js": {
           "bytesInOutput": 3293
@@ -32726,11 +32448,8 @@
         "modules/services/kartaview.js": {
           "bytesInOutput": 15089
         },
-        "node_modules/osm-auth/src/osm-auth.mjs": {
-          "bytesInOutput": 6680
-        },
         "modules/services/osm.js": {
-          "bytesInOutput": 37879
+          "bytesInOutput": 37770
         },
         "modules/services/osm_wikibase.js": {
           "bytesInOutput": 8424
@@ -32850,7 +32569,7 @@
           "bytesInOutput": 472
         }
       },
-      "bytes": 3488089
+      "bytes": 3325880
     }
   }
 }
