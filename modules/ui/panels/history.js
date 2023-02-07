@@ -66,6 +66,7 @@ export function uiPanelHistory(context) {
             .attr('class', 'changeset-id')
             .text(changeset);
 
+        /* PDMap - hide OSM links
         var links = selection
             .append('div')
             .attr('class', 'links');
@@ -92,6 +93,7 @@ export function uiPanelHistory(context) {
             .attr('href', 'https://overpass-api.de/achavi/?changeset=' + changeset)
             .attr('target', '_blank')
             .text('Achavi');
+            */
     }
 
 
@@ -195,10 +197,11 @@ export function uiPanelHistory(context) {
             links
                 .append('a')
                 .attr('class', 'view-history-on-osm')
-                .attr('href', osm.historyURL(entity))
+                .attr('href', 'https://history.publicdomainmap.org/#/' +  entity.type + '/' + entity.osmId())
                 .attr('target', '_blank')
                 .call(t.append('info_panels.history.history_link'));
         }
+        /*
         links
             .append('a')
             .attr('class', 'pewu-history-viewer-link')
@@ -206,7 +209,7 @@ export function uiPanelHistory(context) {
             .attr('target', '_blank')
             .attr('tabindex', -1)
             .text('PeWu');
-
+        */
         var list = selection
             .append('ul');
 

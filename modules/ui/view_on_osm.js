@@ -10,7 +10,7 @@ export function uiViewOnOSM(context) {
     function viewOnOSM(selection) {
         var url;
         if (_what instanceof osmEntity) {
-            url = context.connection().entityURL(_what);
+            url = 'https://history.publicdomainmap.org/#/' +  _what.type + '/' + _what.osmId();
         } else if (_what instanceof osmNote) {
             url = context.connection().noteURL(_what);
         }
