@@ -3869,7 +3869,7 @@
       "imports": []
     },
     "package.json": {
-      "bytes": 5678,
+      "bytes": 5677,
       "imports": []
     },
     "modules/core/file_fetcher.js": {
@@ -24407,7 +24407,7 @@
       ]
     },
     "modules/ui/version.js": {
-      "bytes": 1745,
+      "bytes": 1821,
       "imports": [
         {
           "path": "modules/core/preferences.js",
@@ -26247,7 +26247,7 @@
       ]
     },
     "modules/core/context.js": {
-      "bytes": 16943,
+      "bytes": 16942,
       "imports": [
         {
           "path": "node_modules/lodash-es/debounce.js",
@@ -30602,7 +30602,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 5229184
+      "bytes": 5228964
     },
     "dist/iD.js": {
       "imports": [],
@@ -31318,7 +31318,7 @@
           "bytesInOutput": 3806
         },
         "package.json": {
-          "bytesInOutput": 5845
+          "bytesInOutput": 5844
         },
         "node_modules/@ideditor/country-coder/dist/country-coder.mjs": {
           "bytesInOutput": 679069
@@ -32299,7 +32299,7 @@
           "bytesInOutput": 1119
         },
         "modules/ui/version.js": {
-          "bytesInOutput": 1210
+          "bytesInOutput": 787
         },
         "modules/ui/zoom.js": {
           "bytesInOutput": 3094
@@ -32440,7 +32440,7 @@
           "bytesInOutput": 14077
         },
         "modules/core/context.js": {
-          "bytesInOutput": 14330
+          "bytesInOutput": 14329
         },
         "modules/core/index.js": {
           "bytesInOutput": 0
@@ -32569,7 +32569,7 @@
           "bytesInOutput": 472
         }
       },
-      "bytes": 3325880
+      "bytes": 3325455
     }
   }
 }

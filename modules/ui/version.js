@@ -31,9 +31,10 @@ export function uiVersion(context) {
         selection
             .append('a')
             .attr('target', '_blank')
-            .attr('href', 'https://github.com/openstreetmap/iD')
+            .attr('href', 'https://github.com/publicdomainmap/editor')
             .text(currVersion);
 
+        /* PDMap - we don't keep a changelog at the moment
         // only show new version indicator to users that have used iD before
         if (isNewVersion && !isNewUser) {
             selection
@@ -48,5 +49,6 @@ export function uiVersion(context) {
                     .scrollContainer(context.container().select('.main-footer-wrap'))
                 );
         }
+        */
     };
 }
