@@ -211,7 +211,7 @@ export function coreContext() {
     });
   };
 
-  let _minEditableZoom = 16;
+  let _minEditableZoom = 14;
   context.minEditableZoom = function(val) {
     if (!arguments.length) return _minEditableZoom;
     _minEditableZoom = val;
