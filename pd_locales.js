@@ -10,8 +10,9 @@ fs.readdir(dir, (err, files) => {
       if (err) throw err;
       var out = new String(data)
         .replace(/OpenStreetMap/g, 'PublicDomainMap')
-        .replace(/\(https:\/\/www.openstreetmap.org\/\)/g, '(https://www.publicdomainmap.org/)')
         .replace(/https:\/\/www.openstreetmap.org\/copyright/g, 'https://www.publicdomainmap.org/license')
+        .replace(/\(https:\/\/www.openstreetmap.org\/\)/g, '(https://www.publicdomainmap.org/)')
+        .replace(/on openstreetmap.org/g, 'on publicdomainmap.org')
         .replace(/\(https:\/\/github.com\/openstreetmap\/iD\)/g, '(https://github.com/publicdomainmap/editor)');
 
       fs.writeFile(path, out, (err) => {
