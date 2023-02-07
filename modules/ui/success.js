@@ -19,6 +19,7 @@ export function uiSuccess(context) {
   const dispatch = d3_dispatch('cancel');
   let _changeset;
   let _location;
+  /* PDMap - don't show OSM communities
   ensureOSMCommunityIndex();   // start fetching the data
 
 
@@ -57,7 +58,7 @@ export function uiSuccess(context) {
         }
       });
   }
-
+ 
 
   // string-to-date parsing in JavaScript is weird
   function parseEventDate(when) {
@@ -74,7 +75,7 @@ export function uiSuccess(context) {
     return new Date(parsed.toUTCString().substr(0, 25));  // convert to local timezone
   }
 
-
+ */
   function success(selection) {
     let header = selection
       .append('div')
@@ -103,6 +104,7 @@ export function uiSuccess(context) {
       .append('h3')
       .call(t.append('success.thank_you' + (_location ? '_location' : ''), { where: _location }));
 
+/* PDMap - don't show broken changeset link 
     summary
       .append('p')
       .call(t.append('success.help_html'))
@@ -154,9 +156,10 @@ export function uiSuccess(context) {
       .html(t.html('success.changeset_id', {
         changeset_id: { html: `<a href="${changesetURL}" target="_blank">${_changeset.id}</a>` }
       }));
-
+*/
 
     // Get OSM community index features intersecting the map..
+    /* PDMap - don't show OSM communities
     ensureOSMCommunityIndex()
       .then(oci => {
         const loc = context.map().center();
@@ -185,9 +188,10 @@ export function uiSuccess(context) {
         body
           .call(showCommunityLinks, communities.map(c => c.resource));
       });
+  */
   }
 
-
+  /* PDMap - don't show OSM communities
   function showCommunityLinks(selection, resources) {
     let communityLinks = selection
       .append('div')
@@ -385,9 +389,9 @@ export function uiSuccess(context) {
           return description;
         });
     }
+    
   }
-
-
+*/
   success.changeset = function(val) {
     if (!arguments.length) return _changeset;
     _changeset = val;
