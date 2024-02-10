@@ -1,7 +1,7 @@
 {
   "inputs": {
     "node_modules/whatwg-fetch/fetch.js": {
-      "bytes": 16658,
+      "bytes": 18007,
       "imports": []
     },
     "node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js": {
@@ -176,7 +176,7 @@
       ]
     },
     "node_modules/d3-array/src/threshold/sturges.js": {
-      "bytes": 147,
+      "bytes": 160,
       "imports": [
         {
           "path": "node_modules/d3-array/src/count.js",
@@ -256,7 +256,7 @@
       ]
     },
     "node_modules/d3-array/src/quantile.js": {
-      "bytes": 1722,
+      "bytes": 1774,
       "imports": [
         {
           "path": "node_modules/d3-array/src/max.js",
@@ -293,7 +293,7 @@
       ]
     },
     "node_modules/d3-array/src/threshold/freedmanDiaconis.js": {
-      "bytes": 270,
+      "bytes": 303,
       "imports": [
         {
           "path": "node_modules/d3-array/src/count.js",
@@ -306,7 +306,7 @@
       ]
     },
     "node_modules/d3-array/src/threshold/scott.js": {
-      "bytes": 225,
+      "bytes": 260,
       "imports": [
         {
           "path": "node_modules/d3-array/src/count.js",
@@ -353,7 +353,7 @@
       "imports": []
     },
     "node_modules/d3-array/src/rank.js": {
-      "bytes": 849,
+      "bytes": 942,
       "imports": [
         {
           "path": "node_modules/d3-array/src/ascending.js",
@@ -3992,7 +3992,7 @@
       ]
     },
     "node_modules/polygon-clipping/dist/polygon-clipping.umd.js": {
-      "bytes": 80541,
+      "bytes": 89619,
       "imports": []
     },
     "node_modules/geojson-precision/index.js": {
@@ -16724,7 +16724,7 @@
       ]
     },
     "modules/presets/index.js": {
-      "bytes": 19719,
+      "bytes": 19989,
       "imports": [
         {
           "path": "node_modules/d3-dispatch/src/index.js",
@@ -19438,8 +19438,34 @@
         }
       ]
     },
+    "node_modules/name-suggestion-index/node_modules/quickselect/quickselect.js": {
+      "bytes": 1763,
+      "imports": []
+    },
+    "node_modules/name-suggestion-index/node_modules/rbush/index.js": {
+      "bytes": 16441,
+      "imports": [
+        {
+          "path": "node_modules/name-suggestion-index/node_modules/quickselect/quickselect.js",
+          "kind": "require-call"
+        }
+      ]
+    },
+    "node_modules/name-suggestion-index/node_modules/which-polygon/index.js": {
+      "bytes": 3202,
+      "imports": [
+        {
+          "path": "node_modules/name-suggestion-index/node_modules/rbush/index.js",
+          "kind": "require-call"
+        },
+        {
+          "path": "node_modules/lineclip/index.js",
+          "kind": "require-call"
+        }
+      ]
+    },
     "node_modules/name-suggestion-index/lib/simplify.js": {
-      "bytes": 1469,
+      "bytes": 1466,
       "imports": [
         {
           "path": "node_modules/diacritics/index.js",
@@ -19448,7 +19474,7 @@
       ]
     },
     "node_modules/name-suggestion-index/config/matchGroups.json": {
-      "bytes": 6122,
+      "bytes": 6593,
       "imports": []
     },
     "node_modules/name-suggestion-index/config/genericWords.json": {
@@ -19460,10 +19486,10 @@
       "imports": []
     },
     "node_modules/name-suggestion-index/lib/matcher.js": {
-      "bytes": 20268,
+      "bytes": 20398,
       "imports": [
         {
-          "path": "node_modules/which-polygon/index.js",
+          "path": "node_modules/name-suggestion-index/node_modules/which-polygon/index.js",
           "kind": "import-statement"
         },
         {
@@ -27820,7 +27846,7 @@
       "imports": []
     },
     "node_modules/robust-predicates/esm/orient2d.js": {
-      "bytes": 5371,
+      "bytes": 5281,
       "imports": [
         {
           "path": "node_modules/robust-predicates/esm/util.js",
@@ -27847,7 +27873,7 @@
       ]
     },
     "node_modules/robust-predicates/esm/insphere.js": {
-      "bytes": 24337,
+      "bytes": 23964,
       "imports": [
         {
           "path": "node_modules/robust-predicates/esm/util.js",
@@ -27877,7 +27903,7 @@
       ]
     },
     "node_modules/delaunator/index.js": {
-      "bytes": 15634,
+      "bytes": 15619,
       "imports": [
         {
           "path": "node_modules/robust-predicates/index.js",
@@ -27894,7 +27920,7 @@
       "imports": []
     },
     "node_modules/d3-delaunay/src/voronoi.js": {
-      "bytes": 12143,
+      "bytes": 12448,
       "imports": [
         {
           "path": "node_modules/d3-delaunay/src/path.js",
@@ -30602,7 +30628,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 5228964
+      "bytes": 5281773
     },
     "dist/iD.js": {
       "imports": [],
@@ -30688,10 +30714,10 @@
           "bytesInOutput": 3189
         },
         "node_modules/polygon-clipping/dist/polygon-clipping.umd.js": {
-          "bytesInOutput": 73527
+          "bytesInOutput": 78335
         },
         "node_modules/geojson-precision/index.js": {
-          "bytesInOutput": 2672
+          "bytesInOutput": 2676
         },
         "node_modules/@aitodotai/json-stringify-pretty-compact/index.js": {
           "bytesInOutput": 4422
@@ -30726,6 +30752,15 @@
         "node_modules/@mapbox/vector-tile/index.js": {
           "bytesInOutput": 317
         },
+        "node_modules/name-suggestion-index/node_modules/quickselect/quickselect.js": {
+          "bytesInOutput": 2268
+        },
+        "node_modules/name-suggestion-index/node_modules/rbush/index.js": {
+          "bytesInOutput": 14636
+        },
+        "node_modules/name-suggestion-index/node_modules/which-polygon/index.js": {
+          "bytesInOutput": 3498
+        },
         "node_modules/fast-json-stable-stringify/index.js": {
           "bytesInOutput": 2188
         },
@@ -30733,10 +30768,10 @@
           "bytesInOutput": 3029
         },
         "modules/osm-auth.js": {
-          "bytesInOutput": 116910
+          "bytesInOutput": 116929
         },
         "node_modules/whatwg-fetch/fetch.js": {
-          "bytesInOutput": 16429
+          "bytesInOutput": 17570
         },
         "node_modules/abortcontroller-polyfill/dist/polyfill-patch-fetch.js": {
           "bytesInOutput": 13820
@@ -31114,7 +31149,7 @@
           "bytesInOutput": 356
         },
         "node_modules/d3-color/src/color.js": {
-          "bytesInOutput": 11036
+          "bytesInOutput": 11050
         },
         "node_modules/d3-color/src/index.js": {
           "bytesInOutput": 0
@@ -31132,7 +31167,7 @@
           "bytesInOutput": 534
         },
         "node_modules/d3-interpolate/src/rgb.js": {
-          "bytesInOutput": 1179
+          "bytesInOutput": 1186
         },
         "node_modules/d3-interpolate/src/numberArray.js": {
           "bytesInOutput": 362
@@ -31291,7 +31326,7 @@
           "bytesInOutput": 184
         },
         "node_modules/d3-zoom/src/zoom.js": {
-          "bytesInOutput": 15324
+          "bytesInOutput": 15399
         },
         "node_modules/d3-zoom/src/index.js": {
           "bytesInOutput": 0
@@ -31453,7 +31488,7 @@
           "bytesInOutput": 8308
         },
         "modules/presets/index.js": {
-          "bytesInOutput": 17044
+          "bytesInOutput": 17258
         },
         "modules/osm/entity.js": {
           "bytesInOutput": 6106
@@ -31522,7 +31557,7 @@
           "bytesInOutput": 3071
         },
         "modules/actions/join.js": {
-          "bytesInOutput": 5216
+          "bytesInOutput": 5218
         },
         "modules/actions/merge.js": {
           "bytesInOutput": 2981
@@ -31636,7 +31671,7 @@
           "bytesInOutput": 101
         },
         "node_modules/d3-format/src/formatGroup.js": {
-          "bytesInOutput": 497
+          "bytesInOutput": 505
         },
         "node_modules/d3-format/src/formatNumerals.js": {
           "bytesInOutput": 178
@@ -31768,13 +31803,13 @@
           "bytesInOutput": 2711
         },
         "node_modules/name-suggestion-index/lib/matcher.js": {
-          "bytesInOutput": 11585
+          "bytesInOutput": 11609
         },
         "node_modules/name-suggestion-index/lib/simplify.js": {
-          "bytesInOutput": 1335
+          "bytesInOutput": 1341
         },
         "node_modules/name-suggestion-index/config/matchGroups.json": {
-          "bytesInOutput": 6637
+          "bytesInOutput": 7146
         },
         "node_modules/name-suggestion-index/config/genericWords.json": {
           "bytesInOutput": 745
@@ -31981,7 +32016,7 @@
           "bytesInOutput": 257
         },
         "modules/util/zoom_pan.js": {
-          "bytesInOutput": 11835
+          "bytesInOutput": 11898
         },
         "modules/util/double_up.js": {
           "bytesInOutput": 1927
@@ -32569,7 +32604,7 @@
           "bytesInOutput": 472
         }
       },
-      "bytes": 3325455
+      "bytes": 3352978
     }
   }
 }

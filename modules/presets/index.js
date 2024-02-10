@@ -110,10 +110,12 @@ export function presetIndex() {
     if (d.presets) {
       Object.keys(d.presets).forEach(presetID => {
         let p = d.presets[presetID];
-
         if (p) {   // add or replace
           const isAddable = !_addablePresetIDs || _addablePresetIDs.has(presetID);
           p = presetPreset(presetID, p, isAddable, _fields, _presets);
+          if (isAddable) {
+            p.searchable = true; // all addable must be searchable
+          }
           if (p.locationSet) newLocationSets.push(p);
           _presets[presetID] = p;
 
@@ -426,7 +428,13 @@ export function presetIndex() {
     if (_addablePresetIDs) {   // reset all presets
       _this.collection.forEach(p => {
         // categories aren't addable
-        if (p.addable) p.addable(_addablePresetIDs.has(p.id));
+        if (p.addable) {
+          var isAddable = _addablePresetIDs.has(p.id);
+          if (isAddable) {
+            p.searchable = true; // all addable must be searchable
+          }
+          p.addable(isAddable);
+        }
       });
     } else {
       _this.collection.forEach(p => {

@@ -405,7 +405,6 @@
     font-weight: bold;
     fill: #333;
     -webkit-transition: opacity 100ms linear;
-    -o-transition: opacity 100ms linear;
     transition: opacity 100ms linear;
 }
 
@@ -3237,7 +3236,6 @@
     -webkit-filter: none !important;
             filter: none !important;
     -webkit-transition-duration: 200ms;
-         -o-transition-duration: 200ms;
             transition-duration: 200ms;
 }
 
@@ -3245,7 +3243,6 @@
     -webkit-filter: grayscale(80%) brightness(80%);
             filter: grayscale(80%) brightness(80%);
     -webkit-transition-duration: 200ms;
-         -o-transition-duration: 200ms;
             transition-duration: 200ms;
 }
 
@@ -3406,8 +3403,7 @@
     border: 1px solid #ccc;
     padding: 0px 10px 0px 10px;
     border-radius: 4px;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     overflow: auto;
 }
 .ideditor input[type=text],
@@ -3979,8 +3975,7 @@
 .ideditor .header h3 {
     text-align: center;
     margin-bottom: 0;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     overflow: hidden;
     padding: 0;
 }
@@ -4295,8 +4290,7 @@
     text-align: left;
     padding: 10px;
     white-space: nowrap;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     overflow: hidden;
     -webkit-box-flex: 1;
         -ms-flex: 1 1 auto;
@@ -4619,8 +4613,7 @@
     line-height: 1.35em;
 }
 .ideditor .preset-list-button .label-inner .namepart {
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 .ideditor .preset-list-button .label-inner .namepart:nth-child(1) {
     font-weight: bold;
@@ -4776,7 +4769,6 @@
     margin-bottom: 10px;
     width: 100%;
     -webkit-transition: margin-bottom 200ms;
-    -o-transition: margin-bottom 200ms;
     transition: margin-bottom 200ms;
 }
 
@@ -4807,8 +4799,7 @@
 }
 .ideditor .field-label .label-text {
     overflow: hidden;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     -webkit-box-flex: 1;
         -ms-flex: 1 1 auto;
             flex: 1 1 auto;
@@ -5383,8 +5374,7 @@
             flex: 1 1 auto;
     overflow: hidden;
     white-space: nowrap;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }
 
 /* Hide placeholder for radio buttons if another is active, or not in hover state */
@@ -5761,8 +5751,7 @@
     display: block;
     padding: 5px 10px;
     border-top: 1px solid #ccc;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -6871,8 +6860,7 @@
     display: block;
     overflow: hidden;
     white-space: nowrap;
-    -o-text-overflow: ellipsis;
-       text-overflow: ellipsis;
+    text-overflow: ellipsis;
     -webkit-box-flex: 1;
         -ms-flex-positive: 1;
             flex-grow: 1;
@@ -7869,8 +7857,6 @@
 
     -webkit-transition: opacity 200ms linear;
 
-    -o-transition: opacity 200ms linear;
-
     transition: opacity 200ms linear;
 }
 
@@ -8234,14 +8220,12 @@
 .ideditor .footer-show {
     bottom: 0px;
     -webkit-transition: bottom 75ms linear;
-    -o-transition: bottom 75ms linear;
     transition: bottom 75ms linear;
 }
 
 .ideditor .footer-hide {
     bottom: -100%;
     -webkit-transition: bottom 75ms linear;
-    -o-transition: bottom 75ms linear;
     transition: bottom 75ms linear;
 }
 
