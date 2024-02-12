@@ -103,7 +103,7 @@ export function rendererFeatures(context) {
 
     defineRule('points', function isPoint(tags, geometry) {
         return geometry === 'point';
-    }, 200);
+    }, 2000);
 
     defineRule('traffic_roads', function isTrafficRoad(tags) {
         return traffic_roads[tags.highway];
@@ -125,7 +125,7 @@ export function rendererFeatures(context) {
             tags.parking === 'carports' ||
             tags.parking === 'garage_boxes'
         );
-    }, 250);
+    });
 
     defineRule('building_parts', function isBuildingPart(tags) {
         return tags['building:part'];
