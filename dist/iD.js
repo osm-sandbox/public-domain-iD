@@ -41879,7 +41879,7 @@ ${content}</tr>
     }
     defineRule("points", function isPoint(tags, geometry) {
       return geometry === "point";
-    }, 200);
+    }, 2e3);
     defineRule("traffic_roads", function isTrafficRoad(tags) {
       return traffic_roads[tags.highway];
     });
@@ -41891,7 +41891,7 @@ ${content}</tr>
     });
     defineRule("buildings", function isBuilding(tags) {
       return !!tags.building && tags.building !== "no" || tags.parking === "multi-storey" || tags.parking === "sheds" || tags.parking === "carports" || tags.parking === "garage_boxes";
-    }, 250);
+    });
     defineRule("building_parts", function isBuildingPart(tags) {
       return tags["building:part"];
     });
