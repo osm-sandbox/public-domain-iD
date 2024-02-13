@@ -41891,7 +41891,7 @@ ${content}</tr>
     });
     defineRule("buildings", function isBuilding(tags) {
       return !!tags.building && tags.building !== "no" || tags.parking === "multi-storey" || tags.parking === "sheds" || tags.parking === "carports" || tags.parking === "garage_boxes";
-    }, 1e3);
+    }, 2500);
     defineRule("building_parts", function isBuildingPart(tags) {
       return tags["building:part"];
     });

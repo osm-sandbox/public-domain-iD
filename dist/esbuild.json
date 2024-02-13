@@ -31920,7 +31920,7 @@
           "bytesInOutput": 6663
         },
         "modules/renderer/features.js": {
-          "bytesInOutput": 15509
+          "bytesInOutput": 15510
         },
         "modules/svg/areas.js": {
           "bytesInOutput": 6075
@@ -32604,7 +32604,7 @@
           "bytesInOutput": 472
         }
       },
-      "bytes": 3352978
+      "bytes": 3352979
     }
   }
 }

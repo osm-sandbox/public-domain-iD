@@ -125,7 +125,7 @@ export function rendererFeatures(context) {
             tags.parking === 'carports' ||
             tags.parking === 'garage_boxes'
         );
-    }, 1000);
+    }, 2500);
 
     defineRule('building_parts', function isBuildingPart(tags) {
         return tags['building:part'];
