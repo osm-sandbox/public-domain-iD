@@ -20466,7 +20466,7 @@
       ]
     },
     "modules/renderer/features.js": {
-      "bytes": 18437,
+      "bytes": 18443,
       "imports": [
         {
           "path": "node_modules/d3-dispatch/src/index.js",
@@ -30628,7 +30628,7 @@
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 5281764
+      "bytes": 5281775
     },
     "dist/iD.js": {
       "imports": [],
@@ -31920,7 +31920,7 @@
           "bytesInOutput": 6663
         },
         "modules/renderer/features.js": {
-          "bytesInOutput": 15504
+          "bytesInOutput": 15509
         },
         "modules/svg/areas.js": {
           "bytesInOutput": 6075
@@ -32604,7 +32604,7 @@
           "bytesInOutput": 472
         }
       },
-      "bytes": 3352973
+      "bytes": 3352978
     }
   }
 }
