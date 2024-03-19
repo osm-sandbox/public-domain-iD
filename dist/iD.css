@@ -669,12 +669,14 @@
 .ideditor path.stroke.tag-amenity-fountain,
 .ideditor path.stroke.tag-leisure-swimming_pool,
 .ideditor path.stroke.tag-natural-bay,
+.ideditor path.stroke.tag-natural-strait,
 .ideditor path.stroke.tag-natural-water {
     stroke: rgb(119, 211, 222);
 }
 .ideditor path.fill.tag-amenity-fountain,
 .ideditor path.fill.tag-leisure-swimming_pool,
 .ideditor path.fill.tag-natural-bay,
+.ideditor path.fill.tag-natural-strait,
 .ideditor path.fill.tag-natural-water {
     stroke: rgba(119, 211, 222, 0.3);
     fill: rgba(119, 211, 222, 0.3);
@@ -1395,6 +1397,7 @@
 .ideditor path.line.stroke.tag-public_transport-platform,
 .ideditor path.line.stroke.tag-highway-platform,
 .ideditor path.line.stroke.tag-railway-platform,
+.ideditor path.line.stroke.tag-railway-platform_edge,
 .ideditor path.line.stroke.tag-man_made-pier {
     stroke: #dca;
 }
@@ -1673,7 +1676,7 @@
 .ideditor path.line.stroke.tag-railway {
     stroke-width: 2;
     stroke-linecap: butt;
-    stroke-dasharray: 12,12;
+    stroke-dasharray: 12, 12;
 }
 .ideditor .low-zoom path.line.shadow.tag-railway {
     stroke-width: 12;
@@ -1683,16 +1686,18 @@
 }
 .ideditor .low-zoom path.line.stroke.tag-railway {
     stroke-width: 2;
-    stroke-dasharray: 6,6;
+    stroke-dasharray: 6, 6;
 }
 .ideditor .preset-icon-container path.line.stroke.tag-railway:not(.tag-status),
 .ideditor .preset-icon-container path.line.stroke.tag-railway.tag-status-disused {
     stroke-dasharray: 6;
 }
 
+.ideditor path.line.casing.tag-railway.tag-railway-platform_edge,
 .ideditor path.line.casing.tag-railway.tag-railway-platform {
     stroke-width: 0;
 }
+.ideditor path.line.stroke.tag-railway.tag-railway-platform_edge,
 .ideditor path.line.stroke.tag-railway.tag-railway-platform {
     stroke-dasharray: none;
 }
@@ -1704,7 +1709,6 @@
 .ideditor path.line.stroke.tag-railway {
     stroke: #eee;
 }
-
 
 .ideditor .preset-icon .icon.tag-railway.tag-status {
     color: #999;
@@ -1721,7 +1725,6 @@
 .ideditor path.line.casing.tag-railway.tag-status-disused {
     stroke: #808080;
 }
-
 
 .ideditor path.line.casing.tag-railway-subway {
     stroke: #222;
@@ -2290,6 +2293,13 @@
 .ideditor path.line.casing.tag-highway.tag-status.tag-status-proposed.tag-proposed-bridleway,
 .ideditor path.line.casing.tag-highway.tag-status.tag-status-proposed.tag-proposed-steps {
     stroke-width: 4.5;
+}
+.ideditor path.line.casing.tag-highway.tag-bridge.tag-status.tag-status-proposed.tag-proposed-path,
+.ideditor path.line.casing.tag-highway.tag-bridge.tag-status.tag-status-proposed.tag-proposed-footway,
+.ideditor path.line.casing.tag-highway.tag-bridge.tag-status.tag-status-proposed.tag-proposed-cycleway,
+.ideditor path.line.casing.tag-highway.tag-bridge.tag-status.tag-status-proposed.tag-proposed-bridleway,
+.ideditor path.line.casing.tag-highway.tag-bridge.tag-status.tag-status-proposed.tag-proposed-steps {
+    stroke-width: 10;
 }
 .ideditor path.line.stroke.tag-highway.tag-status.tag-status-proposed.tag-proposed-path,
 .ideditor path.line.stroke.tag-highway.tag-status.tag-status-proposed.tag-proposed-footway,
@@ -3446,13 +3456,13 @@
 .ideditor input[type="radio"] {
     width: 14px;
     height: 14px;
-    margin-right: 5px;
+    margin-right: 6px;
     cursor: pointer;
     vertical-align: middle;
 }
 .ideditor[dir='rtl'] input[type="checkbox"],
 .ideditor[dir='rtl'] input[type="radio"] {
-    margin-left: 5px;
+    margin-left: 6px;
     margin-right: 0;
 }
 
@@ -3735,6 +3745,7 @@
 
 .ideditor .icon-annotation {
     color: #333;
+    vertical-align: baseline;
 }
 
 
@@ -4945,7 +4956,11 @@
         border-color: #f1f1f1;
     }
 }
-.ideditor .form-field-button.colour-selector {
+.ideditor input.colour-selector {
+    visibility: hidden;
+    position: absolute;
+}
+.ideditor input.date-selector {
     visibility: hidden;
     position: absolute;
 }
@@ -4960,10 +4975,10 @@
 }
 
 
-/* Field - Access, Cycleway
+/* Field - Access, DirectionalCombo
 ------------------------------------------------------- */
 .ideditor .form-field-input-access,
-.ideditor .form-field-input-cycleway {
+.ideditor .form-field-input-directionalcombo {
     -webkit-box-flex: 1;
         -ms-flex: 1 1 auto;
             flex: 1 1 auto;
@@ -5155,7 +5170,7 @@
 
 .ideditor .form-field-input-multicombo .input-wrap {
     border: 1px solid #ddd;
-    width: 100px;
+    width: 180px;
 }
 .ideditor .form-field-input-multicombo input {
     border: none;
@@ -5171,6 +5186,40 @@
 }
 .ideditor .form-field-input-multicombo .full-line-chips .input-wrap {
     width: auto;
+}
+
+.ideditor .form-field-input-combo .tag-value-icon {
+    display: inline-block;
+    position: relative;
+    height: 24px;
+    width: 30px;
+    margin-right: -30px;
+    -ms-flex-item-align: center;
+        align-self: center;
+    vertical-align: middle;
+    z-index: 1;
+    padding-left: 11px;
+}
+.ideditor[dir='rtl'] .form-field-input-combo .tag-value-icon {
+    margin-right: 0;
+    margin-left: -30px;
+    padding-left: 0;
+    padding-right: 11px;
+}
+.ideditor .tag-value-icon .icon {
+    width: 21px;
+    height: 21px;
+    margin: auto;
+}
+.ideditor[dir='ltr'] .form-field-input-combo .tag-value-icon + input {
+    padding-left: 40px;
+}
+.ideditor[dir='rtl'] .form-field-input-combo .tag-value-icon + input {
+    padding-right: 40px;
+}
+.ideditor .combobox-option .tag-value-icon {
+    display: inline-block;
+    width: 28px;
 }
 
 
@@ -5251,7 +5300,6 @@
     -webkit-box-flex: 0;
         -ms-flex: 0 1 auto;
             flex: 0 1 auto;
-    width: 20px;
     margin-top: 0;
 }
 .ideditor .form-field-input-check > span {
@@ -5366,7 +5414,6 @@
     -webkit-box-flex: 0;
         -ms-flex: 0 1 auto;
             flex: 0 1 auto;
-    width: 20px;
 }
 .ideditor .form-field-input-radio > label > span {
     -webkit-box-flex: 1;
@@ -5804,6 +5851,42 @@
     color: #333;
 }
 
+.ideditor .form-field-input-wrap {
+    position: relative;
+}
+
+.ideditor .form-field-input-wrap span.length-indicator-wrap {
+    visibility: hidden;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    right: 0;
+}
+
+.ideditor .form-field-input-wrap input:focus + span.length-indicator-wrap,
+.ideditor .form-field-input-wrap textarea:focus + span.length-indicator-wrap,
+.ideditor .form-field-input-wrap input:focus + div.combobox-caret + span.length-indicator-wrap,
+.ideditor .form-field-input-wrap textarea:focus + div.combobox-caret + span.length-indicator-wrap {
+    visibility: visible;
+}
+
+.ideditor .form-field-input-wrap span.length-indicator {
+    display: block;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #7092ff;
+    border-right-style: solid;
+    border-right-color: lightgray;
+}
+
+.ideditor .form-field-input-wrap span.length-indicator.limit-reached {
+    border-right-color: red;
+}
+
+.ideditor .tooltip.max-length-warning {
+    z-index: 10;
+}
 
 /* Field Help
 ------------------------------------------------------- */
@@ -6821,6 +6904,8 @@
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
+    -ms-flex-item-align: center;
+        align-self: center;
 }
 
 .ideditor[dir='rtl'] .list-item-data-browse svg {
@@ -6859,11 +6944,11 @@
 .ideditor .layer-list label > span {
     display: block;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
+    width: calc(100% - 20px); /* Ensures radio input width within flexbox */
+}
+
+.ideditor .layer-list label span.localized-text {
+    line-height: 0.95rem;
 }
 
 .ideditor .layer-list input.list-item-input {
@@ -7716,10 +7801,10 @@
     border: 1px solid #ccc;
 }
 
-/* no scrollbars */
+/* scrollbars only when necessary*/
 .ideditor .inspector-hover div {
     overflow-x: visible;
-    overflow-y: visible;
+    overflow-y: auto;
 }
 
 /* hide and remove from layout */
@@ -8965,11 +9050,14 @@
     display: none;
 }
 
-.ideditor .field-warning,
 .ideditor .changeset-info,
 .ideditor .request-review,
 .ideditor .commit-info {
     margin-bottom: 10px;
+}
+
+.ideditor .field-warning {
+    margin-top: 10px;
 }
 
 .ideditor .request-review label {
@@ -9374,7 +9462,6 @@
     height: 20px;
     overflow: visible;
     width: 10px;
-    background: #fff;
     border-left: 1px solid #DDD;
 }
 
