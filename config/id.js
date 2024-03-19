@@ -11,14 +11,14 @@ const nsiCdnUrl = ENV__ID_NSI_CDN_URL
 // api urls and settings
 const defaultOsmApiConnections = {
   "live": {
-    url: 'https://www.openstreetmap.org',
-    client_id: '0tmNTmd0Jo1dQp4AUmMBLtGiD9YpMuXzHefitcuVStc',
-    client_secret: 'BTlNrNxIPitHdL4sP2clHw5KLoee9aKkA7dQbc0Bj7Q'
+    url: 'https://api.publicdomainmap.org',
+    client_id: 'ePbhZX3t5MPfgd0DUr7mlb5SoVGrO057JXar5_bTQM',
+    client_secret: '7aI0alNh7--w9FQkp7R524oOPFp7UL5K4FqrPtvDx_E'
   },
   "dev": {
-    url: 'https://api06.dev.openstreetmap.org',
-    client_id: 'Ee1wWJ6UlpERbF6BfTNOpwn0R8k_06mvMXdDUkeHMgw',
-    client_secret: 'OnfWFC-JkZNHyYdr_viNn_h_RTZXRslKcUxllOXqf5g'
+    url: 'https://master.api.dev.publicdomainmap.org',
+    client_id: '',
+    client_secret: ''
   }
 };
 const osmApiConnections = [];
