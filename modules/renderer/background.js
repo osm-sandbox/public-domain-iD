@@ -1,12 +1,14 @@
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { interpolateNumber as d3_interpolateNumber } from 'd3-interpolate';
 import { select as d3_select } from 'd3-selection';
+import turf_bboxClip from '@turf/bbox-clip';
+import turf_bbox from '@turf/bbox';
 
 import whichPolygon from 'which-polygon';
 
 import { prefs } from '../core/preferences';
 import { fileFetcher } from '../core/file_fetcher';
-import { geoExtent, geoMetersToOffset, geoOffsetToMeters} from '../geo';
+import { geoMetersToOffset, geoOffsetToMeters, geoExtent } from '../geo';
 import { rendererBackgroundSource } from './background_source';
 import { rendererTileLayer } from './tile_layer';
 import { utilQsString, utilStringQs } from '../util';
@@ -443,23 +445,23 @@ export function rendererBackground(context) {
   let _loadPromise;
 
   background.ensureLoaded = () => {
-
     if (_loadPromise) return _loadPromise;
 
-    function parseMapParams(qmap) {
-      if (!qmap) return false;
-      const params = qmap.split('/').map(Number);
-      if (params.length < 3 || params.some(isNaN)) return false;
-      return geoExtent([params[2], params[1]]);  // lon,lat
-    }
+    return _loadPromise = ensureImageryIndex();
+  };
+
+  background.init = () => {
+    const loadPromise = background.ensureLoaded();
 
     const hash = utilStringQs(window.location.hash);
-    const requested = hash.background || hash.layer;
-    let extent = parseMapParams(hash.map);
+    const requestedBackground = hash.background || hash.layer;
+    const lastUsedBackground = prefs('background-last-used');
 
-    return _loadPromise = ensureImageryIndex()
-      .then(imageryIndex => {
-        const first = imageryIndex.backgrounds.length && imageryIndex.backgrounds[0];
+    return loadPromise.then(imageryIndex => {
+      const extent = context.map().extent();
+      const validBackgrounds = background.sources(extent).filter(d => d.id !== 'none' && d.id !== 'custom');
+      const first = validBackgrounds.length && validBackgrounds[0];
+      const isLastUsedValid = !!validBackgrounds.find(d => d.id && d.id === lastUsedBackground);
 
         let best;
         if (!requested && extent) {
@@ -495,26 +497,61 @@ export function rendererBackground(context) {
             background.toggleOverlayLayer(overlay);
           }
         });
+      }
 
-        if (hash.gpx) {
-          const gpx = context.layers().layer('data');
-          if (gpx) {
-            gpx.url(hash.gpx, '.gpx');
-          }
+      // Decide which background layer to display
+      if (requestedBackground && requestedBackground.indexOf('custom:') === 0) {
+        const template = requestedBackground.replace(/^custom:/, '');
+        const custom = background.findSource('custom');
+        background.baseLayerSource(custom.template(template));
+        prefs('background-custom-template', template);
+      } else {
+        background.baseLayerSource(
+          background.findSource(requestedBackground) ||
+          best ||
+          isLastUsedValid && background.findSource(lastUsedBackground) ||
+          background.findSource('Bing') ||
+          first ||
+          background.findSource('none')
+        );
+      }
+
+      const locator = imageryIndex.backgrounds.find(d => d.overlay && d.default);
+      if (locator) {
+        background.toggleOverlayLayer(locator);
+      }
+
+      const overlays = (hash.overlays || '').split(',');
+      overlays.forEach(overlay => {
+        overlay = background.findSource(overlay);
+        if (overlay) {
+          background.toggleOverlayLayer(overlay);
         }
+      });
 
-        if (hash.offset) {
-          const offset = hash.offset
-            .replace(/;/g, ',')
-            .split(',')
-            .map(n => !isNaN(n) && n);
-
-          if (offset.length === 2) {
-            background.offset(geoMetersToOffset(offset));
-          }
+      if (hash.gpx) {
+        const gpx = context.layers().layer('data');
+        if (gpx) {
+          gpx.url(hash.gpx, '.gpx');
         }
-      })
-      .catch(() => { /* ignore */ });
+      }
+
+      if (hash.offset) {
+        const offset = hash.offset
+          .replace(/;/g, ',')
+          .split(',')
+          .map(n => !isNaN(n) && n);
+
+        if (offset.length === 2) {
+          background.offset(geoMetersToOffset(offset));
+        }
+      }
+    })
+    .catch(err => {
+      /* eslint-disable no-console */
+      console.error(err);
+      /* eslint-enable no-console */
+    });
   };
 
 

@@ -6,15 +6,19 @@ import * as countryCoder from '@ideditor/country-coder';
 import { presetManager } from '../../presets';
 import { fileFetcher } from '../../core/file_fetcher';
 import { t, localizer } from '../../core/localizer';
-import { utilGetSetValue, utilNoAuto, utilRebind, utilTotalExtent } from '../../util';
+import { utilDetect, utilGetSetValue, utilNoAuto, utilRebind, utilTotalExtent } from '../../util';
 import { svgIcon } from '../../svg/icon';
+import { cardinal } from '../../osm/node';
+import { uiLengthIndicator } from '..';
+import { uiTooltip } from '../tooltip';
 
 export {
-    uiFieldText as uiFieldUrl,
+    uiFieldText as uiFieldColour,
+    uiFieldText as uiFieldEmail,
     uiFieldText as uiFieldIdentifier,
     uiFieldText as uiFieldNumber,
     uiFieldText as uiFieldTel,
-    uiFieldText as uiFieldEmail
+    uiFieldText as uiFieldUrl
 };
 
 
@@ -23,9 +27,11 @@ export function uiFieldText(field, context) {
     var input = d3_select(null);
     var outlinkButton = d3_select(null);
     var wrap = d3_select(null);
+    var _lengthIndicator = uiLengthIndicator(context.maxCharsForTagValue());
     var _entityIDs = [];
     var _tags;
     var _phoneFormats = {};
+    const isDirectionField = field.key.split(':').some(keyPart => keyPart === 'direction');
 
     if (field.type === 'tel') {
         fileFetcher.get('phone_formats')
@@ -90,6 +96,7 @@ export function uiFieldText(field, context) {
             .on('blur', change())
             .on('change', change());
 
+        wrap.call(_lengthIndicator);
 
         if (field.type === 'tel') {
             updatePhonePlaceholder();
@@ -110,18 +117,43 @@ export function uiFieldText(field, context) {
                     var which = (d > 0 ? 'increment' : 'decrement');
                     return 'form-field-button ' + which;
                 })
-                .attr('title', function(d){
+                .attr('title', function(d) {
                     var which = (d > 0 ? 'increment' : 'decrement');
                     return t(`inspector.${which}`);
                 })
                 .merge(buttons)
                 .on('click', function(d3_event, d) {
                     d3_event.preventDefault();
+
+                    // do nothing if this is a multi-selection with mixed values
+                    var isMixed = Array.isArray(_tags[field.key]);
+                    if (isMixed) return;
+
                     var raw_vals = input.node().value || '0';
                     var vals = raw_vals.split(';');
                     vals = vals.map(function(v) {
-                        var num = parseFloat(v.trim(), 10);
-                        return isFinite(num) ? clamped(num + d) : v.trim();
+                        var num = Number(v);
+                        if (isDirectionField) {
+                            const compassDir = cardinal[v.trim().toLowerCase()];
+                            if (compassDir !== undefined) {
+                                num = compassDir;
+                            }
+                        }
+
+                        if (!isFinite(num)) {
+                            // do nothing if the value is neither a number, nor a cardinal direction
+                            return v.trim();
+                        }
+
+                        num += d;
+                        // clamp to 0..359 degree range if it's a direction field
+                        // https://github.com/openstreetmap/iD/issues/9386
+                        if (isDirectionField) {
+                            num = ((num % 360) + 360) % 360;
+                        }
+                        // make sure no extra decimals are introduced
+                        const numDecimals = v.includes('.') ? v.split('.')[1].length : 0;
+                        return clamped(num).toFixed(numDecimals);
                     });
                     input.node().value = vals.join(';');
                     change()();
@@ -173,42 +205,48 @@ export function uiFieldText(field, context) {
                     if (value) window.open(value, '_blank');
                 })
                 .merge(outlinkButton);
-        } else if (field.key.split(':').includes('colour')) {
+        } else if (field.type === 'colour') {
             input.attr('type', 'text');
 
             updateColourPreview();
+        } else if (field.type === 'date') {
+            input.attr('type', 'text');
+
+            updateDateField();
         }
     }
 
-    function isColourValid(colour) {
-        if (!colour.match(/^(#([0-9a-fA-F]{3}){1,2}|\w+)$/)) {
-            // OSM only supports hex or named colors
-            return false;
-        } else if (!CSS.supports('color', colour) || ['unset', 'inherit', 'initial', 'revert'].includes(colour)) {
-            // see https://stackoverflow.com/a/68217760/1627467
-            return false;
-        }
-        return true;
-    }
+
     function updateColourPreview() {
+        function isColourValid(colour) {
+            if (!colour.match(/^(#([0-9a-fA-F]{3}){1,2}|\w+)$/)) {
+                // OSM only supports hex or named colors
+                return false;
+            } else if (!CSS.supports('color', colour) || ['unset', 'inherit', 'initial', 'revert'].includes(colour)) {
+                // see https://stackoverflow.com/a/68217760/1627467
+                return false;
+            }
+            return true;
+        }
         wrap.selectAll('.colour-preview')
             .remove();
 
         const colour = utilGetSetValue(input);
 
-        if (!isColourValid(colour) && colour !== '') return;
+        if (!isColourValid(colour) && colour !== '') {
+            wrap.selectAll('input.colour-selector').remove();
+            wrap.selectAll('.form-field-button').remove();
+            return;
+        }
 
         var colourSelector = wrap.selectAll('.colour-selector')
             .data([0]);
-        outlinkButton = wrap.selectAll('.colour-preview')
-            .data([colour]);
 
         colourSelector
             .enter()
             .append('input')
             .attr('type', 'color')
-            .attr('class', 'form-field-button colour-selector')
-            .attr('value', colour)
+            .attr('class', 'colour-selector')
             .on('input', _debounce(function(d3_event) {
                 d3_event.preventDefault();
                 var colour = this.value;
@@ -217,8 +255,12 @@ export function uiFieldText(field, context) {
                 change()();
                 updateColourPreview();
             }, 100));
+        wrap.selectAll('input.colour-selector')
+            .attr('value', colour);
 
-        outlinkButton = outlinkButton
+        var chooserButton = wrap.selectAll('.colour-preview')
+            .data([colour]);
+        chooserButton = chooserButton
             .enter()
             .append('div')
             .attr('class', 'form-field-button colour-preview')
@@ -226,12 +268,80 @@ export function uiFieldText(field, context) {
             .style('background-color', d => d)
             .attr('class', 'colour-box');
         if (colour === '') {
-            outlinkButton = outlinkButton
+            chooserButton = chooserButton
                 .call(svgIcon('#iD-icon-edit'));
         }
-        outlinkButton
-            .on('click', () => wrap.select('.colour-selector').node().click())
-            .merge(outlinkButton);
+        chooserButton
+            .on('click', () => wrap.select('.colour-selector').node().showPicker());
+    }
+
+
+    function updateDateField() {
+        function isDateValid(date) {
+            return date.match(/^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$/);
+        }
+
+        const date = utilGetSetValue(input);
+
+        const now = new Date();
+        const today = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+        if ((field.key === 'check_date' || field.key === 'survey:date') && date !== today) {
+            wrap.selectAll('.date-set-today')
+                .data([0])
+                .enter()
+                .append('button')
+                .attr('class', 'form-field-button date-set-today')
+                .call(svgIcon('#fas-rotate'))
+                .call(uiTooltip().title(() => t.append('inspector.set_today')))
+                .on('click', () => {
+                    utilGetSetValue(input, today);
+                    change()();
+                    updateDateField();
+                });
+        } else {
+            wrap.selectAll('.date-set-today').remove();
+        }
+
+        if (!isDateValid(date) && date !== '') {
+            wrap.selectAll('input.date-selector').remove();
+            wrap.selectAll('.date-calendar').remove();
+            return;
+        }
+
+        if (utilDetect().browser !== 'Safari') {
+            // opening of the calendar pick is not yet supported in safari <= 16
+            // https://caniuse.com/mdn-api_htmlinputelement_showpicker_date_input
+
+            var dateSelector = wrap.selectAll('.date-selector')
+                .data([0]);
+
+            dateSelector
+                .enter()
+                .append('input')
+                .attr('type', 'date')
+                .attr('class', 'date-selector')
+                .on('input', _debounce(function(d3_event) {
+                    d3_event.preventDefault();
+                    var date = this.value;
+                    if (!isDateValid(date)) return;
+                    utilGetSetValue(input, this.value);
+                    change()();
+                    updateDateField();
+                }, 100));
+            wrap.selectAll('input.date-selector')
+                .attr('value', date);
+
+            var calendarButton = wrap.selectAll('.date-calendar')
+                .data([date]);
+            calendarButton = calendarButton
+                .enter()
+                .append('button')
+                .attr('class', 'form-field-button date-calendar')
+                .call(svgIcon('#fas-calendar-days'));
+
+            calendarButton
+                .on('click', () => wrap.select('.date-selector').node().showPicker());
+        }
     }
 
 
@@ -287,7 +397,7 @@ export function uiFieldText(field, context) {
                 if (field.type === 'number' && val) {
                     var vals = val.split(';');
                     vals = vals.map(function(v) {
-                        var num = parseFloat(v.trim(), 10);
+                        var num = Number(v);
                         return isFinite(num) ? clamped(num) : v.trim();
                     });
                     val = vals.join(';');
@@ -317,11 +427,31 @@ export function uiFieldText(field, context) {
             .attr('placeholder', isMixed ? t('inspector.multiple_values') : (field.placeholder() || t('inspector.unknown')))
             .classed('mixed', isMixed);
 
-        if (field.key.split(':').includes('colour')) updateColourPreview();
+        if (field.type === 'number') {
+            const buttons = wrap.selectAll('.increment, .decrement');
+            if (isMixed) {
+                buttons.attr('disabled', 'disabled').classed('disabled', true);
+            } else {
+                var raw_vals = tags[field.key] || '0';
+                const canIncDec = raw_vals.split(';').some(val => isFinite(Number(val))
+                        || isDirectionField && cardinal[val.trim().toLowerCase()]);
+                buttons.attr('disabled', canIncDec ? null : 'disabled').classed('disabled', !canIncDec);
+            }
+        }
+
+        if (field.type === 'tel') updatePhonePlaceholder();
+
+        if (field.type === 'colour') updateColourPreview();
+
+        if (field.type === 'date') updateDateField();
 
         if (outlinkButton && !outlinkButton.empty()) {
             var disabled = !validIdentifierValueForLink();
             outlinkButton.classed('disabled', disabled);
+        }
+
+        if (!isMixed) {
+            _lengthIndicator.update(tags[field.key]);
         }
     };
 

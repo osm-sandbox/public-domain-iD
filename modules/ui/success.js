@@ -4,7 +4,7 @@ import { select as d3_select } from 'd3-selection';
 import { resolveStrings } from 'osm-community-index';
 
 import { fileFetcher } from '../core/file_fetcher';
-import { locationManager } from '../core/locations';
+import { locationManager } from '../core/LocationManager';
 import { t, localizer } from '../core/localizer';
 
 import { svgIcon } from '../svg/icon';
@@ -72,7 +72,7 @@ export function uiSuccess(context) {
     }
 
     const parsed = new Date(raw);
-    return new Date(parsed.toUTCString().substr(0, 25));  // convert to local timezone
+    return new Date(parsed.toUTCString().slice(0, 25));  // convert to local timezone
   }
 
  */
@@ -163,12 +163,12 @@ export function uiSuccess(context) {
     ensureOSMCommunityIndex()
       .then(oci => {
         const loc = context.map().center();
-        const validLocations = locationManager.locationsAt(loc);
+        const validHere = locationManager.locationSetsAt(loc);
 
         // Gather the communities
         let communities = [];
         oci.resources.forEach(resource => {
-          let area = validLocations[resource.locationSetID];
+          let area = validHere[resource.locationSetID];
           if (!area) return;
 
           // Resolve strings
@@ -265,7 +265,7 @@ export function uiSuccess(context) {
         .call(uiDisclosure(context, `community-more-${d.id}`, false)
           .expanded(false)
           .updatePreference(false)
-          .label(t.html('success.more'))
+          .label(() => t.append('success.more'))
           .content(showMore)
         );
     }

@@ -4,6 +4,7 @@ import { fileFetcher } from './file_fetcher';
 import { utilDetect } from '../util/detect';
 import { utilStringQs } from '../util';
 import { utilArrayUniq } from '../util/array';
+import { presetsCdnUrl } from '../../config/id.js';
 
 let _mainLocalizer = coreLocalizer(); // singleton
 let _t = _mainLocalizer.t;
@@ -89,7 +90,7 @@ export function coreLocalizer() {
 
         const localeDirs = {
             general: 'locales',
-            tagging: 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@3/dist/translations'
+            tagging: presetsCdnUrl + 'dist/translations'
         };
 
         let fileMap = fileFetcher.fileMap();
@@ -376,7 +377,7 @@ export function coreLocalizer() {
 
     // Adds localized text wrapped as an HTML span element with locale info to the DOM
     localizer.t.append = function(stringId, replacements, locale) {
-      return function(selection) {
+      const ret = function(selection) {
         const info = localizer.tInfo(stringId, replacements, locale);
         return selection.append('span')
             .attr('class', 'localized-text')
@@ -385,6 +386,8 @@ export function coreLocalizer() {
                 + info.text
                 + (replacements &&replacements.suffix || ''));
       };
+      ret.stringId = stringId;
+      return ret;
     };
 
     localizer.languageName = (code, options) => {

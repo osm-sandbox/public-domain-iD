@@ -23,7 +23,7 @@ of iD (e.g. `https://ideditor-release.netlify.app`), the following parameters ar
   `boundaries`, `water`, `rail`, `pistes`, `aerialways`, `power`, `past_future`, `others`
 * __`gpx`__ - A custom URL for loading a gpx track.  Specifying a `gpx` parameter will
   automatically enable the gpx layer for display.<br/>
-  _Example:_ `gpx=https://tasks.hotosm.org/project/592/task/16.gpx`
+  _Example:_ `gpx=https://gist.githubusercontent.com/answerquest/9445352b60ca5b44714675eae00f243a/raw/56a6343a29223318f4a697bfd16cbb2c3b8155ad/sample_boundary.gpx`
 * __`hashtags`__ - Prefills the changeset hashtags.  Pass a url encoded list of event
   hashtags separated by commas, semicolons, or spaces.  Leading '#' symbols are
   optional and will be added automatically. (Note that hashtag-like strings are
@@ -65,25 +65,55 @@ of iD (e.g. `https://ideditor-release.netlify.app`), the following parameters ar
 
 ##### iD on openstreetmap.org (Rails Port)
 
-When constructing a URL to an instance of iD embedded in the OpenStreetMap Rails
-Port (e.g. `http://www.openstreetmap.org/edit?editor=id`), the following parameters
-are available as **regular URL query parameters**:
+When constructing a URL to an instance of iD embedded on the [OpenStreetMap website](github.com/openstreetmap/openstreetmap-website/) (e.g. `https://www.openstreetmap.org/edit?editor=id`), the following parameters
+are available as **URL hash parameters**.
+_Example:_ `https://www.openstreetmap.org/edit?editor=id#gpx=https://gist.githubusercontent.com/answerquest/9445352b60ca5b44714675eae00f243a/raw/56a6343a29223318f4a697bfd16cbb2c3b8155ad/sample_boundary.gpx`
 
-* __`map`__ - same as standalone
-* __`lat`__, __`lon`__, __`zoom`__ - Self-explanatory.
-* __`node`__, __`way`__, __`relation`__ - Select the specified entity.
-* __`background`__ - same as standalone
-* __`disable_features`__ - same as standalone
-* __`gpx`__ - same as standalone
-* __`maprules`__ - same as standalone
-* __`offset`__ - same as standalone
-* __`presets`__ - same as standalone
-* __`comment`__ - same as standalone
-* __`source`__ - same as standalone
-* __`hashtags`__ - same as standalone
-* __`locale`__ - same as standalone, but the default locale is set by the language settings in your OSM user account.
-* __`walkthrough`__ - same as standalone
+* __`map`__
+* __`gpx`__
+* __`background`__
+* __`comment`__
+* __`disable_features`__
+* __`hashtags`__
+* __`locale`__
+* __`maprules`__
+* __`offset`__
+* __`photo`__
+* __`photo_dates`__
+* __`photo_overlay`__
+* __`photo_username`__
+* __`presets`__
+* __`source`__
+* __`validationDisable`__
+* __`validationWarning`__
+* __`validationError`__
 
+For a description of these parameters, refer to the [_iD standalone_ section](#id-standalone) above.
+
+In addition, the following parameters are available as **URL query parameters**:
+
+* __`lat`__, __`lon`__, __`zoom`__<br/>
+  _Example:_ `https://www.openstreetmap.org/edit?editor=id&lat=46.4705&lon=11.2423&zoom=16`<br/>
+* __`node`__, __`way`__, __`relation`__ - Selects the specified OSM object (similar to the `id` parameter of the standalone version of iD).<br/>
+  _Example:_ `https://www.openstreetmap.org/edit?editor=id&node=1`<br/>
+* __`locale`__ - Same as standalone, but the default locale is set by the language settings in your OSM user account.<br/>
+  _Example:_ `https://www.openstreetmap.org/edit?editor=id&locale=de`<br/>
+* __`gpx`__ - Expects a trace ID of a [public gps trace](https://www.openstreetmap.org/traces) uploaded on OpenStreetMap.<br/>
+  _Example:_ `https://www.openstreetmap.org/edit?editor=id&gpx=4009513`<br/>
+
+
+## Environment variables
+
+Environment variables or a dotenv file can be used to configure certain aspects of iD at build time.
+
+* __`ID_API_CONNECTION_URL`__, __`ID_API_CONNECTION_CLIENT_ID`__, __`ID_API_CONNECTION_CLIENT_SECRET`__ - Custom [Oauth2](https://wiki.openstreetmap.org/wiki/OAuth#OAuth_2.0_2) connection details to an OSM API server.
+* __`ID_API_CONNECTION`__ - Either `live` or `dev`, if only either one should be made offered for editing.
+* __`ID_PRESETS_CDN_URL`__ - The URL where iD should fetch it's tagging presets from. Needs to point to a CORS enabled web server which is serving the `package.json` and `dist` folder of a repository built on [`@ideditor/schema-builder`](https://github.com/ideditor/schema-builder).
+* __`ENV__ID_OCI_CDN_URL`__ - URL to a hosted version of the [osm-community-index](https://github.com/osmlab/osm-community-index)
+* __`ENV__ID_NSI_CDN_URL`__ - URL to a hosted version of the [name-suggestion-index](https://github.com/osmlab/name-suggestion-index)
+* __`ENV__ID_WMF_SITEMATRIX_CDN_URL`__ - URL to a hosted version of the [wmf-sitematrix](https://github.com/osmlab/wmf-sitematrix)
+* __`ID_TAGINFO_API_URL`__ - URL to a [taginfo](https://wiki.openstreetmap.org/wiki/Taginfo) service.
+* __`ID_NOMINATIM_API_URL`__ - URL to a [nominatim](https://wiki.openstreetmap.org/wiki/Nominatim) geocoding service.
 
 ## CSS selectors
 

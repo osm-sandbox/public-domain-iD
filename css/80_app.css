@@ -228,13 +228,13 @@ input[type="checkbox"],
 input[type="radio"] {
     width: 14px;
     height: 14px;
-    margin-right: 5px;
+    margin-right: 6px;
     cursor: pointer;
     vertical-align: middle;
 }
 .ideditor[dir='rtl'] input[type="checkbox"],
 .ideditor[dir='rtl'] input[type="radio"] {
-    margin-left: 5px;
+    margin-left: 6px;
     margin-right: 0;
 }
 
@@ -501,6 +501,7 @@ button.disabled .icon.operation use,
 
 .icon-annotation {
     color: #333;
+    vertical-align: baseline;
 }
 
 
@@ -1535,7 +1536,11 @@ a.hide-toggle {
         border-color: #f1f1f1;
     }
 }
-.form-field-button.colour-selector {
+input.colour-selector {
+    visibility: hidden;
+    position: absolute;
+}
+input.date-selector {
     visibility: hidden;
     position: absolute;
 }
@@ -1550,10 +1555,10 @@ a.hide-toggle {
 }
 
 
-/* Field - Access, Cycleway
+/* Field - Access, DirectionalCombo
 ------------------------------------------------------- */
 .form-field-input-access,
-.form-field-input-cycleway {
+.form-field-input-directionalcombo {
     flex: 1 1 auto;
     display: flex;
     flex-flow: row wrap;
@@ -1716,7 +1721,7 @@ a.hide-toggle {
 
 .form-field-input-multicombo .input-wrap {
     border: 1px solid #ddd;
-    width: 100px;
+    width: 180px;
 }
 .form-field-input-multicombo input {
     border: none;
@@ -1732,6 +1737,39 @@ a.hide-toggle {
 }
 .form-field-input-multicombo .full-line-chips .input-wrap {
     width: auto;
+}
+
+.form-field-input-combo .tag-value-icon {
+    display: inline-block;
+    position: relative;
+    height: 24px;
+    width: 30px;
+    margin-right: -30px;
+    align-self: center;
+    vertical-align: middle;
+    z-index: 1;
+    padding-left: 11px;
+}
+.ideditor[dir='rtl'] .form-field-input-combo .tag-value-icon {
+    margin-right: 0;
+    margin-left: -30px;
+    padding-left: 0;
+    padding-right: 11px;
+}
+.tag-value-icon .icon {
+    width: 21px;
+    height: 21px;
+    margin: auto;
+}
+.ideditor[dir='ltr'] .form-field-input-combo .tag-value-icon + input {
+    padding-left: 40px;
+}
+.ideditor[dir='rtl'] .form-field-input-combo .tag-value-icon + input {
+    padding-right: 40px;
+}
+.combobox-option .tag-value-icon {
+    display: inline-block;
+    width: 28px;
 }
 
 
@@ -1806,7 +1844,6 @@ a.hide-toggle {
 }
 .form-field-input-check > input[type="checkbox"] {
     flex: 0 1 auto;
-    width: 20px;
     margin-top: 0;
 }
 .form-field-input-check > span {
@@ -1899,7 +1936,6 @@ a.hide-toggle {
 }
 .form-field-input-radio > label > input[type="radio"] {
     flex: 0 1 auto;
-    width: 20px;
 }
 .form-field-input-radio > label > span {
     flex: 1 1 auto;
@@ -2292,6 +2328,42 @@ div.combobox {
     color: #333;
 }
 
+.form-field-input-wrap {
+    position: relative;
+}
+
+.form-field-input-wrap span.length-indicator-wrap {
+    visibility: hidden;
+    position: absolute;
+    top: -5px;
+    left: 0;
+    right: 0;
+}
+
+.form-field-input-wrap input:focus + span.length-indicator-wrap,
+.form-field-input-wrap textarea:focus + span.length-indicator-wrap,
+.form-field-input-wrap input:focus + div.combobox-caret + span.length-indicator-wrap,
+.form-field-input-wrap textarea:focus + div.combobox-caret + span.length-indicator-wrap {
+    visibility: visible;
+}
+
+.form-field-input-wrap span.length-indicator {
+    display: block;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #7092ff;
+    border-right-style: solid;
+    border-right-color: lightgray;
+}
+
+.form-field-input-wrap span.length-indicator.limit-reached {
+    border-right-color: red;
+}
+
+.tooltip.max-length-warning {
+    z-index: 10;
+}
 
 /* Field Help
 ------------------------------------------------------- */
@@ -3195,6 +3267,7 @@ div.full-screen > button:focus {
 .layer-list li.best > div.best {
     padding: 5px;
     flex: 0 0 auto;
+    align-self: center;
 }
 
 .ideditor[dir='rtl'] .list-item-data-browse svg {
@@ -3226,9 +3299,11 @@ div.full-screen > button:focus {
 .layer-list label > span {
     display: block;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex-grow: 1;
+    width: calc(100% - 20px); /* Ensures radio input width within flexbox */
+}
+
+.layer-list label span.localized-text {
+    line-height: 0.95rem;
 }
 
 .layer-list input.list-item-input {
@@ -4014,10 +4089,10 @@ li.issue-fix-item button:not(.actionable) .fix-icon {
     border: 1px solid #ccc;
 }
 
-/* no scrollbars */
+/* scrollbars only when necessary*/
 .inspector-hover div {
     overflow-x: visible;
-    overflow-y: visible;
+    overflow-y: auto;
 }
 
 /* hide and remove from layout */
@@ -5130,11 +5205,14 @@ a.user-info {
     display: none;
 }
 
-.field-warning,
 .changeset-info,
 .request-review,
 .commit-info {
     margin-bottom: 10px;
+}
+
+.field-warning {
+    margin-top: 10px;
 }
 
 .request-review label {
@@ -5529,7 +5607,6 @@ li.hide + li.version .badge .tooltip .popover-arrow {
     height: 20px;
     overflow: visible;
     width: 10px;
-    background: #fff;
     border-left: 1px solid #DDD;
 }
 

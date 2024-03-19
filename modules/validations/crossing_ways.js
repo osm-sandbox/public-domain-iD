@@ -146,7 +146,7 @@ export function validationCrossingWays(context) {
                         return {};
                     }
                     var pathFeature = entity1IsPath ? entity1 : entity2;
-                    if (['marked', 'unmarked'].indexOf(pathFeature.tags.crossing) !== -1) {
+                    if (['marked', 'unmarked', 'traffic_signals', 'uncontrolled'].indexOf(pathFeature.tags.crossing) !== -1) {
                         // if the path is a crossing, match the crossing type
                         return bothLines ? { highway: 'crossing', crossing: pathFeature.tags.crossing } : {};
                     }
@@ -407,7 +407,7 @@ export function validationCrossingWays(context) {
                 var graph = context.graph();
                 var entity1 = graph.hasEntity(this.entityIds[0]),
                     entity2 = graph.hasEntity(this.entityIds[1]);
-                return (entity1 && entity2) ? t.html('issues.crossing_ways.message', {
+                return (entity1 && entity2) ? t.append('issues.crossing_ways.message', {
                     feature: utilDisplayLabel(entity1, graph),
                     feature2: utilDisplayLabel(entity2, graph)
                 }) : '';
@@ -440,7 +440,7 @@ export function validationCrossingWays(context) {
                 if (isCrossingIndoors) {
                     fixes.push(new validationIssueFix({
                         icon: 'iD-icon-layers',
-                        title: t.html('issues.fix.use_different_levels.title')
+                        title: t.append('issues.fix.use_different_levels.title')
                     }));
                 } else if (isCrossingTunnels ||
                     isCrossingBridges ||
@@ -469,7 +469,7 @@ export function validationCrossingWays(context) {
                 // repositioning the features is always an option
                 fixes.push(new validationIssueFix({
                     icon: 'iD-operation-move',
-                    title: t.html('issues.fix.reposition_features.title')
+                    title: t.append('issues.fix.reposition_features.title')
                 }));
 
                 return fixes;
@@ -489,7 +489,7 @@ export function validationCrossingWays(context) {
     function makeAddBridgeOrTunnelFix(fixTitleID, iconName, bridgeOrTunnel){
         return new validationIssueFix({
             icon: iconName,
-            title: t.html('issues.fix.' + fixTitleID + '.title'),
+            title: t.append('issues.fix.' + fixTitleID + '.title'),
             onClick: function(context) {
                 var mode = context.mode();
                 if (!mode || mode.id !== 'select') return;
@@ -523,7 +523,7 @@ export function validationCrossingWays(context) {
 
                     var crossedWay = graph.hasEntity(crossedWayID);
                     // use the explicit width of the crossed feature as the structure length, if available
-                    var structLengthMeters = crossedWay && crossedWay.tags.width && parseFloat(crossedWay.tags.width);
+                    var structLengthMeters = crossedWay && isFinite(crossedWay.tags.width) && Number(crossedWay.tags.width);
                     if (!structLengthMeters) {
                         // if no explicit width is set, approximate the width based on the tags
                         structLengthMeters = crossedWay && crossedWay.impliedLineWidthMeters();
@@ -698,7 +698,7 @@ export function validationCrossingWays(context) {
 
         return new validationIssueFix({
             icon: 'iD-icon-crossing',
-            title: t.html('issues.fix.' + fixTitleID + '.title'),
+            title: t.append('issues.fix.' + fixTitleID + '.title'),
             onClick: function(context) {
                 var loc = this.issue.loc;
                 var connectionTags = this.issue.data.connectionTags;
@@ -742,7 +742,7 @@ export function validationCrossingWays(context) {
     function makeChangeLayerFix(higherOrLower) {
         return new validationIssueFix({
             icon: 'iD-icon-' + (higherOrLower === 'higher' ? 'up' : 'down'),
-            title: t.html('issues.fix.tag_this_as_' + higherOrLower + '.title'),
+            title: t.append('issues.fix.tag_this_as_' + higherOrLower + '.title'),
             onClick: function(context) {
 
                 var mode = context.mode();

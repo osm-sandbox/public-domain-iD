@@ -6,8 +6,11 @@ const prettyStringify = require('json-stringify-pretty-compact');
 
 /*
 if (fs.existsSync('./data/manual_imagery.json')) {
+  const manualImagery = JSON.parse(fs.readFileSync('./data/manual_imagery.json'));
   // we can include additional imagery sources that aren't in the index
-  sources = sources.concat(JSON.parse(fs.readFileSync('./data/manual_imagery.json')));
+  sources = sources
+    .filter(source => !manualImagery.find(manualSource => manualSource.id === source.id))
+    .concat(manualImagery);
 }
 */
 if (fs.existsSync('./data/pd_imagery.json')) {

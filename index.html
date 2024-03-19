@@ -43,18 +43,6 @@
         } else {
           var context = iD.coreContext()
             .assetPath('dist/')
-            .apiConnections([
-              { // production database
-                'urlroot': 'https://api.publicdomainmap.org',
-                'oauth_consumer_key': '',
-                'oauth_secret': ''
-              },
-              { // dev database
-                'urlroot': 'https://master.apis.dev.publicdomainmap.org',
-                'oauth_consumer_key': '',
-                'oauth_secret': ''
-              }
-            ])
             .containerNode(container);
           window.context = window.id = context;  // for debugging
           context.init();
