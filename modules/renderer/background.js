@@ -463,39 +463,16 @@ export function rendererBackground(context) {
       const first = validBackgrounds.length && validBackgrounds[0];
       const isLastUsedValid = !!validBackgrounds.find(d => d.id && d.id === lastUsedBackground);
 
-        let best;
-        if (!requested && extent) {
-          best = background.sources(extent).find(s => s.best());
-        }
-
-        // Decide which background layer to display
-        if (requested && requested.indexOf('custom:') === 0) {
-          const template = requested.replace(/^custom:/, '');
-          const custom = background.findSource('custom');
-          background.baseLayerSource(custom.template(template));
-          prefs('background-custom-template', template);
-        } else {
-          background.baseLayerSource(
-            background.findSource(requested) ||
-            best ||
-            background.findSource(prefs('background-last-used')) ||
-            background.findSource('pd-USGS-Orthoimagery') || // preferred default imagery
-            first ||
-            background.findSource('none')
-          );
-        }
-
-        const locator = imageryIndex.backgrounds.find(d => d.overlay && d.default);
-        if (locator) {
-          background.toggleOverlayLayer(locator);
-        }
-
-        const overlays = (hash.overlays || '').split(',');
-        overlays.forEach(overlay => {
-          overlay = background.findSource(overlay);
-          if (overlay) {
-            background.toggleOverlayLayer(overlay);
-          }
+      let best;
+      if (!requestedBackground && extent) {
+        const viewArea = extent.area();
+        best = validBackgrounds.find(s => {
+          if (!s.best() || s.overlay) return false;
+          let bbox = turf_bbox(turf_bboxClip(
+                { type: 'MultiPolygon', coordinates: [ s.polygon || [extent.polygon()] ] },
+                extent.rectangle()));
+          let area = geoExtent(bbox.slice(0,2), bbox.slice(2,4)).area();
+          return area / viewArea > 0.5; // min visible size: 50% of viewport area
         });
       }
 
@@ -510,7 +487,7 @@ export function rendererBackground(context) {
           background.findSource(requestedBackground) ||
           best ||
           isLastUsedValid && background.findSource(lastUsedBackground) ||
-          background.findSource('Bing') ||
+          background.findSource('pd-USGS-Orthoimagery') || // preferred default imagery
           first ||
           background.findSource('none')
         );
