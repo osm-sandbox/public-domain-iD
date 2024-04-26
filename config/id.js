@@ -12,8 +12,8 @@ const nsiCdnUrl = ENV__ID_NSI_CDN_URL
 const defaultOsmApiConnections = {
   "live": {
     url: 'https://api.publicdomainmap.org',
-    client_id: 'ePbhZX3t5MPfgd0DUr7mlb5SoVGrO057JXar5_bTQM',
-    client_secret: '7aI0alNh7--w9FQkp7R524oOPFp7UL5K4FqrPtvDx_E'
+    client_id: 'qpIL0ebiVTF9jiHgnxrvP0rSxYdM3dw4rnZiHucidrQ',
+    client_secret: 'xle1IF4SslmkYHZ6AmVQwvzY1Q99s6IxQx545zXDF3A'
   },
   "dev": {
     url: 'https://master.api.dev.publicdomainmap.org',

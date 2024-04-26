@@ -2,7 +2,7 @@ import _throttle from 'lodash-es/throttle';
 
 import { dispatch as d3_dispatch } from 'd3-dispatch';
 import { json as d3_json, xml as d3_xml } from 'd3-fetch';
-import osmAuth from '../osm-auth';
+import { osmAuth } from 'osm-auth';
 import RBush from 'rbush';
 
 import { JXON } from '../util/jxon';
@@ -19,6 +19,7 @@ var dispatch = d3_dispatch('apiStatusChange', 'authLoading', 'authDone', 'change
 var urlroot = osmApiConnections[0].url;
 var redirectPath = window.location.origin + window.location.pathname;
 var oauth = osmAuth({
+    apiUrl: urlroot,
     url: urlroot,
     client_id: osmApiConnections[0].client_id,
     client_secret: osmApiConnections[0].client_secret,
