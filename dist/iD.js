@@ -67429,10 +67429,11 @@ ${content}</tr>
   var tiler5 = utilTiler();
   var dispatch7 = dispatch_default("apiStatusChange", "authLoading", "authDone", "change", "loading", "loaded", "loadedNotes");
   var urlroot = osmApiConnections[0].url;
+  var apiUrlroot = osmApiConnections[0].apiUrl || urlroot;
   var redirectPath = window.location.origin + window.location.pathname;
   var oauth = osmAuth({
-    apiUrl: urlroot,
     url: urlroot,
+    apiUrl: apiUrlroot,
     client_id: osmApiConnections[0].client_id,
     client_secret: osmApiConnections[0].client_secret,
     scope: "read_prefs write_prefs write_api read_gpx write_notes",
@@ -67749,15 +67750,19 @@ ${content}</tr>
       var props = {};
       props.id = uid;
       props.loc = getLoc(attrs);
-      var coincident = false;
-      var epsilon3 = 1e-5;
-      do {
-        if (coincident) {
-          props.loc = geoVecAdd(props.loc, [epsilon3, epsilon3]);
-        }
-        var bbox2 = geoExtent(props.loc).bbox();
-        coincident = _noteCache.rtree.search(bbox2).length;
-      } while (coincident);
+      if (!_noteCache.note[uid]) {
+        let coincident = false;
+        const epsilon3 = 1e-5;
+        do {
+          if (coincident) {
+            props.loc = geoVecAdd(props.loc, [epsilon3, epsilon3]);
+          }
+          const bbox2 = geoExtent(props.loc).bbox();
+          coincident = _noteCache.rtree.search(bbox2).length;
+        } while (coincident);
+      } else {
+        props.loc = _noteCache.note[uid].loc;
+      }
       for (var i2 = 0; i2 < childNodes.length; i2++) {
         var node = childNodes[i2];
         var nodeName = node.nodeName;
@@ -67772,7 +67777,7 @@ ${content}</tr>
       var note = new osmNote(props);
       var item = encodeNoteRtree(note);
       _noteCache.note[note.id] = note;
-      _noteCache.rtree.insert(item);
+      updateRtree4(item, true);
       return note;
     },
     user: function parseUser2(obj, uid) {
@@ -67900,6 +67905,9 @@ ${content}</tr>
     getUrlRoot: function() {
       return urlroot;
     },
+    getApiUrlRoot: function() {
+      return apiUrlroot;
+    },
     changesetURL: function(changesetID) {
       return urlroot + "/changeset/" + changesetID;
     },
@@ -67960,9 +67968,12 @@ ${content}</tr>
         }
       }
       if (this.authenticated()) {
-        return oauth.xhr({ method: "GET", path }, done);
+        return oauth.xhr({
+          method: "GET",
+          path
+        }, done);
       } else {
-        var url = urlroot + path;
+        var url = apiUrlroot + path;
         var controller = new AbortController();
         var fn;
         if (path.indexOf(".json") !== -1) {
@@ -67995,6 +68006,19 @@ ${content}</tr>
       var options2 = { skipSeen: false };
       this.loadFromAPI(
         "/api/0.6/" + type2 + "/" + osmID + (type2 !== "node" ? "/full" : "") + ".json",
+        function(err, entities) {
+          if (callback)
+            callback(err, { data: entities });
+        },
+        options2
+      );
+    },
+    // Load a single note by id , XML format
+    // GET /api/0.6/notes/#id
+    loadEntityNote: function(id2, callback) {
+      var options2 = { skipSeen: false };
+      this.loadFromAPI(
+        "/api/0.6/notes/" + id2,
         function(err, entities) {
           if (callback)
             callback(err, { data: entities });
@@ -68071,7 +68095,7 @@ ${content}</tr>
         var options2 = {
           method: "PUT",
           path: "/api/0.6/changeset/create",
-          options: { header: { "Content-Type": "text/xml" } },
+          headers: { "Content-Type": "text/xml" },
           content: JXON.stringify(changeset.asJXON())
         };
         _changeset.inflight = oauth.xhr(
@@ -68089,7 +68113,7 @@ ${content}</tr>
         var options3 = {
           method: "POST",
           path: "/api/0.6/changeset/" + changesetID + "/upload",
-          options: { header: { "Content-Type": "text/xml" } },
+          headers: { "Content-Type": "text/xml" },
           content: JXON.stringify(changeset.osmChangeJXON(changes))
         };
         _changeset.inflight = oauth.xhr(
@@ -68109,7 +68133,7 @@ ${content}</tr>
           oauth.xhr({
             method: "PUT",
             path: "/api/0.6/changeset/" + changeset.id + "/close",
-            options: { header: { "Content-Type": "text/xml" } }
+            headers: { "Content-Type": "text/xml" }
           }, function() {
             return true;
           });
@@ -68136,10 +68160,10 @@ ${content}</tr>
           return;
       }
       utilArrayChunk(toLoad, 150).forEach(function(arr) {
-        oauth.xhr(
-          { method: "GET", path: "/api/0.6/users.json?users=" + arr.join() },
-          wrapcb(this, done, _connectionID)
-        );
+        oauth.xhr({
+          method: "GET",
+          path: "/api/0.6/users.json?users=" + arr.join()
+        }, wrapcb(this, done, _connectionID));
       }.bind(this));
       function done(err, payload) {
         if (err)
@@ -68159,10 +68183,10 @@ ${content}</tr>
         delete _userCache.toLoad[uid];
         return callback(void 0, _userCache.user[uid]);
       }
-      oauth.xhr(
-        { method: "GET", path: "/api/0.6/user/" + uid + ".json" },
-        wrapcb(this, done, _connectionID)
-      );
+      oauth.xhr({
+        method: "GET",
+        path: "/api/0.6/user/" + uid + ".json"
+      }, wrapcb(this, done, _connectionID));
       function done(err, payload) {
         if (err)
           return callback(err);
@@ -68180,10 +68204,10 @@ ${content}</tr>
       if (_userDetails) {
         return callback(void 0, _userDetails);
       }
-      oauth.xhr(
-        { method: "GET", path: "/api/0.6/user/details.json" },
-        wrapcb(this, done, _connectionID)
-      );
+      oauth.xhr({
+        method: "GET",
+        path: "/api/0.6/user/details.json"
+      }, wrapcb(this, done, _connectionID));
       function done(err, payload) {
         if (err)
           return callback(err);
@@ -68209,10 +68233,10 @@ ${content}</tr>
         if (err) {
           return callback(err);
         }
-        oauth.xhr(
-          { method: "GET", path: "/api/0.6/changesets?user=" + user.id },
-          wrapcb(this, done, _connectionID)
-        );
+        oauth.xhr({
+          method: "GET",
+          path: "/api/0.6/changesets?user=" + user.id
+        }, wrapcb(this, done, _connectionID));
       }
       function done(err, xml) {
         if (err) {
@@ -68233,7 +68257,7 @@ ${content}</tr>
     // Fetch the status of the OSM API
     // GET /api/capabilities
     status: function(callback) {
-      var url = urlroot + "/api/capabilities";
+      var url = apiUrlroot + "/api/capabilities";
       var errback = wrapcb(this, done, _connectionID);
       xml_default(url).then(function(data) {
         errback(null, data);
@@ -68252,7 +68276,7 @@ ${content}</tr>
             try {
               var regex = new RegExp(regexString);
               regexes.push(regex);
-            } catch (e) {
+            } catch {
             }
           }
         }
@@ -68411,10 +68435,10 @@ ${content}</tr>
         comment += " #" + note.newCategory;
       }
       var path = "/api/0.6/notes?" + utilQsString({ lon: note.loc[0], lat: note.loc[1], text: comment });
-      _noteCache.inflightPost[note.id] = oauth.xhr(
-        { method: "POST", path },
-        wrapcb(this, done, _connectionID)
-      );
+      _noteCache.inflightPost[note.id] = oauth.xhr({
+        method: "POST",
+        path
+      }, wrapcb(this, done, _connectionID));
       function done(err, xml) {
         delete _noteCache.inflightPost[note.id];
         if (err) {
@@ -68456,10 +68480,10 @@ ${content}</tr>
       if (note.newComment) {
         path += "?" + utilQsString({ text: note.newComment });
       }
-      _noteCache.inflightPost[note.id] = oauth.xhr(
-        { method: "POST", path },
-        wrapcb(this, done, _connectionID)
-      );
+      _noteCache.inflightPost[note.id] = oauth.xhr({
+        method: "POST",
+        path
+      }, wrapcb(this, done, _connectionID));
       function done(err, xml) {
         delete _noteCache.inflightPost[note.id];
         if (err) {
@@ -68490,6 +68514,15 @@ ${content}</tr>
     },
     switch: function(newOptions) {
       urlroot = newOptions.url;
+      apiUrlroot = newOptions.apiUrl || urlroot;
+      if (newOptions.url && !newOptions.apiUrl) {
+        newOptions = {
+          ...newOptions,
+          apiUrl: newOptions.url
+        };
+      }
+      const oldOptions = utilObjectOmit(oauth.options(), "access_token");
+      oauth.options({ ...oldOptions, ...newOptions });
       this.reset();
       this.userChangesets(function() {
       });
@@ -68584,7 +68617,7 @@ ${content}</tr>
         that.userChangesets(function() {
         });
       }
-      return oauth.authenticate(done);
+      oauth.authenticate(done);
     },
     imageryBlocklists: function() {
       return _imageryBlocklists;
