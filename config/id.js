@@ -11,15 +11,15 @@ const nsiCdnUrl = ENV__ID_NSI_CDN_URL
 // api urls and settings
 const defaultOsmApiConnections = {
   "live": {
-    url: 'https://api.publicdomainmap.org',
-    client_id: 'qpIL0ebiVTF9jiHgnxrvP0rSxYdM3dw4rnZiHucidrQ',
-    client_secret: 'xle1IF4SslmkYHZ6AmVQwvzY1Q99s6IxQx545zXDF3A'
-  },
+    url: 'https://api.ncem.boxes.osmsandbox.us',
+    client_id: '7yDot3Plq2g0cbapXcTEpSKldYWDk-BTyeUNl6YtC0I',
+    client_secret: '7doG1Bj-xIKe7Atd5ch_n65veU-3I2nQSyvCTdmoPMY'
+  }/*,
   "dev": {
     url: 'https://master.api.dev.publicdomainmap.org',
     client_id: '',
     client_secret: ''
-  }
+  }*/
 };
 const osmApiConnections = [];
 if (ENV__ID_API_CONNECTION_URL !== null &&
@@ -40,7 +40,7 @@ if (ENV__ID_API_CONNECTION_URL !== null &&
 } else {
   // offer both "live" and "dev" servers by default
   osmApiConnections.push(defaultOsmApiConnections.live);
-  osmApiConnections.push(defaultOsmApiConnections.dev);
+  //osmApiConnections.push(defaultOsmApiConnections.dev);
 }
 
 // auxiliary OSM services

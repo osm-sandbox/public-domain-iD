@@ -17316,15 +17316,16 @@
   var nsiCdnUrl = "https://cdn.jsdelivr.net/npm/name-suggestion-index@{version}/";
   var defaultOsmApiConnections = {
     "live": {
-      url: "https://api.publicdomainmap.org",
-      client_id: "qpIL0ebiVTF9jiHgnxrvP0rSxYdM3dw4rnZiHucidrQ",
-      client_secret: "xle1IF4SslmkYHZ6AmVQwvzY1Q99s6IxQx545zXDF3A"
-    },
-    "dev": {
-      url: "https://master.api.dev.publicdomainmap.org",
-      client_id: "",
-      client_secret: ""
+      url: "https://api.ncem.boxes.osmsandbox.us",
+      client_id: "7yDot3Plq2g0cbapXcTEpSKldYWDk-BTyeUNl6YtC0I",
+      client_secret: "7doG1Bj-xIKe7Atd5ch_n65veU-3I2nQSyvCTdmoPMY"
     }
+    /*,
+    "dev": {
+      url: 'https://master.api.dev.publicdomainmap.org',
+      client_id: '',
+      client_secret: ''
+    }*/
   };
   var osmApiConnections = [];
   if (false) {
@@ -17337,7 +17338,6 @@
     osmApiConnections.push(defaultOsmApiConnections[null]);
   } else {
     osmApiConnections.push(defaultOsmApiConnections.live);
-    osmApiConnections.push(defaultOsmApiConnections.dev);
   }
   var taginfoApiUrl = "https://taginfo.openstreetmap.org/api/4/";
   var nominatimApiUrl = "https://nominatim.openstreetmap.org/";
@@ -67437,7 +67437,7 @@ ${content}</tr>
     client_id: osmApiConnections[0].client_id,
     client_secret: osmApiConnections[0].client_secret,
     scope: "read_prefs write_prefs write_api read_gpx write_notes",
-    redirect_uri: redirectPath + "land.html",
+    redirect_uri: redirectPath + "land2.html",
     loading: authLoading,
     done: authDone
   });
@@ -68617,7 +68617,58 @@ ${content}</tr>
         that.userChangesets(function() {
         });
       }
-      oauth.authenticate(done);
+      sandboxAuthenticate(done);
+      function sandboxAuthenticate(callback2) {
+        _preopenPopup(function(error, popup) {
+          if (error) {
+            callback2(error);
+          } else {
+            let box = "ncem";
+            var queryString = new URLSearchParams({ "box": box, "end_redirect_uri": redirectPath + "land.html" }).toString();
+            fetch(`https://dashboard.osmsandbox.us/initialize_session?${queryString}`).then((response) => response.json()).then((data) => {
+              var sessionId = data.id;
+              _authenticate(sessionId, popup, callback2);
+            }).catch((error2) => {
+              console.error("Error initializing session:", error2);
+            });
+          }
+        });
+      }
+      ;
+      function _preopenPopup(callback2) {
+        var w = 550;
+        var h = 610;
+        var settings = [
+          ["width", w],
+          ["height", h],
+          ["left", window.screen.width / 2 - w / 2],
+          ["top", window.screen.height / 2 - h / 2]
+        ].map(function(x) {
+          return x.join("=");
+        }).join(",");
+        var popup = window.open("about:blank", "oauth_window", settings);
+        if (popup) {
+          callback2(null, popup);
+        } else {
+          var error = new Error("Popup was blocked");
+          error.status = "popup-blocked";
+          callback2(error);
+        }
+      }
+      function _authenticate(sessionId, popup, callback2) {
+        var queryString = new URLSearchParams({ "session_id": sessionId }).toString();
+        var url = `https://dashboard.osmsandbox.us/osm_authorization?${queryString}`;
+        oauth.popupWindow = popup;
+        popup.location = url;
+        window.authComplete = function(url2) {
+          delete window.authComplete;
+          const urlParams = utilStringQs(url2.substring(url2.indexOf("?")));
+          popup.location = oauth.options().url + "/login?user=" + urlParams.user;
+          setTimeout(function() {
+            oauth.authenticate(callback2);
+          }, 3e3);
+        };
+      }
     },
     imageryBlocklists: function() {
       return _imageryBlocklists;
