@@ -9,7 +9,7 @@ fs.readdir(dir, (err, files) => {
     fs.readFile(path, (err, data) => {
       if (err) throw err;
       var out = new String(data)
-        .replace(/\(https:\/\/github.com\/openstreetmap\/iD\)/g, '(https://github.com/publicdomainmap/editor)')
+        .replace(/\(https:\/\/github.com\/openstreetmap\/iD\)/g, '(https://github.com/osm-sandbox/public-domain-id)')
         .replace(/OpenStreetMap/g, 'Public Domain Map')
         .replace(/https:\/\/www.openstreetmap.org\/copyright/g, 'https://www.publicdomainmap.org/license')
         .replace(/\(https:\/\/www.openstreetmap.org\/\)/g, '(https://www.publicdomainmap.org/)')

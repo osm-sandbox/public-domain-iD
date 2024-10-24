@@ -31,7 +31,7 @@ export function uiVersion(context) {
         selection
             .append('a')
             .attr('target', '_blank')
-            .attr('href', 'https://github.com/publicdomainmap/editor')
+            .attr('href', 'https://github.com/osm-sandbox/public-domain-id')
             .text(currVersion);
 
         /* PDMap - we don't keep a changelog at the moment
