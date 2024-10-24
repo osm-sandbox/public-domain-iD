@@ -104,7 +104,6 @@ export function uiSuccess(context) {
       .append('h3')
       .call(t.append('success.thank_you' + (_location ? '_location' : ''), { where: _location }));
 
-/* PDMap - don't show broken changeset link 
     summary
       .append('p')
       .call(t.append('success.help_html'))
@@ -156,7 +155,6 @@ export function uiSuccess(context) {
       .html(t.html('success.changeset_id', {
         changeset_id: { html: `<a href="${changesetURL}" target="_blank">${_changeset.id}</a>` }
       }));
-*/
 
     // Get OSM community index features intersecting the map..
     /* PDMap - don't show OSM communities

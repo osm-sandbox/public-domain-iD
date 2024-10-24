@@ -48557,6 +48557,10 @@ ${content}</tr>
         return;
       }
       selection2.append("span").attr("class", "changeset-id").text(changeset);
+      var links = selection2.append("div").attr("class", "links");
+      if (osm) {
+        links.append("a").attr("class", "changeset-osm-link").attr("href", osm.changesetURL(changeset)).attr("target", "_blank").call(_t.append("info_panels.history.changeset_link"));
+      }
     }
     function redraw(selection2) {
       var selectedNoteID = context.selectedNoteID();
@@ -48610,7 +48614,7 @@ ${content}</tr>
       }
       var links = selection2.append("div").attr("class", "links");
       if (osm) {
-        links.append("a").attr("class", "view-history-on-osm").attr("href", "https://history.publicdomainmap.org/#/" + entity.type + "/" + entity.osmId()).attr("target", "_blank").call(_t.append("info_panels.history.history_link"));
+        links.append("a").attr("class", "view-history-on-osm").attr("href", osm.entityURL(entity)).attr("target", "_blank").call(_t.append("info_panels.history.history_link"));
       }
       var list = selection2.append("ul");
       list.append("li").call(_t.append("info_panels.history.version", { suffix: ":" })).append("span").text(entity.version);
@@ -60703,7 +60707,7 @@ ${content}</tr>
     function viewOnOSM(selection2) {
       var url;
       if (_what instanceof osmEntity) {
-        url = "https://history.publicdomainmap.org/#/" + _what.type + "/" + _what.osmId();
+        url = context.connection().entityURL(_what);
       } else if (_what instanceof osmNote) {
         url = context.connection().noteURL(_what);
       }
@@ -61604,6 +61608,19 @@ ${content}</tr>
       let body = selection2.append("div").attr("class", "body save-success fillL");
       let summary = body.append("div").attr("class", "save-summary");
       summary.append("h3").call(_t.append("success.thank_you" + (_location ? "_location" : ""), { where: _location }));
+      summary.append("p").call(_t.append("success.help_html")).append("a").attr("class", "link-out").attr("target", "_blank").attr("href", _t("success.help_link_url")).call(svgIcon("#iD-icon-out-link", "inline")).append("span").call(_t.append("success.help_link_text"));
+      let osm = context.connection();
+      if (!osm)
+        return;
+      let changesetURL = osm.changesetURL(_changeset2.id);
+      let table = summary.append("table").attr("class", "summary-table");
+      let row = table.append("tr").attr("class", "summary-row");
+      row.append("td").attr("class", "cell-icon summary-icon").append("a").attr("target", "_blank").attr("href", changesetURL).append("svg").attr("class", "logo-small").append("use").attr("xlink:href", "#iD-logo-osm");
+      let summaryDetail = row.append("td").attr("class", "cell-detail summary-detail");
+      summaryDetail.append("a").attr("class", "cell-detail summary-view-on-osm").attr("target", "_blank").attr("href", changesetURL).call(_t.append("success.view_on_osm"));
+      summaryDetail.append("div").html(_t.html("success.changeset_id", {
+        changeset_id: { html: `<a href="${changesetURL}" target="_blank">${_changeset2.id}</a>` }
+      }));
     }
     success.changeset = function(val) {
       if (!arguments.length)

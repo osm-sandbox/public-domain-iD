@@ -66,7 +66,6 @@ export function uiPanelHistory(context) {
             .attr('class', 'changeset-id')
             .text(changeset);
 
-        /* PDMap - hide OSM links
         var links = selection
             .append('div')
             .attr('class', 'links');
@@ -79,7 +78,7 @@ export function uiPanelHistory(context) {
                 .attr('target', '_blank')
                 .call(t.append('info_panels.history.changeset_link'));
         }
-
+        /* PDMap - hide OSM-only links
         links
             .append('a')
             .attr('class', 'changeset-osmcha-link')
@@ -197,7 +196,7 @@ export function uiPanelHistory(context) {
             links
                 .append('a')
                 .attr('class', 'view-history-on-osm')
-                .attr('href', 'https://history.publicdomainmap.org/#/' +  entity.type + '/' + entity.osmId())
+                .attr('href', osm.entityURL(entity))
                 .attr('target', '_blank')
                 .call(t.append('info_panels.history.history_link'));
         }
