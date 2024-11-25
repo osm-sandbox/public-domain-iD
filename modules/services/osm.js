@@ -18,7 +18,7 @@ var dispatch = d3_dispatch('apiStatusChange', 'authLoading', 'authDone', 'change
 
 var urlroot = osmApiConnections[0].url;
 var apiUrlroot = osmApiConnections[0].apiUrl || urlroot;
-var redirectPath = "https://tasks.openstreetmap.us/static/pdeditor/";//window.location.origin + window.location.pathname;
+var redirectPath = osmApiConnections[0].redirect_uri_base || (window.location.origin + window.location.pathname);
 var oauth = osmAuth({
     url: urlroot,
     apiUrl: apiUrlroot,

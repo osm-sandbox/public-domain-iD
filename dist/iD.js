@@ -67447,7 +67447,7 @@ ${content}</tr>
   var dispatch7 = dispatch_default("apiStatusChange", "authLoading", "authDone", "change", "loading", "loaded", "loadedNotes");
   var urlroot = osmApiConnections[0].url;
   var apiUrlroot = osmApiConnections[0].apiUrl || urlroot;
-  var redirectPath = "https://tasks.openstreetmap.us/static/pdeditor/";
+  var redirectPath = osmApiConnections[0].redirect_uri_base || window.location.origin + window.location.pathname;
   var oauth = osmAuth({
     url: urlroot,
     apiUrl: apiUrlroot,
