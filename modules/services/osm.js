@@ -16,6 +16,7 @@ import { osmApiConnections } from '../../config/id.js';
 var tiler = utilTiler();
 var dispatch = d3_dispatch('apiStatusChange', 'authLoading', 'authDone', 'change', 'loading', 'loaded', 'loadedNotes');
 
+// These options are only for the initial load. Any changes need to be reflected in the `switch` function as well
 var urlroot = osmApiConnections[0].url;
 var apiUrlroot = osmApiConnections[0].apiUrl || urlroot;
 var redirectPath = osmApiConnections[0].redirect_uri_base || (window.location.origin + window.location.pathname);
@@ -1318,10 +1319,12 @@ export default {
     switch: function(newOptions) {
         urlroot = newOptions.url;
         apiUrlroot = newOptions.apiUrl || urlroot;
+        redirectPath = newOptions.redirect_uri_base || (window.location.origin + window.location.pathname);
         if (newOptions.url && !newOptions.apiUrl) {
             newOptions = {
                 ...newOptions,
-                apiUrl: newOptions.url
+                apiUrl: newOptions.url,
+                redirect_uri: redirectPath + 'land2.html'
             };
         }
 
