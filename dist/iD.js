@@ -68532,10 +68532,12 @@ ${content}</tr>
     switch: function(newOptions) {
       urlroot = newOptions.url;
       apiUrlroot = newOptions.apiUrl || urlroot;
+      redirectPath = newOptions.redirect_uri_base || window.location.origin + window.location.pathname;
       if (newOptions.url && !newOptions.apiUrl) {
         newOptions = {
           ...newOptions,
-          apiUrl: newOptions.url
+          apiUrl: newOptions.url,
+          redirect_uri: redirectPath + "land2.html"
         };
       }
       const oldOptions = utilObjectOmit(oauth.options(), "access_token");
