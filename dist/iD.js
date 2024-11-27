@@ -68642,7 +68642,8 @@ ${content}</tr>
           if (error) {
             callback2(error);
           } else {
-            let box = "ncem";
+            let matches = /https:\/\/api\.(.+)\.boxes\.osmsandbox\.us/gi.exec(apiUrlroot);
+            let box = matches && matches.length > 1 && matches[1];
             var queryString = new URLSearchParams({ "box": box, "end_redirect_uri": redirectPath + "land.html" }).toString();
             fetch(`https://dashboard.osmsandbox.us/initialize_session?${queryString}`).then((response) => response.json()).then((data) => {
               var sessionId = data.id;
