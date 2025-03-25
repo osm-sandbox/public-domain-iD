@@ -155,7 +155,6 @@ _Breaking developer changes, which may affect downstream projects or sites that 
 * Add Ladin (language code `lld`) as an available option for multilingual names
 * Add 30 indigenous languages as dropdown options for multilingual names ([#10684], thanks [@k-yle])
 * Add `lang`uage attributes to input fields for multilingual names, as well as wikidata and wikipedia fields ([#10716], thanks [@mapmeld])
-#### :hourglass: Performance
 #### :mortar_board: Walkthrough / Help
 * Fix walkthrough from showing tooltips on wrong location under certain circumstances ([#10650], [#10624], [#10634])
 #### :rocket: Presets
@@ -186,6 +185,7 @@ _Breaking developer changes, which may affect downstream projects or sites that 
 [#10650]: https://github.com/openstreetmap/iD/issues/10650
 [#10651]: https://github.com/openstreetmap/iD/issues/10651
 [#10653]: https://github.com/openstreetmap/iD/issues/10653
+[#10661]: https://github.com/openstreetmap/iD/issues/10661
 [#10683]: https://github.com/openstreetmap/iD/issues/10683
 [#10684]: https://github.com/openstreetmap/iD/pull/10684
 [#10716]: https://github.com/openstreetmap/iD/pull/10716
