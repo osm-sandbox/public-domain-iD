@@ -4,7 +4,6 @@ const fs = require('fs');
 const prettyStringify = require('json-stringify-pretty-compact');
 const shell = require('shelljs');
 const YAML = require('js-yaml');
-const fetch = require('node-fetch');
 const lodash = require('lodash');
 
 const languageNames = require('./language_names.js');
@@ -15,6 +14,13 @@ const fas = require('@fortawesome/free-solid-svg-icons').fas;
 const far = require('@fortawesome/free-regular-svg-icons').far;
 const fab = require('@fortawesome/free-brands-svg-icons').fab;
 fontawesome.library.add(fas, far, fab);
+
+const dotenv = require('dotenv');
+dotenv.config();
+const presetsVersion = require('../package.json').devDependencies['@openstreetmap/id-tagging-schema'];
+/* eslint-disable no-process-env */
+const presetsUrl = (process.env.ID_PRESETS_CDN_URL || 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@{presets_version}').replace('{presets_version}', presetsVersion);
+/* eslint-enable no-process-env */
 
 let _currBuild = null;
 
@@ -92,14 +98,9 @@ function buildData() {
     minifyJSON('data/territory_languages.json', 'dist/data/territory_languages.min.json'),
     Promise.all([
       // Fetch the icons that are needed by the expected tagging schema version
-      fetch('https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@3/dist/presets.min.json'),
-      fetch('https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@3/dist/preset_categories.min.json'),
-      fetch('https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@3/dist/fields.min.json'),
-      // WARNING: we fetch the bleeding edge data too to make sure we're always hosting the
-      // latest icons, but note that the format could break at any time
-      fetch('https://raw.githubusercontent.com/openstreetmap/id-tagging-schema/main/dist/presets.min.json'),
-      fetch('https://raw.githubusercontent.com/openstreetmap/id-tagging-schema/main/dist/preset_categories.min.json'),
-      fetch('https://raw.githubusercontent.com/openstreetmap/id-tagging-schema/main/dist/fields.min.json')
+      fetchOrRequire(`${presetsUrl}/dist/presets.min.json`),
+      fetchOrRequire(`${presetsUrl}/dist/preset_categories.min.json`),
+      fetchOrRequire(`${presetsUrl}/dist/fields.min.json`)
     ])
     .then(responses => Promise.all(responses.map(response => response.json())))
     .then((results) => {
@@ -111,8 +112,21 @@ function buildData() {
           if (datum.icon && /^fa[srb]-/.test(datum.icon)) {
             faIcons.add(datum.icon);
           }
+          if (datum.icons) {
+            Object.values(datum.icons)
+              .filter(icon => /^fa[srb]-/.test(icon))
+              .forEach(icon => faIcons.add(icon));
+          }
         }
       });
+    }).then(() =>
+      // also fetch the bleeding edge data too to make sure we're always hosting the latest icons
+      fetch('https://raw.githubusercontent.com/openstreetmap/id-tagging-schema/interim/icons.json')
+    ).then(response => response.json()).then(cuttingEdgeIcons => {
+      cuttingEdgeIcons
+        .filter(icon => /^fa[srb]-/.test(icon))
+        .forEach(icon => faIcons.add(icon));
+    }).then(() => {
       // copy over only those Font Awesome icons that we need
       writeFaIcons(faIcons);
     })
@@ -172,7 +186,12 @@ function generateTerritoryLanguages() {
   // override/adjust some territory languages which are not included in CLDR data
   territoryLanguages.pk.push('pnb', 'scl', 'trw', 'kls'); // https://github.com/openstreetmap/iD/pull/9242
   lodash.pull(territoryLanguages.pk, 'pa-Arab', 'lah', 'tg-Arab'); // - " -
-  territoryLanguages.it.push('lld'); // https://en.wikipedia.org/wiki/Ladin_language
+  territoryLanguages.au = [
+     'en', 'aus', 'aer', 'aoi', 'bdy', 'coa', 'dgw', 'gjm', 'gjr', 'gup',
+    'jay', 'mwf', 'mwp', 'nys', 'pih', 'piu', 'pjt', 'rop', 'tcs', 'tiw',
+    'ulk', 'wbp', 'wrh', 'wth', 'wyi', 'xdk', 'xni', 'xph', 'xrd', 'zku'
+  ]; // https://github.com/openstreetmap/iD/pull/10684
+  territoryLanguages.nz.push('rrm'); // https://github.com/openstreetmap/iD/pull/10684
 
   return territoryLanguages;
 }
@@ -256,6 +275,15 @@ function minifyJSON(inPath, outPath) {
 
     });
   });
+}
+
+
+function fetchOrRequire(url) {
+  if (url.startsWith('.')) {
+    return Promise.resolve({ json: () => Promise.resolve(require(url)) });
+  } else {
+    return fetch(url);
+  }
 }
 
 

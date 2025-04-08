@@ -9,6 +9,7 @@ import { JXON } from '../util/jxon';
 import { geoExtent, geoRawMercator, geoVecAdd, geoZoomToScale } from '../geo';
 import { osmEntity, osmNode, osmNote, osmRelation, osmWay } from '../osm';
 import { utilArrayChunk, utilArrayGroupBy, utilArrayUniq, utilObjectOmit, utilRebind, utilTiler, utilQsString, utilStringQs } from '../util';
+import { localizer } from '../core/localizer.js';
 
 import { osmApiConnections } from '../../config/id.js';
 
@@ -20,11 +21,11 @@ var dispatch = d3_dispatch('apiStatusChange', 'authLoading', 'authDone', 'change
 var urlroot = osmApiConnections[0].url;
 var apiUrlroot = osmApiConnections[0].apiUrl || urlroot;
 var redirectPath = osmApiConnections[0].redirect_uri_base || (window.location.origin + window.location.pathname);
+
 var oauth = osmAuth({
     url: urlroot,
     apiUrl: apiUrlroot,
     client_id: osmApiConnections[0].client_id,
-    client_secret: osmApiConnections[0].client_secret,
     scope: 'read_prefs write_prefs write_api read_gpx write_notes',
     redirect_uri: redirectPath + 'land2.html',
     loading: authLoading,
@@ -525,8 +526,8 @@ function updateRtree(item, replace) {
 function wrapcb(thisArg, callback, cid) {
     return function(err, result) {
         if (err) {
-            // 400 Bad Request, 401 Unauthorized, 403 Forbidden..
-            if (err.status === 400 || err.status === 401 || err.status === 403) {
+            // 401 Unauthorized, 403 Forbidden
+            if (err.status === 401 || err.status === 403) {
                 thisArg.logout();
             }
             return callback.call(thisArg, err);
@@ -643,23 +644,21 @@ export default {
 
             var isAuthenticated = that.authenticated();
 
-            // 400 Bad Request, 401 Unauthorized, 403 Forbidden
-            // Logout and retry the request..
+            // 401 Unauthorized, 403 Forbidden
+            // Logout and retry the request.
             if (isAuthenticated && err && err.status &&
-                    (err.status === 400 || err.status === 401 || err.status === 403)) {
+                    (err.status === 401 || err.status === 403)) {
                 that.logout();
                 that.loadFromAPI(path, callback, options);
-
-            // else, no retry..
+            // else, no retry.
             } else {
                 // 509 Bandwidth Limit Exceeded, 429 Too Many Requests
-                // Set the rateLimitError flag and trigger a warning..
+                // Set the rateLimitError flag and trigger a warning.
                 if (!isAuthenticated && !_rateLimitError && err && err.status &&
                         (err.status === 509 || err.status === 429)) {
                     _rateLimitError = err;
                     dispatch.call('change');
                     that.reloadApiStatus();
-
                 } else if ((err && _cachedApiStatus === 'online') ||
                     (!err && _cachedApiStatus !== 'online')) {
                     // If the response's error state doesn't match the status,
@@ -877,6 +876,16 @@ export default {
                 }, function() { return true; });
             }
         }
+    },
+
+    /** updates the tags on an existing unclosed changeset */
+    // PUT /api/0.6/changeset/#id
+    updateChangesetTags: (changeset) => {
+        return oauth.fetch(`${oauth.options().apiUrl}/api/0.6/changeset/${changeset.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'text/xml' },
+            body: JXON.stringify(changeset.asJXON())
+        });
     },
 
 
@@ -1420,7 +1429,8 @@ export default {
     },
 
 
-    authenticate: function(callback) {
+    /** @param {import('osm-auth').LoginOptions} options */
+    authenticate: function(callback, options) {
         var that = this;
         var cid = _connectionID;
         _userChangesets = undefined;
@@ -1440,11 +1450,10 @@ export default {
             if (callback) callback(err, res);
             that.userChangesets(function() {});  // eagerly load user details/changesets
         }
-        //oauth.authenticate(done);
 
-        sandboxAuthenticate(done);
+        sandboxAuthenticate(done, options);
 
-        function sandboxAuthenticate(callback) {
+        function sandboxAuthenticate(callback, options) {
         
             _preopenPopup(function(error, popup) {
               if (error) {
@@ -1457,7 +1466,7 @@ export default {
                     .then(response => response.json())
                     .then(data => {
                         var sessionId = data.id;
-                        _authenticate(sessionId, popup, callback);
+                        _authenticate(sessionId, popup, callback, options);
                     })
                     .catch(error => {
                         console.error('Error initializing session:', error);
@@ -1502,7 +1511,7 @@ export default {
          * @param  {Window}    popup     Popup Window to use for the authentication page, should be undefined when using singlepage mode
          * @param  {function}  callback  Errback-style callback that accepts `(err, result)`
          */
-        function _authenticate(sessionId, popup, callback) {
+        function _authenticate(sessionId, popup, callback, options) {
 
             var queryString = new URLSearchParams({ "session_id": sessionId }).toString();
             var url = `https://dashboard.osmsandbox.us/osm_authorization?${queryString}`;
@@ -1519,8 +1528,14 @@ export default {
                 const urlParams = utilStringQs(url.substring(url.indexOf('?')));
                 popup.location = oauth.options().url + '/login?user=' + urlParams.user;
 
+                // ensure the locale is correctly set before opening the popup
+                oauth.options({
+                    ...oauth.options(),
+                    locale: localizer.localeCode(),
+                });
+
                 setTimeout(function() {
-                    oauth.authenticate(callback);
+                    oauth.authenticate(callback, options);
                 }, 3000); //TODO: don't use a timeout
             };
         }

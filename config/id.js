@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 // cdns for external data packages
 const presetsCdnUrl = ENV__ID_PRESETS_CDN_URL
   || 'https://cdn.jsdelivr.net/npm/@openstreetmap/id-tagging-schema@{presets_version}/';
@@ -23,14 +25,13 @@ const defaultOsmApiConnections = {
 };
 const osmApiConnections = [];
 if (ENV__ID_API_CONNECTION_URL !== null &&
-    ENV__ID_API_CONNECTION_CLIENT_ID !== null &&
-    ENV__ID_API_CONNECTION_CLIENT_SECRET !== null) {
+    ENV__ID_API_CONNECTION_CLIENT_ID !== null) {
   // user specified API Oauth2 connection details
   // see https://wiki.openstreetmap.org/wiki/OAuth#OAuth_2.0_2
   osmApiConnections.push({
     url: ENV__ID_API_CONNECTION_URL,
-    client_id: ENV__ID_API_CONNECTION_CLIENT_ID,
-    client_secret: ENV__ID_API_CONNECTION_CLIENT_SECRET
+    apiUrl: ENV__ID_API_CONNECTION_API_URL || ENV__ID_API_CONNECTION_URL,
+    client_id: ENV__ID_API_CONNECTION_CLIENT_ID
   });
 } else if (ENV__ID_API_CONNECTION !== null &&
   defaultOsmApiConnections[ENV__ID_API_CONNECTION] !== undefined) {
@@ -49,6 +50,12 @@ const taginfoApiUrl = ENV__ID_TAGINFO_API_URL
 const nominatimApiUrl = ENV__ID_NOMINATIM_API_URL
   || 'https://nominatim.openstreetmap.org/';
 
+// support/donation message on upload success screen
+// const showDonationMessage = ENV__ID_SHOW_DONATION_MESSAGE !== 'false';
+
+// PDMap: hardcode false
+const showDonationMessage = false;
+
 export {
   presetsCdnUrl,
   ociCdnUrl,
@@ -57,4 +64,5 @@ export {
   osmApiConnections,
   taginfoApiUrl,
   nominatimApiUrl,
+  showDonationMessage
 };

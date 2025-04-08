@@ -27,13 +27,12 @@ var readOnlyTags = [
     /^resolved:/,
     /^closed:note$/,
     /^closed:keepright$/,
-    /^closed:improveosm:/,
     /^closed:osmose:/
 ];
 
 // treat most punctuation (except -, _, +, &) as hashtag delimiters - #4398
 // from https://stackoverflow.com/a/25575009
-var hashtagRegex = /(#[^\u2000-\u206F\u2E00-\u2E7F\s\\'!"#$%()*,.\/:;<=>?@\[\]^`{|}~]+)/g;
+var hashtagRegex = /([#＃][^\u2000-\u206F\u2E00-\u2E7F\s\\'!"#$%()*,.\/:;<=>?@\[\]^`{|}~]+)/g;
 
 
 export function uiCommit(context) {
@@ -124,7 +123,7 @@ export function uiCommit(context) {
                 }
             });
 
-            tags.source = context.cleanTagValue(sources.join(';'));
+            tags.source = context.cleanTagValue(sources.filter(Boolean).join(';'));
         }
 
         context.changeset = new osmChangeset({ tags: tags });
@@ -153,12 +152,6 @@ export function uiCommit(context) {
             var krClosed = services.keepRight.getClosedIDs();
             if (krClosed.length) {
                 tags['closed:keepright'] = context.cleanTagValue(krClosed.join(';'));
-            }
-        }
-        if (services.improveOSM) {
-            var iOsmClosed = services.improveOSM.getClosedCounts();
-            for (itemType in iOsmClosed) {
-                tags['closed:improveosm:' + itemType] = context.cleanTagValue(iOsmClosed[itemType].toString());
             }
         }
         if (services.osmose) {
@@ -470,9 +463,6 @@ export function uiCommit(context) {
 
     function changeTags(_, changed, onInput) {
         if (changed.hasOwnProperty('comment')) {
-            if (changed.comment === undefined) {
-                changed.comment = '';
-            }
             if (!onInput) {
                 prefs('comment', changed.comment);
                 prefs('commentDate', Date.now());
