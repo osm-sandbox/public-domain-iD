@@ -22096,7 +22096,7 @@
     version: "2.32.0",
     description: "iD fork compatible with the OSM Sandbox",
     main: "dist/iD.min.js",
-    repository: "github:osm-sandbox/public-domain-id",
+    repository: "github:osm-sandbox/sandbox-id",
     homepage: "https://github.com/publicdomainmap/publicdomainmap",
     bugs: "https://github.com/publicdomainmap/publicdomainmap/issues",
     keywords: [
@@ -22114,7 +22114,7 @@
       "build:js:watch": "node config/esbuild.config.mjs --watch",
       clean: "shx rm -f dist/*.js dist/*.map dist/*.css dist/img/*.svg",
       predeploy: "node pd_locales.js",
-      "deploy:docker": "mkdir -p /var/www/osm-sandbox/public-domain-id/main/iD && cp -Rf dist/* /var/www/osm-sandbox/public-domain-id/main/iD && cp index.html /var/www/osm-sandbox/public-domain-id/main/iD/id.html",
+      "deploy:docker": "mkdir -p /var/www/osm-sandbox/sandbox-id/main/iD && cp -Rf dist/* /var/www/osm-sandbox/sandbox-id/main/iD && cp index.html /var/www/osm-sandbox/sandbox-id/main/iD/id.html",
       "deploy:js": "run-s build:js dist:min",
       dist: "run-p dist:**",
       "dist:mapillary": "shx mkdir -p dist/mapillary-js && shx cp -R node_modules/mapillary-js/dist/* dist/mapillary-js/",
@@ -68998,7 +68998,7 @@
       sawVersion = currVersion;
     }
     return function(selection2) {
-      selection2.append("a").attr("target", "_blank").attr("href", "https://github.com/osm-sandbox/public-domain-id").text(currVersion);
+      selection2.append("a").attr("target", "_blank").attr("href", "https://github.com/osm-sandbox/sandbox-id").text(currVersion);
     };
   }
 
