@@ -35,6 +35,103 @@ _Breaking developer changes, which may affect downstream projects or sites that 
 [@xxxx]: https://github.com/xxxx
 -->
 
+# v2.34.0
+##### 2025-05-12
+
+#### :sparkles: Usability & Accessibility
+* Show full relation label as hover-text in _membership editor_, disambiguate relations with duplicate labels by appending the relation id ([#10492])
+* More consistently round non-integer initial zoom when zooming in/out when using the zoom buttons or `+`/`-` keyboard shortcuts
+* Render map _points_ over _vertices_ ([#11006])
+#### :scissors: Operations
+* Preserve the sum of certain tags (`step_count`, `parking:*:capacity`) during _join_ operation ([#10492], thanks [@ChaitanyaKadu03])
+* Preserve total value of `parking:*:capacity` tags during _split_ operation by distributing it proportionally to the resulting ways ([#10492])
+* A _split_ operation will now only split the ways that contain all selected nodes when more than one node is selected ([#10997])
+#### :camera: Street-Level
+* Keep photo viewer open when disabling Panoramax overlay ([#10966])
+* Don't de-select map feature when clicking on a street level photo ([#10959])
+* Disable keyboard controls for all panorama viewers, allows to use regular mapping shortcuts while the viewer is focussed ([#11011])
+* Keep active photo viewer state properly during changeset upload ([#10987]) and when switching between photos of different services
+#### :white_check_mark: Validation
+* Show unchanged tags of a [deprecation rule](https://github.com/ideditor/schema-builder?tab=readme-ov-file#deprecations) explicitly in the validation warning ([#10104])
+#### :bug: Bugfixes
+* Fix removed tooltips from re-appearing when using keyboard navigation ([#9873])
+* Only consider feature with proper lifecycle tags in "past/futures" layer ([#10943])
+* Fix zoom level from resetting to the starting value when switching background imagery layer during the zoom transition
+* Fix invalid single-noded ways from being created by a _split_ operation under certain conditions when multiple nodes are selected ([#10997])
+* Properly highlight changed features when they are hovered in the upload dialog's list of changes ([#10030])
+#### :mortar_board: Walkthrough / Help
+* Change background imagery of walkthrough tutorial to Bing (the previous source is not available anymore)
+#### :rocket: Presets
+* Suggest housenumber/housename values from surrounding areas ([#10946])
+#### :hammer: Development
+* Drop support for Node 18
+
+[#9873]: https://github.com/openstreetmap/iD/issues/9873
+[#10030]: https://github.com/openstreetmap/iD/issues/10030
+[#10104]: https://github.com/openstreetmap/iD/issues/10104
+[#10492]: https://github.com/openstreetmap/iD/issues/10492
+[#10942]: https://github.com/openstreetmap/iD/pull/10942
+[#10943]: https://github.com/openstreetmap/iD/pull/10943
+[#10946]: https://github.com/openstreetmap/iD/issues/10946
+[#10959]: https://github.com/openstreetmap/iD/issues/10959
+[#10966]: https://github.com/openstreetmap/iD/issues/10966
+[#10987]: https://github.com/openstreetmap/iD/issues/10987
+[#10997]: https://github.com/openstreetmap/iD/issues/10997
+[#11006]: https://github.com/openstreetmap/iD/issues/11006
+[#11011]: https://github.com/openstreetmap/iD/issues/11011
+[@ChaitanyaKadu03]: https://github.com/ChaitanyaKadu03
+
+
+# v2.33.0
+##### 2025-04-09
+
+#### :sparkles: Usability & Accessibility
+* Allow searching for coordinates in localized number format in search box ([#10805])
+* Improve visibility of oneway arrows for dashed line styles (such as railway lines, foot paths, etc.): they are now rendered such that the arrows seamlessly integrate into the line dashes ([#10849])
+#### :scissors: Operations
+* Fix unexpected behavior of squaring operation on individual vertices ([#10401])
+#### :camera: Street-Level
+* Replace date filter input boxes with a slider to select photos by freshness ([#10394], thanks [@mattiapezzotti])
+* Preserve relative viewing direction when switching between 360° panoramas in Panoramax([#10392], thanks [@mattiapezzotti])
+* Add keyboard shortcut `Shift + P` to toggle active street level photo layers ([#10394], thanks [@mattiapezzotti]))
+* Add prev/next button to viewer for local georeferenced photos ([#10852], thanks [@0xatulpatil])
+* Add button to directly attach the id of a Panoramax photo as the `panoramax` tag of selected map features ([#10856], thanks [@MohamedAli00949])
+* Fix unreliable availability of KartaView images by requesting full resolution images ([#10927])
+#### :white_check_mark: Validation
+* The Suspicious Names validator warning now also compares the Name field to the preset’s aliases (in addition to the preset’s name) in the user’s language
+#### :bug: Bugfixes
+* Fix some direction cones not appearing on railway tracks ([#10843], thanks [@k-yle])
+* Better handling of rate limited API calls and other API errors ([#10299])
+* Fix info boxes for descriptions of brands referenced by [NSI](https://github.com/osmlab/name-suggestion-index) presets ([#10885])
+* Make features clickable when "Full Fill" rendering style is selected
+* Fix calculation of access field placeholders for multi selections ([#9333])
+#### :earth_asia: Localization
+* Consider language scripts when determining the locale to use ([#10910], thanks [@k-yle])
+* Add phone format for Egypt ([#10916], thanks [@youssefelzedy])
+#### :rocket: Presets
+* Don't inherit fields which the current preset already has a dedicated field for
+* Take location into account when setting a presets default values from regional fields
+* Roads with `motorroad=yes` show implied access restrictions (`foot=no`, `bicycle=no`, `horse=no`) ([id-tagging-schema#609], [#9333])
+
+[#9333]: https://github.com/openstreetmap/iD/pull/9333
+[#10299]: https://github.com/openstreetmap/iD/issues/10299
+[#10392]: https://github.com/openstreetmap/iD/issues/10392
+[#10394]: https://github.com/openstreetmap/iD/pull/10394
+[#10401]: https://github.com/openstreetmap/iD/issues/10401
+[#10805]: https://github.com/openstreetmap/iD/pull/10805
+[#10843]: https://github.com/openstreetmap/iD/pull/10843
+[#10849]: https://github.com/openstreetmap/iD/pull/10849
+[#10852]: https://github.com/openstreetmap/iD/issues/10852
+[#10885]: https://github.com/openstreetmap/iD/issues/10885
+[#10910]: https://github.com/openstreetmap/iD/pull/10910
+[#10916]: https://github.com/openstreetmap/iD/pull/10916
+[#10927]: https://github.com/openstreetmap/iD/issues/10927
+[id-tagging-schema#609]: https://github.com/openstreetmap/id-tagging-schema/issues/609
+[@0xatulpatil]: https://github.com/0xatulpatil
+[@MohamedAli00949]: https://github.com/MohamedAli00949
+[@youssefelzedy]: https://github.com/youssefelzedy
+
+
 # 2.32.0
 ##### 2025-03-05
 
@@ -60,7 +157,7 @@ _Breaking developer changes, which may affect downstream projects or sites that 
 * Revalidate ways that are added to or removed from relations ([#10786])
 * Preserve `crossing:markings` tag when fixing missing connection of crossing path and road ([#9586], thanks [@jtracey])
 * Add a dedicated description to fix waterway-road intersections by adding a _culvert_ ([#10778], thanks [@matkoniecz])
-* Separate tag-upgrade warnings from NSI suggestions ([#10800], thanks [@k-yle])
+* Separate tag-upgrade warnings from NSI suggestions ([#10801], thanks [@k-yle])
 #### :bug: Bugfixes
 * Prevent degenerate ways caused by deleting a corner of a triangle ([#10003], thanks [@k-yle])
 * Fix briefly disappearing data layer during background layer tile layer switching transition ([#10748])
@@ -74,10 +171,8 @@ _Breaking developer changes, which may affect downstream projects or sites that 
 * Fix combobox dropdown menu sticking around under certain conditions (e.g. while editing the role of a relation member and deselecting a feature #10319)
 #### :earth_asia: Localization
 * Add `housename` to address format in Bolivia ([#10727])
-#### :hourglass: Performance
 #### :mortar_board: Walkthrough / Help
 * Fix walkthrough from not correctly registering deleted ways in "Lines" step ([#10776])
-#### :rocket: Presets
 #### :hammer: Development
 * Enable Intellisense (IDE auto-completion) for the main classes ([#10618], thanks [@k-yle])
 
@@ -106,7 +201,7 @@ _Breaking developer changes, which may affect downstream projects or sites that 
 [#10776]: https://github.com/openstreetmap/iD/issues/10776
 [#10778]: https://github.com/openstreetmap/iD/issues/10778
 [#10798]: https://github.com/openstreetmap/iD/pull/10798
-[#10800]: https://github.com/openstreetmap/iD/pull/10800
+[#10801]: https://github.com/openstreetmap/iD/pull/10801
 [#10807]: https://github.com/openstreetmap/iD/issues/10807
 [@hlfan]: https://github.com/hlfan
 [@Deeptanshu-sankhwar]: https://github.com/Deeptanshu-sankhwar
@@ -286,7 +381,7 @@ _Breaking developer changes, which may affect downstream projects or sites that 
 * Add button to fully load incompletely downloaded relations ([#5420])
 #### :camera: Street-Level
 * Show Mapillary username and deep link to external viewer on Mapillary photos ([#10135], thanks [@Sushil642])
-* Add button to directly attach the id of a mapillary photo as the `mapillary` tag of selected map features ([#9339])
+* Add button to directly attach the id of a Mapillary photo as the `mapillary` tag of selected map features ([#9339], thanks [@laigyu])
 #### :white_check_mark: Validation
 * Drop validation which checks for [old style multipolygons](https://wiki.openstreetmap.org/wiki/Old_style_multipolygons), as these have long been [fixed](https://blog.jochentopf.com/2017-08-28-polygon-fixing-effort-concluded.html) in OSM
 * Upgrade closed ways with `traffic_calming=island` to `area:highway=traffic_island` ([id-tagging-schema#1162])

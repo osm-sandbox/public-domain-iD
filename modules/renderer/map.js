@@ -825,11 +825,11 @@ export function rendererMap(context) {
 
 
     function zoomIn(delta) {
-        setCenterZoom(map.center(), ~~map.zoom() + delta, 250, true);
+        setCenterZoom(map.center(), Math.trunc(map.zoom() + 0.45) + delta, 150, true);
     }
 
     function zoomOut(delta) {
-        setCenterZoom(map.center(), ~~map.zoom() - delta, 250, true);
+        setCenterZoom(map.center(), Math.ceil(map.zoom() - 0.45) - delta, 150, true);
     }
 
     map.zoomIn = function() { zoomIn(1); };

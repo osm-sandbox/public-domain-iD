@@ -109,7 +109,7 @@ export function behaviorHash(context) {
 
             // Update the URL hash without affecting the browser navigation stack,
             // though unavoidably creating a browser history entry
-            window.history.replaceState(null, computedTitle(false /* includeChangeCount */), latestHash);
+            window.history.replaceState(null, '', latestHash);
 
             // set the title we want displayed for the browser tab/window
             updateTitle(true /* includeChangeCount */);

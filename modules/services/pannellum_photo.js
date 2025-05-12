@@ -19,7 +19,7 @@ export default {
       .attr('class', 'photo-frame pannellum-frame')
       .attr('id', 'ideditor-pannellum-viewer')
       .classed('hide', true)
-      .on('keydown', function(e) { e.stopPropagation(); });
+      .on('mousedown', function(e) { e.stopPropagation(); });
 
     if (!window.pannellum) {
       await this.loadPannellum(context);
@@ -28,7 +28,8 @@ export default {
     const options = {
       'default': { firstScene: '' },
       scenes: {},
-      minHfov: 20
+      minHfov: 20,
+      disableKeyboardCtrl: true
     };
 
     _pannellumViewer = window.pannellum.viewer('ideditor-pannellum-viewer', options);
@@ -55,7 +56,7 @@ export default {
     this.event = utilRebind(this, dispatch, 'on');
 
     return this;
-    },
+  },
 
   loadPannellum: function(context) {
     const head = d3_select('head');
@@ -91,6 +92,10 @@ export default {
     ]);
   },
 
+  /**
+   * Shows the photo frame if hidden
+   * @param {*} context the HTML wrap of the frame
+   */
   showPhotoFrame: function (context) {
     const isHidden = context.selectAll('.photo-frame.pannellum-frame.hide').size();
 
@@ -105,8 +110,12 @@ export default {
     }
 
     return this;
-    },
+  },
 
+  /**
+   * Hides the photo frame if shown
+   * @param {*} context the HTML wrap of the frame
+   */
   hidePhotoFrame: function (viewerContext) {
     viewerContext
       .select('photo-frame.pannellum-frame')
@@ -115,6 +124,11 @@ export default {
     return this;
     },
 
+  /**
+   * Renders an image inside the frame
+   * @param {*} data the image data, it should contain an image_path attribute, a link to the actual image.
+   * @param {boolean} keepOrientation if true, HFOV, pitch and yaw will be kept between images
+   */
   selectPhoto: function (data, keepOrientation) {
     const {key} = data;
     if ( !(key in _currScenes) ) {
@@ -135,12 +149,14 @@ export default {
 
     let yaw = 0;
     let pitch = 0;
+    let hfov = 0;
 
     if (keepOrientation) {
       yaw = this.getYaw();
-      pitch = _pannellumViewer.getPitch();
+      pitch = this.getPitch();
+      hfov = this.getHfov();
     }
-    _pannellumViewer.loadScene(key, pitch, yaw);
+    _pannellumViewer.loadScene(key, pitch, yaw, hfov);
     dispatch.call('viewerChanged');
 
     if (_currScenes.length > 3) {
@@ -155,6 +171,14 @@ export default {
 
   getYaw: function() {
     return _pannellumViewer.getYaw();
+  },
+
+  getPitch: function() {
+    return _pannellumViewer.getPitch();
+  },
+
+  getHfov: function() {
+    return _pannellumViewer.getHfov();
   }
 
 };

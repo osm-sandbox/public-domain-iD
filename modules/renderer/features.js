@@ -54,17 +54,15 @@ export function rendererFeatures(context) {
 
 
     function update() {
-        if (!window.mocha) {
-            var hash = utilStringQs(window.location.hash);
-            var disabled = features.disabled();
-            if (disabled.length) {
-                hash.disable_features = disabled.join(',');
-            } else {
-                delete hash.disable_features;
-            }
-            window.location.replace('#' + utilQsString(hash, true));
-            prefs('disabled-features', disabled.join(','));
+        const hash = utilStringQs(window.location.hash);
+        const disabled = features.disabled();
+        if (disabled.length) {
+            hash.disable_features = disabled.join(',');
+        } else {
+            delete hash.disable_features;
         }
+        window.history.replaceState(null, '', '#' + utilQsString(hash, true));
+        prefs('disabled-features', disabled.join(','));
         _hidden = features.hidden();
         dispatch.call('change');
         dispatch.call('redraw');
@@ -223,10 +221,12 @@ export function rendererFeatures(context) {
 
         const keys = Object.keys(tags);
 
-        for (let i = 0; i < keys.length; i++) {
-            const key = keys[i];
-            const s = key.split(':')[0];
-            if (osmLifecyclePrefixes[s] || osmLifecyclePrefixes[tags[key]]) return true;
+        for (const key of keys) {
+            if (osmLifecyclePrefixes[tags[key]]) return true; // legacy tagging, e.g. `highway=construction`
+            const parts = key.split(':');
+            if (parts.length === 1) continue;
+            const prefix = parts[0];
+            if (osmLifecyclePrefixes[prefix]) return true; // lifecycle tagging, e.g. `demolished:building=yes`
         }
         return false;
     });

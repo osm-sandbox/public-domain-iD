@@ -135,6 +135,7 @@ export function svgVegbilder(projection, context, dispatch) {
     if (!service) return;
 
     const frame = service.photoFrame();
+    if (!frame) return;
 
     // update viewfield rotation
     _viewerYaw = frame.getYaw();
@@ -222,6 +223,9 @@ export function svgVegbilder(projection, context, dispatch) {
 
       sequences = service.sequences(projection);
       images = showMarkers ? service.images(projection) : [];
+
+      dispatch.call('photoDatesChanged', this, 'vegbilder', images.map(p => p.captured_at));
+
       images = filterImages(images);
       sequences = filterSequences(sequences);
     }

@@ -168,6 +168,15 @@ describe('iD.osmEntity', function () {
             expect(a.mergeTags(b.tags).tags).to.eql({a: 'a;b'});
             expect(b.mergeTags(a.tags).tags).to.eql({a: 'b;a'});
         });
+
+        it('accepts override tags', function () {
+            const a = iD.osmEntity({tags: {a: 'a', c: '1'}});
+            const b = iD.osmEntity({tags: {b: 'b', c: '2'}});
+
+            const merged = a.mergeTags(b.tags, { c: '3' });
+
+            expect(merged.tags.c).to.eql('3');
+        });
     });
 
     describe('#osmId', function () {
@@ -223,60 +232,6 @@ describe('iD.osmEntity', function () {
             var node = iD.osmNode();
             var graph = iD.coreGraph([node]);
             expect(node.hasParentRelations(graph)).to.equal(false);
-        });
-    });
-
-    describe('#deprecatedTags', function () {
-        var deprecated = [
-          { old: { highway: 'no' } },
-          { old: { amenity: 'toilet' }, replace: { amenity: 'toilets' } },
-          { old: { speedlimit: '*' }, replace: { maxspeed: '$1' } },
-          { old: { man_made: 'water_tank' }, replace: { man_made: 'storage_tank', content: 'water' } },
-          { old: { amenity: 'gambling', gambling: 'casino' }, replace: { amenity: 'casino' } }
-        ];
-
-        it('returns none if entity has no tags', function () {
-            expect(iD.osmEntity().deprecatedTags(deprecated)).to.eql([]);
-        });
-
-        it('returns none when no tags are deprecated', function () {
-            expect(iD.osmEntity({ tags: { amenity: 'toilets' } }).deprecatedTags(deprecated)).to.eql([]);
-        });
-
-        it('returns 1:0 replacement', function () {
-            expect(iD.osmEntity({ tags: { highway: 'no' } }).deprecatedTags(deprecated)).to.eql(
-                [{ old: { highway: 'no' } }]
-            );
-        });
-
-        it('returns 1:1 replacement', function () {
-            expect(iD.osmEntity({ tags: { amenity: 'toilet' } }).deprecatedTags(deprecated)).to.eql(
-                [{ old: { amenity: 'toilet' }, replace: { amenity: 'toilets' } }]
-            );
-        });
-
-        it('returns 1:1 wildcard', function () {
-            expect(iD.osmEntity({ tags: { speedlimit: '50' } }).deprecatedTags(deprecated)).to.eql(
-                [{ old: { speedlimit: '*' }, replace: { maxspeed: '$1' } }]
-            );
-        });
-
-        it('returns 1:2 total replacement', function () {
-            expect(iD.osmEntity({ tags: { man_made: 'water_tank' } }).deprecatedTags(deprecated)).to.eql(
-                [{ old: { man_made: 'water_tank' }, replace: { man_made: 'storage_tank', content: 'water' } }]
-            );
-        });
-
-        it('returns 1:2 partial replacement', function () {
-            expect(iD.osmEntity({ tags: { man_made: 'water_tank', content: 'water' } }).deprecatedTags(deprecated)).to.eql(
-                [{ old: { man_made: 'water_tank' }, replace: { man_made: 'storage_tank', content: 'water' } }]
-            );
-        });
-
-        it('returns 2:1 replacement', function () {
-            expect(iD.osmEntity({ tags: { amenity: 'gambling', gambling: 'casino' } }).deprecatedTags(deprecated)).to.eql(
-                [{ old: { amenity: 'gambling', gambling: 'casino' }, replace: { amenity: 'casino' } }]
-            );
         });
     });
 

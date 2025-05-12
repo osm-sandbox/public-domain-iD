@@ -9,6 +9,7 @@ import { services } from '../services';
 import {  utilHashcode, utilTagDiff } from '../util';
 import { utilDisplayLabel } from '../util/utilDisplayLabel';
 import { validationIssue, validationIssueFix } from '../core/validation';
+import { getDeprecatedTags } from '../osm/deprecated';
 
 /** @import { TagDiff } from '../util/util'. */
 
@@ -41,9 +42,23 @@ export function validationOutdatedTags() {
       preset = newPreset;
     }
 
-    // Upgrade deprecated tags..
+    // Attempt to match a canonical record in the name-suggestion-index.
+    const nsi = services.nsi;
+    let waitingForNsi = false;
+    let nsiResult;
+    if (nsi) {
+      waitingForNsi = (nsi.status() === 'loading');
+      if (!waitingForNsi) {
+        const loc = entity.extent(graph).center();
+        nsiResult = nsi.upgradeTags(oldTags, loc);
+      }
+    }
+    const nsiDiff = nsiResult ? utilTagDiff(oldTags, nsiResult.newTags) : [];
+
+    // Upgrade deprecated tags
+    let deprecatedTags;
     if (_dataDeprecated) {
-      const deprecatedTags = entity.deprecatedTags(_dataDeprecated);
+      deprecatedTags = getDeprecatedTags(entity.tags, _dataDeprecated);
       if (entity.type === 'way' && entity.isClosed() &&
           entity.tags.traffic_calming === 'island' && !entity.tags.highway) {
         // https://github.com/openstreetmap/id-tagging-schema/issues/1162#issuecomment-2000356902
@@ -63,7 +78,10 @@ export function validationOutdatedTags() {
     // Add missing addTags from the detected preset
     let newTags = Object.assign({}, entity.tags);  // shallow copy
     if (preset.tags !== preset.addTags) {
-      Object.keys(preset.addTags).forEach(k => {
+      Object.keys(preset.addTags).filter(k => {
+        // if nsi suggestion already includes this tag: don't repeat it in "incomplete tags"
+        return !nsiResult?.newTags[k];
+      }).forEach(k => {
         if (!newTags[k]) {
           if (preset.addTags[k] === '*') {
             newTags[k] = 'yes';
@@ -73,28 +91,23 @@ export function validationOutdatedTags() {
         }
       });
     }
-
     const deprecationDiff = utilTagDiff(oldTags, newTags);
-
-    // Attempt to match a canonical record in the name-suggestion-index.
-    const nsi = services.nsi;
-    let waitingForNsi = false;
-    let nsiResult;
-    if (nsi) {
-      waitingForNsi = (nsi.status() === 'loading');
-      if (!waitingForNsi) {
-        const loc = entity.extent(graph).center();
-        nsiResult = nsi.upgradeTags(oldTags, loc);
-      }
-    }
-
-    const nsiDiff = nsiResult ? utilTagDiff(oldTags, nsiResult.newTags) : [];
+    const deprecationDiffContext = Object.keys(oldTags)
+        .filter(key => deprecatedTags?.some(deprecated => deprecated.replace?.[key] !== undefined))
+        .filter(key => newTags[key] === oldTags[key])
+        .map(key => ({
+          type: '~',
+          key,
+          oldVal: oldTags[key],
+          newVal: newTags[key],
+          display: '&nbsp; ' + key + '=' + oldTags[key]
+        }));
 
     let issues = [];
     issues.provisional = (_waitingForDeprecated || waitingForNsi);
 
     if (deprecationDiff.length) {
-      const isOnlyAddingTags = deprecationDiff.every(d => d.type === '+');
+      const isOnlyAddingTags = !deprecationDiff.some(d => d.type === '-');
       const prefix = isOnlyAddingTags ? 'incomplete.' : '';
 
       issues.push(new validationIssue({
@@ -112,7 +125,7 @@ export function validationOutdatedTags() {
         reference: selection => showReference(
           selection,
           t.append(`issues.outdated_tags.${prefix}reference`),
-          deprecationDiff
+          [...deprecationDiff, ...deprecationDiffContext]
         ),
         entityIds: [entity.id],
         hash: utilHashcode(JSON.stringify(deprecationDiff)),
@@ -242,8 +255,15 @@ export function validationOutdatedTags() {
         .attr('class', 'tagDiff-row')
         .append('td')
         .attr('class', d => {
-          let klass = d.type === '+' ? 'add' : 'remove';
-          return `tagDiff-cell tagDiff-cell-${klass}`;
+          const klass = 'tagDiff-cell';
+          switch (d.type) {
+            case '+':
+              return `${klass} tagDiff-cell-add`;
+            case '-':
+              return `${klass} tagDiff-cell-remove`;
+            default:
+              return `${klass} tagDiff-cell-unchanged`;
+          }
         })
         .html(d => d.display);
     }

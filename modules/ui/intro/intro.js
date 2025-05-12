@@ -41,7 +41,8 @@ const chapterFlow = [
 
 
 export function uiIntro(context) {
-  //const INTRO_IMAGERY = 'EsriWorldImageryClarity';
+  // PDMap
+  //const INTRO_IMAGERY = 'Bing';
   const INTRO_IMAGERY = 'pd-USGS-Orthoimagery';
   let _introGraph = {};
   let _currChapter;
@@ -164,7 +165,7 @@ export function uiIntro(context) {
       overlays.forEach(d => context.background().toggleOverlayLayer(d));
       if (history) { context.history().fromJSON(history, false); }
       context.map().centerZoom(center, zoom);
-      window.location.replace(hash);
+      window.history.replaceState(null, '', hash);
       context.inIntro(false);
     });
 

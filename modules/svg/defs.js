@@ -33,7 +33,7 @@ export function svgDefs(context) {
                 .append('marker')
                 .attr('id', `ideditor-oneway-marker-${name}`)
                 .attr('viewBox', '0 0 10 5')
-                .attr('refX', 2.5)
+                .attr('refX', 4)
                 .attr('refY', 2.5)
                 .attr('markerWidth', 2)
                 .attr('markerHeight', 2)
@@ -41,14 +41,14 @@ export function svgDefs(context) {
                 .attr('orient', 'auto')
                 .append('path')
                 .attr('class', 'oneway-marker-path')
-                .attr('d', 'M 5,3 L 0,3 L 0,2 L 5,2 L 5,0 L 10,2.5 L 5,5 z')
+                .attr('d', 'M 6,3 L 0,3 L 0,2 L 6,2 L 5,0 L 10,2.5 L 5,5 z')
                 .attr('stroke', 'none')
                 .attr('fill', colour)
-                .attr('opacity', '0.75');
+                .attr('opacity', '1');
         }
-        addOnewayMarker('black', '#000'); // default
+        addOnewayMarker('black', '#333'); // default
         addOnewayMarker('white', '#fff'); // for dark lines (bridges under construction, railways, etc.)
-        addOnewayMarker('pink', '#eaf'); // for dark lines where white arrows don't work
+        addOnewayMarker('gray', '#eee'); // for railway lines
 
 
         function addSidedMarker(name, color, offset) {
