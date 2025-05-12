@@ -35,9 +35,9 @@ if (fs.existsSync('./data/manual_imagery.json')) {
   );
 }
 */
-if (fs.existsSync('./data/pd_imagery.json')) {
+if (fs.existsSync('./data/manual_pd_imagery.json')) {
   // add pd sources
-  sources.features = sources.features.concat(JSON.parse(fs.readFileSync('./data/pd_imagery.json')).features);
+  sources.features = sources.features.concat(JSON.parse(fs.readFileSync('./data/manual_pd_imagery.json')).features);
 }
 
 let imagery = [];
