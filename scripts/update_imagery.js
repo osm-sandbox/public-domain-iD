@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-let sources = []; // don't use ELI for now
+let sources = {features: []}; // don't use ELI for now
 const prettyStringify = require('json-stringify-pretty-compact');
 
 /** @type {import("geojson").FeatureCollection} */
@@ -37,7 +37,7 @@ if (fs.existsSync('./data/manual_imagery.json')) {
 */
 if (fs.existsSync('./data/pd_imagery.json')) {
   // add pd sources
-  sources = sources.concat(JSON.parse(fs.readFileSync('./data/pd_imagery.json')));
+  sources.features = sources.features.concat(JSON.parse(fs.readFileSync('./data/pd_imagery.json')).features);
 }
 
 let imagery = [];

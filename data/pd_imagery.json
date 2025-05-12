@@ -1,179 +1,203 @@
-[
-  {
-    "id": "pd-USGS-Orthoimagery",
-    "name": "USGS Imagery",
-    "type": "tms",
-    "default": true,
-    "attribution": {
-      "text": "USGS The National Map: Orthoimagery",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
-      "required": false
+{
+  "features": [
+    {
+      "properties": {
+        "id": "pd-USGS-Orthoimagery",
+        "name": "USGS Imagery",
+        "type": "tms",
+        "default": true,
+        "attribution": {
+          "text": "USGS The National Map: Orthoimagery",
+          "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer",
+          "required": false
+        },
+        "description": "",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{zoom}/{y}/{x}"
+      }
     },
-    "description": "",
-    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{zoom}/{y}/{x}"
-  },
-  {
-    "id": "pd-USGS-Topo",
-    "name": "USGS Topo",
-    "type": "tms",
-    "attribution": {
-      "text": "USGS The National Map: Topo",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-Topo",
+        "name": "USGS Topo",
+        "type": "tms",
+        "attribution": {
+          "text": "USGS The National Map: Topo",
+          "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer",
+          "required": false
+        },
+        "description": "",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{zoom}/{y}/{x}"
+      }
     },
-    "description": "",
-    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{zoom}/{y}/{x}"
-  },
-  {
-    "id": "pd-USGS-Imagery-Topo",
-    "name": "USGS Imagery Topo",
-    "type": "tms",
-    "attribution": {
-      "text": "USGS The National Map: Imagery Topo",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-Imagery-Topo",
+        "name": "USGS Imagery Topo",
+        "type": "tms",
+        "attribution": {
+          "text": "USGS The National Map: Imagery Topo",
+          "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer",
+          "required": false
+        },
+        "description": "",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{zoom}/{y}/{x}"
+      }
     },
-    "description": "",
-    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryTopo/MapServer/tile/{zoom}/{y}/{x}"
-  },
-  {
-    "id": "pd-USGS-Shaded-Relief",
-    "name": "USGS Shaded Relief",
-    "type": "tms",
-    "attribution": {
-      "text": "USGS The National Map: 3D Elevation Program",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-Shaded-Relief",
+        "name": "USGS Shaded Relief",
+        "type": "tms",
+        "attribution": {
+          "text": "USGS The National Map: 3D Elevation Program",
+          "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer",
+          "required": false
+        },
+        "description": "",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/tile/{zoom}/{y}/{x}"
+      }
     },
-    "description": "",
-    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSShadedReliefOnly/MapServer/tile/{zoom}/{y}/{x}"
-  },
-  {
-    "id": "pd-USGS-NAIP-Plus",
-    "name": "USGS NAIP Plus Imagery",
-    "type": "wms",
-    "attribution": {
-      "text": "USGS, USDA: NAIP Plus",
-      "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-NAIP-Plus",
+        "name": "USGS NAIP Plus Imagery",
+        "type": "wms",
+        "attribution": {
+          "text": "USGS, USDA: NAIP Plus",
+          "url": "https://imagery.nationalmap.gov/arcgis/rest/services/USGSNAIPPlus/ImageServer",
+          "required": false
+        },
+        "description": "",
+        "available_projections": [
+          "CRS:84",
+          "EPSG:3857",
+          "EPSG:4326"
+        ],
+        "url": "https://imagery.nationalmap.gov:443/arcgis/services/USGSNAIPPlus/ImageServer/WMSServer?LAYERS=NaturalColor&STYLES=&FORMAT=image/jpeg&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
+      }
     },
-    "description": "",
-    "available_projections": [
-        "CRS:84",
-        "EPSG:3857",
-        "EPSG:4326"
-    ],
-    "url": "https://imagery.nationalmap.gov:443/arcgis/services/USGSNAIPPlus/ImageServer/WMSServer?LAYERS=NaturalColor&STYLES=&FORMAT=image/jpeg&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
-  },
-
-  
-  {
-    "id": "pd-USGS-Hydrography",
-    "name": "USGS National Hydrography Dataset",
-    "type": "tms",
-    "overlay": true,
-    "attribution": {
-      "text": "USGS The National Map: National Hydrography Dataset",
-      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-Hydrography",
+        "name": "USGS National Hydrography Dataset",
+        "type": "tms",
+        "overlay": true,
+        "attribution": {
+          "text": "USGS The National Map: National Hydrography Dataset",
+          "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer",
+          "required": false
+        },
+        "description": "",
+        "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer/tile/{zoom}/{y}/{x}"
+      }
     },
-    "description": "",
-    "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSHydroCached/MapServer/tile/{zoom}/{y}/{x}"
-  },
-  {
-    "id": "pd-USGS-wbd",
-    "name": "USGS Watershed Boundaries",
-    "type": "wms",
-    "overlay": true,
-    "attribution": {
-      "text": "USGS Watershed Boundary Dataset",
-      "url": "https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-wbd",
+        "name": "USGS Watershed Boundaries",
+        "type": "wms",
+        "overlay": true,
+        "attribution": {
+          "text": "USGS Watershed Boundary Dataset",
+          "url": "https://hydro.nationalmap.gov/arcgis/rest/services/wbd/MapServer",
+          "required": false
+        },
+        "available_projections": [
+          "EPSG:102100"
+        ],
+        "description": "",
+        "url": "https://hydro.nationalmap.gov/arcgis/services/wbd/MapServer/WMSServer?LAYERS=8&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
+      }
     },
-    "available_projections": [
-      "EPSG:102100"
-  ],
-    "description": "",
-    "url": "https://hydro.nationalmap.gov/arcgis/services/wbd/MapServer/WMSServer?LAYERS=8&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
-  },
-  {
-    "id": "pd-USGS-contours",
-    "name": "USGS Elevation Contours",
-    "type": "wms",
-    "overlay": true,
-    "attribution": {
-      "text": "USGS The National Map: 3D Elevation Program",
-      "url": "https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-contours",
+        "name": "USGS Elevation Contours",
+        "type": "wms",
+        "overlay": true,
+        "attribution": {
+          "text": "USGS The National Map: 3D Elevation Program",
+          "url": "https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer",
+          "required": false
+        },
+        "available_projections": [
+          "EPSG:102100"
+        ],
+        "description": "",
+        "url": "https://carto.nationalmap.gov/arcgis/services/contours/MapServer/WMSServer?LAYERS=9,13&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
+      }
     },
-    "available_projections": [
-      "EPSG:102100"
-  ],
-    "description": "",
-    "url": "https://carto.nationalmap.gov/arcgis/services/contours/MapServer/WMSServer?LAYERS=9,13&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
-  },
-  {
-    "id": "pd-USGS-railroads",
-    "name": "USGS Railroads",
-    "type": "wms",
-    "overlay": true,
-    "attribution": {
-      "text": "USGS The National Map: National Transportation Dataset",
-      "url": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-railroads",
+        "name": "USGS Railroads",
+        "type": "wms",
+        "overlay": true,
+        "attribution": {
+          "text": "USGS The National Map: National Transportation Dataset",
+          "url": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer",
+          "required": false
+        },
+        "available_projections": [
+          "EPSG:102100"
+        ],
+        "description": "",
+        "url": "https://carto.nationalmap.gov/arcgis/services/transportation/MapServer/WMSServer?LAYERS=2,15,28,34&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
+      }
     },
-    "available_projections": [
-      "EPSG:102100"
-  ],
-    "description": "",
-    "url": "https://carto.nationalmap.gov/arcgis/services/transportation/MapServer/WMSServer?LAYERS=2,15,28,34&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
-  },
-  {
-    "id": "pd-USGS-trails",
-    "name": "USGS Trails",
-    "type": "wms",
-    "overlay": true,
-    "attribution": {
-      "text": "USGS The National Map: National Transportation Dataset",
-      "url": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-trails",
+        "name": "USGS Trails",
+        "type": "wms",
+        "overlay": true,
+        "attribution": {
+          "text": "USGS The National Map: National Transportation Dataset",
+          "url": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer",
+          "required": false
+        },
+        "available_projections": [
+          "EPSG:102100"
+        ],
+        "description": "",
+        "url": "https://carto.nationalmap.gov/arcgis/services/transportation/MapServer/WMSServer?LAYERS=3,16,29,35&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
+      }
     },
-    "available_projections": [
-      "EPSG:102100"
-  ],
-    "description": "",
-    "url": "https://carto.nationalmap.gov/arcgis/services/transportation/MapServer/WMSServer?LAYERS=3,16,29,35&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
-  },
-  {
-    "id": "pd-USGS-airports",
-    "name": "USGS Airports",
-    "type": "wms",
-    "overlay": true,
-    "attribution": {
-      "text": "USGS The National Map: National Transportation Dataset",
-      "url": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer",
-      "required": false
+    {
+      "properties": {
+        "id": "pd-USGS-airports",
+        "name": "USGS Airports",
+        "type": "wms",
+        "overlay": true,
+        "attribution": {
+          "text": "USGS The National Map: National Transportation Dataset",
+          "url": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer",
+          "required": false
+        },
+        "available_projections": [
+          "EPSG:102100"
+        ],
+        "description": "",
+        "url": "https://carto.nationalmap.gov/arcgis/services/transportation/MapServer/WMSServer?LAYERS=12,13,25&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
+      }
     },
-    "available_projections": [
-      "EPSG:102100"
-  ],
-    "description": "",
-    "url": "https://carto.nationalmap.gov/arcgis/services/transportation/MapServer/WMSServer?LAYERS=12,13,25&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
-  },
-  {
-    "id": "pd-USGS-roads",
-    "name": "USGS Roads",
-    "type": "wms",
-    "overlay": true,
-    "attribution": {
-      "text": "USGS The National Map: National Transportation Dataset",
-      "url": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer",
-      "required": false
-    },
-    "available_projections": [
-      "EPSG:102100"
-  ],
-    "description": "",
-    "url": "https://carto.nationalmap.gov/arcgis/services/transportation/MapServer/WMSServer?LAYERS=6,7,8,9,10,11,18,19,20,21,22,23,24,17,30,31,32,36,37,38&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
-  }
-]
+    {
+      "properties": {
+        "id": "pd-USGS-roads",
+        "name": "USGS Roads",
+        "type": "wms",
+        "overlay": true,
+        "attribution": {
+          "text": "USGS The National Map: National Transportation Dataset",
+          "url": "https://carto.nationalmap.gov/arcgis/rest/services/transportation/MapServer",
+          "required": false
+        },
+        "available_projections": [
+          "EPSG:102100"
+        ],
+        "description": "",
+        "url": "https://carto.nationalmap.gov/arcgis/services/transportation/MapServer/WMSServer?LAYERS=6,7,8,9,10,11,18,19,20,21,22,23,24,17,30,31,32,36,37,38&STYLES=&FORMAT=image/png&TRANSPARENT=TRUE&CRS={proj}&WIDTH={width}&HEIGHT={height}&BBOX={bbox}&VERSION=1.3.0&SERVICE=WMS&REQUEST=GetMap"
+      }
+    }
+  ]
+}
