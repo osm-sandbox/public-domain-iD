@@ -43,7 +43,7 @@ const chapterFlow = [
 export function uiIntro(context) {
   // PDMap
   //const INTRO_IMAGERY = 'Bing';
-  const INTRO_IMAGERY = 'pd-USGS-Orthoimagery';
+  const INTRO_IMAGERY = context.isPublicDomain() ? 'pd-USGS-Orthoimagery' : 'Bing';
   let _introGraph = {};
   let _currChapter;
 

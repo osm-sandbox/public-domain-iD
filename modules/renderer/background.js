@@ -30,7 +30,8 @@ export function rendererBackground(context) {
 
 
   function ensureImageryIndex() {
-    return fileFetcher.get('imagery')
+    let filename = context.isPublicDomain() ? 'pd_imagery' : 'imagery';
+    return fileFetcher.get(filename)
       .then(sources => {
         if (_imageryIndex) return _imageryIndex;
 

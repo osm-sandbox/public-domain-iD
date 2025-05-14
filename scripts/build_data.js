@@ -90,6 +90,7 @@ function buildData() {
   let tasks = [
     minifyJSON('data/address_formats.json', 'dist/data/address_formats.min.json'),
     minifyJSON('data/imagery.json', 'dist/data/imagery.min.json'),
+    minifyJSON('data/pd_imagery.json', 'dist/data/pd_imagery.min.json'),
     minifyJSON('data/intro_graph.json', 'dist/data/intro_graph.min.json'),
     minifyJSON('data/keepRight.json', 'dist/data/keepRight.min.json'),
     minifyJSON('data/languages.json', 'dist/data/languages.min.json'),

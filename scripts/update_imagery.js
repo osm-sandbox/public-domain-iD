@@ -1,19 +1,14 @@
 const fs = require('fs');
-
-let sources = {features: []}; // don't use ELI for now
 const prettyStringify = require('json-stringify-pretty-compact');
 
 /** @type {import("geojson").FeatureCollection} */
-/*
 const sources = JSON.parse(
   fs.readFileSync(require.resolve('editor-layer-index/imagery.geojson'), 'utf8')
 );
 
 if (fs.existsSync('./data/manual_imagery.json')) {
-*/
-  /** @type {any[]} */
 
-/*
+  /** @type {any[]} */
   const manualImagery = JSON.parse(fs.readFileSync('./data/manual_imagery.json', 'utf8'));
   // we can include additional imagery sources that aren't in the index
   sources.features = sources.features
@@ -21,9 +16,8 @@ if (fs.existsSync('./data/manual_imagery.json')) {
 
   sources.features.push(
     ...manualImagery.map(source => {
-*/
+
       /** @type {import("geojson").Feature} */
-/*
       const feature = {
         type: 'Feature',
         properties: { ...source, ...source.extent },
@@ -34,11 +28,14 @@ if (fs.existsSync('./data/manual_imagery.json')) {
     })
   );
 }
-*/
+
+let pdSources = {features: []};
 if (fs.existsSync('./data/manual_pd_imagery.json')) {
   // add pd sources
-  sources.features = sources.features.concat(JSON.parse(fs.readFileSync('./data/manual_pd_imagery.json')).features);
+  pdSources.features = pdSources.features.concat(JSON.parse(fs.readFileSync('./data/manual_pd_imagery.json')).features);
 }
+
+function processSources(sources, filename) {
 
 let imagery = [];
 
@@ -196,5 +193,10 @@ sources.features.forEach(feature => {
 
 imagery.sort((a, b) => a.name.localeCompare(b.name));
 
-fs.writeFileSync('data/imagery.json', prettyStringify(imagery));
-fs.writeFileSync('dist/data/imagery.min.json', JSON.stringify(imagery));
+fs.writeFileSync('data/' + filename + '.json', prettyStringify(imagery));
+fs.writeFileSync('dist/data/' + filename + '.min.json', JSON.stringify(imagery));
+
+}
+
+processSources(sources, 'imagery');
+processSources(pdSources, 'pd_imagery');

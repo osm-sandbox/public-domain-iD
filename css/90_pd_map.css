@@ -1,4 +1,4 @@
-/* CSS for Public Domain Map-specific features
+/* CSS for PDMap-specific features
 ------------------------------------------------------- */
 
 /* hide OSM-specific features */
@@ -10,10 +10,5 @@
   border-radius: inherit;
 }
 .map-panes .layer-list-qa { /* hide OSM quality-assurance layers */
-  display: none;
-}
-
-/* hide data that doesn't have a public domain license */
-.map-panes .section-photo-overlays { /* hide photo bubble overlays */
   display: none;
 }

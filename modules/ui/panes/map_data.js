@@ -15,10 +15,10 @@ export function uiPaneMapData(context) {
         .iconName('iD-icon-data')
         .sections([
             uiSectionDataLayers(context),
-            uiSectionPhotoOverlays(context),
+            context.isPublicDomain() ? null : uiSectionPhotoOverlays(context),
             uiSectionMapStyleOptions(context),
             uiSectionMapFeatures(context)
-        ]);
+        ].filter(Boolean));
 
     return mapDataPane;
 }

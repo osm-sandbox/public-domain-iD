@@ -441,6 +441,17 @@ export function coreContext() {
   };
 
 
+  let _license = context.initialHashParams.license || 'odbl';
+  context.license = function(val) {
+    if (!arguments.length) return _license;
+    _license = val;
+    return context;
+  };
+  context.isPublicDomain = function() {
+    return _license === 'cc0';
+  };
+
+
   /* Assets */
   let _assetPath = '';
   context.assetPath = function(val) {

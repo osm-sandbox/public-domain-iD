@@ -9627,7 +9627,7 @@
     width: 100px;
     color: #7092ff;
 }
-/* CSS for Public Domain Map-specific features
+/* CSS for PDMap-specific features
 ------------------------------------------------------- */
 
 /* hide OSM-specific features */
@@ -9639,10 +9639,5 @@
   border-radius: inherit;
 }
 .ideditor .map-panes .layer-list-qa { /* hide OSM quality-assurance layers */
-  display: none;
-}
-
-/* hide data that doesn't have a public domain license */
-.ideditor .map-panes .section-photo-overlays { /* hide photo bubble overlays */
   display: none;
 }

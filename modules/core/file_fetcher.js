@@ -21,6 +21,7 @@ export function coreFileFetcher() {
   let _fileMap = {
     'address_formats': 'data/address_formats.min.json',
     'imagery': 'data/imagery.min.json',
+    'pd_imagery': 'data/pd_imagery.min.json',
     'intro_graph': 'data/intro_graph.min.json',
     'keepRight': 'data/keepRight.min.json',
     'languages': 'data/languages.min.json',
